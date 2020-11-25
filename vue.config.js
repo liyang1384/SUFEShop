@@ -1,3 +1,3 @@
 module.exports = {
-    outputDir: '../SUFEShopServer/dist'
+  outputDir: '../SUFEShopServer/dist'
 }
