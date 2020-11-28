@@ -1,17 +1,18 @@
 <template>
-  <a-layout>
-    <Header />
+  <a-config-provider :locale="locale">
     <router-view />
-  </a-layout>
+  </a-config-provider>
 </template>
 
 <script>
-import Header from '@/layouts/Header.vue'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
 export default {
   name: 'App',
-  components: {
-    Header
+  data () {
+    return {
+      locale: zhCN
+    }
   }
 }
 </script>
