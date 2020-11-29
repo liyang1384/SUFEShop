@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import UserLayout from '../layouts/UserLayout.vue'
 import OrderList from '../views/OrderList.vue'
-
+import HistoryList from '../views/HistoryList.vue'
 const routes = [
   {
     path: '/',
@@ -12,6 +12,11 @@ const routes = [
         path: 'orderlist',
         name: 'OrderList',
         component: OrderList
+      },
+      {
+        path: 'historylist',
+        name: 'historylist',
+        component: HistoryList
       }
     ]
   }
