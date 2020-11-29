@@ -8,9 +8,15 @@
   :data-source="data"
   :pagination="{ pageSize: 4 }"
   >
-  <template #images="{ text: images }">
-    <img :src="images" style="width: 120px; height: 100px"
+  <template #images_name="{ text: images_name }" >
+    <span>
+    <img :src="images_name[0]" style="width: 120px; height: 100px"
     >
+    <span> {{images_name[1]}} </span>
+    </span>
+  </template>
+  <template #price>
+    <span></span>
   </template>
     <template #tags="{ text: tags }">
       <span>
@@ -40,20 +46,14 @@ const columns = [
     width: 120
   },
   {
-    dataIndex: 'images',
-    key: 'images',
-    title: '商品图片',
-    slots: { customRender: 'images' },
-    width: 120
+    dataIndex: 'images_name',
+    key: 'images_name',
+    title: '商品',
+    slots: { customRender: 'images_name' },
+    width: 400
   },
   {
-    dataIndex: 'commodity',
-    key: 'commodity',
-    title: '商品名称',
-    width: 120
-  },
-  {
-    title: '价格',
+    title: '价格/￥',
     dataIndex: 'price',
     key: 'price',
     width: 120
@@ -61,7 +61,8 @@ const columns = [
   {
     title: '商品状态',
     dataIndex: 'state',
-    key: 'state'
+    key: 'state',
+    width: 200
   },
   {
     title: '商品类别',
@@ -69,12 +70,6 @@ const columns = [
     dataIndex: 'tags',
     slots: { customRender: 'tags' },
     width: 200
-  },
-  {
-    title: '商品描述',
-    key: 'comments',
-    dataIndex: 'comments',
-    width: 400
   },
   {
     title: '操作',
@@ -87,72 +82,50 @@ const columns = [
 const data = [
   {
     key: '1',
-    images: require('@/assets/image1.png'),
-    commodity: '水嫩草莓',
+    images_name: [require('@/assets/image1.png'), '水嫩草莓'],
     price: 32.75,
     state: '在售',
     tags: ['水果'],
-    comments: '每日新进新鲜果蔬！',
     time: '2020-1-1'
   },
   {
     key: '2',
-    images: require('@/assets/image2.png'),
-    commodity: '潮牌跑步鞋',
+    images_name: [require('@/assets/image2.png'), '潮牌跑步鞋'],
     price: 420.00,
     state: '在售',
     tags: ['服装'],
-    comments: '跑步鞋中的战斗机！',
     time: '2019-1-1'
   },
   {
-    images: require('@/assets/image3.png'),
-    key: '3',
-    commodity: '打工人必备电动汽车',
-    price: 320000.0,
-    state: '在售',
-    tags: ['汽车', '全新'],
-    comments: '....',
-    time: '2018-1-1'
-  },
-  {
-    images: require('@/assets/image4.png'),
+    images_name: [require('@/assets/image4.png'), '高端人才必备手机'],
     key: '4',
-    commodity: '高端人才必备手机',
     price: 7000,
     state: '在售',
     tags: ['手机'],
-    comments: '......',
     time: '2017-5-1'
   },
   {
-    images: require('@/assets/image5.png'),
+    images_name: [require('@/assets/image5.png'), '潮流自行车'],
     key: '5',
-    commodity: '潮流自行车',
     price: 500,
     state: '在售',
     tags: ['自行车', '二手'],
-    comments: '......',
     time: '2017-4-1'
   },
   {
-    images: require('@/assets/image6.png'),
+    images_name: [require('@/assets/image6.png'), '精神小伙同款上衣'],
     key: '6',
-    commodity: '精神小伙同款上衣',
     price: 20,
     state: '在售',
     tags: ['教材', '全新'],
-    comments: '......',
     time: '2017-3-1'
   },
   {
-    images: require('@/assets/image7.png'),
+    images_name: [require('@/assets/image7.png'), '上财女生必备神仙水'],
     key: '7',
-    commodity: '上财女生必备神仙水',
     price: 24,
     state: '在售',
     tags: ['化妆品'],
-    comments: '......',
     time: '2017-1-1'
   }
 ]
@@ -166,3 +139,4 @@ export default {
   }
 }
 </script>
+
