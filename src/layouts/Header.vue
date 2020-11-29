@@ -61,7 +61,7 @@ export default {
         path: '/orderlist',
         name: '我的订单'
       }, {
-        path: '/',
+        path: '/myfavourites',
         name: '我的收藏夹'
       }, {
         path: '/',
