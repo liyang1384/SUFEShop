@@ -3,6 +3,8 @@ import UserLayout from '../layouts/UserLayout.vue'
 import OrderList from '../views/OrderList.vue'
 import HistoryList from '../views/HistoryList.vue'
 import MyFavourites from '../views/MyFavourites.vue'
+import CommodityDetail from '../views/CommodityDetail.vue'
+
 const routes = [
   {
     path: '/',
@@ -23,6 +25,11 @@ const routes = [
         path: 'historylist',
         name: 'historylist',
         component: HistoryList
+      },
+      {
+        path: 'commoditydetail',
+        name: 'CommodityDetail',
+        component: CommodityDetail
       }
     ]
   }
