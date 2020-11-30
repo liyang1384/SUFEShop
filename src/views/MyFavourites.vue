@@ -8,7 +8,7 @@
   :data-source="data"
   :pagination="{ pageSize: 5 }"
   >
-  <template #images="{ text: images }">
+  <template #images="{ text:images }">
     <img :src="images" style="width: 120px; height: 100px">
   </template>
   <template #action>
@@ -75,7 +75,7 @@ const data = [
     tags: '教材',
     seller: 'BILL',
     comments: '高数教材。',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '2',
@@ -85,7 +85,7 @@ const data = [
     tags: '日用品',
     seller: 'ANNA',
     comments: '低价可刀！！！',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '3',
@@ -95,7 +95,7 @@ const data = [
     tags: '辅导教材',
     seller: 'LNN',
     comments: '....',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '4',
@@ -105,7 +105,7 @@ const data = [
     tags: '零食',
     seller: 'YAS',
     comments: '买多了',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '5',
@@ -114,7 +114,7 @@ const data = [
     state: '在售',
     tags: '服饰',
     seller: 'JACK',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '6',
@@ -123,7 +123,7 @@ const data = [
     state: '在售',
     tags: '教材',
     seller: 'BOB',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '7',
@@ -133,7 +133,7 @@ const data = [
     tags: '辅导教材',
     seller: 'TIM',
     comments: '......',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   }
 ]
 export default {
