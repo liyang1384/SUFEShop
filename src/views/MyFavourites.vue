@@ -11,6 +11,9 @@
   <template #images="{ text:images }">
     <img :src="images" style="width: 120px; height: 100px">
   </template>
+    <template #price="{ text }">
+    ￥{{ text }}
+  </template>
   <template #action>
       <a-button>查看商品详情</a-button>
       <a-divider type="vertical" />
@@ -46,10 +49,11 @@ const columns = [
     width: 200
   },
   {
-    title: '价格（元）',
+    title: '价格',
     dataIndex: 'price',
     key: 'price',
-    width: 120
+    width: 120,
+    slots: { customRender: 'price' }
   },
   {
     title: '商品状态',
