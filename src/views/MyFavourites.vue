@@ -67,11 +67,6 @@ const columns = [
     slots: { customRender: 'tags' }
   },
   {
-    title: '卖家',
-    dataIndex: 'seller',
-    key: 'seller'
-  },
-  {
     title: '操作',
     key: 'action',
     dataIndex: 'action',

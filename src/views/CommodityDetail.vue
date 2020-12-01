@@ -11,7 +11,7 @@
   />
   <a-row>
     <a-col  :span="8">
-      <img :src="images" style="position:absolute;top:60px;left:10px;width: 350px"/>
+      <img :src="images" style="position:absolute;top:55px;left:10px;width: 350px"/>
     </a-col>
     <a-col :span="16">
       <a-descriptions layout="vertical" bordered>
@@ -38,6 +38,7 @@
   </a-descriptions>
     </a-col>
   </a-row>
+  <a-divider />
   <a-row>
     <a-col :span="4" :offset="20">
       <a-button value="large" type="primary">购买商品</a-button>
