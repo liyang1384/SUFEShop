@@ -16,12 +16,21 @@
       <a-divider type="vertical" />
       <a-button>联系卖家</a-button>
       <a-divider type="vertical" />
-      <a-button type="primary" href="javascript:if (confirm(&#39;您确定要从收藏夹中删除选定的商品吗？&#39;)) location.href=&#39;user.php?act=delete_collection&amp;collection_id=29&#39;" class="f6">删除</a-button>
+      <a-popconfirm
+    title="确认从收藏夹中删除商品吗?"
+    ok-text="是"
+    cancel-text="否"
+    @confirm="confirm"
+    @cancel="cancel"
+  >
+    <a-button href="#" type="primary">删除商品</a-button>
+  </a-popconfirm>
   </template></a-table>
   </a-layout-content>
 </template>
 
 <script>
+import { message } from 'ant-design-vue'
 const columns = [
   {
     dataIndex: 'images',
@@ -144,6 +153,16 @@ export default {
     return {
       data,
       columns
+    }
+  },
+  methods: {
+    confirm (e) {
+      console.log(e)
+      message.success('Click on Yes')
+    },
+    cancel (e) {
+      console.log(e)
+      message.error('Click on No')
     }
   }
 }
