@@ -7,7 +7,7 @@
   <a-page-header
     style="border: 1px solid rgb(235, 237, 240)"
     title="商品详情"
-    @back="() => null"
+    @back="() => $router.go(-1)"
   />
   <a-row>
     <a-col  :span="8">
