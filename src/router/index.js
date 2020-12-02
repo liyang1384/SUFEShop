@@ -4,6 +4,7 @@ import OrderList from '../views/OrderList.vue'
 import HistoryList from '../views/HistoryList.vue'
 import MyFavourites from '../views/MyFavourites.vue'
 import CommodityDetail from '../views/CommodityDetail.vue'
+import CreateOrder from '../views/CreateOrder.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         path: 'commoditydetail',
         name: 'CommodityDetail',
         component: CommodityDetail
+      },
+      {
+        path: 'createorder',
+        name: 'CreateOrder',
+        component: CreateOrder
       }
     ]
   }
