@@ -157,11 +157,11 @@ export default {
   methods: {
     confirm (e) {
       console.log(e)
-      message.success('Click on Yes')
+      message.success('删除成功')
     },
     cancel (e) {
       console.log(e)
-      message.error('Click on No')
+      message.error('删除已取消')
     }
   }
 }
