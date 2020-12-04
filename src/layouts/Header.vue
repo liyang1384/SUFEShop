@@ -2,8 +2,6 @@
 <template>
   <!-- Header部分 -->
   <a-layout-header id="header" style="position: fixed; z-index: 1; width: 100%">
-    <!-- 网站标题组件 -->
-
     <!-- 导航菜单组件 -->
     <a-menu
       theme="dark"
