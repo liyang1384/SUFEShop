@@ -8,22 +8,27 @@
     <template #images="{ text: images }">
       <img :src="images" style="width: 120px; height: 100px" />
     </template>
+    <template #price="{ text }"> ￥{{ text }} </template>
     <template #action>
       <a-button>查看商品详情</a-button>
       <a-divider type="vertical" />
       <a-button>联系卖家</a-button>
       <a-divider type="vertical" />
-      <a-button
-        type="primary"
-        href="javascript:if (confirm(&#39;您确定要从收藏夹中删除选定的商品吗？&#39;)) location.href=&#39;user.php?act=delete_collection&amp;collection_id=29&#39;"
-        class="f6"
-        >删除</a-button
+      <a-popconfirm
+        title="确认从收藏夹中删除商品吗?"
+        ok-text="是"
+        cancel-text="否"
+        @confirm="confirm"
+        @cancel="cancel"
       >
+        <a-button href="#" type="primary">删除商品</a-button>
+      </a-popconfirm>
     </template>
   </a-table>
 </template>
 
 <script>
+import { message } from 'ant-design-vue'
 const columns = [
   {
     dataIndex: 'images',
@@ -39,10 +44,11 @@ const columns = [
     width: 200
   },
   {
-    title: '价格（元）',
+    title: '价格',
     dataIndex: 'price',
     key: 'price',
-    width: 120
+    width: 120,
+    slots: { customRender: 'price' }
   },
   {
     title: '商品状态',
@@ -54,11 +60,6 @@ const columns = [
     key: 'tags',
     dataIndex: 'tags',
     slots: { customRender: 'tags' }
-  },
-  {
-    title: '卖家',
-    dataIndex: 'seller',
-    key: 'seller'
   },
   {
     title: '操作',
@@ -77,7 +78,7 @@ const data = [
     tags: '教材',
     seller: 'BILL',
     comments: '高数教材。',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '2',
@@ -87,7 +88,7 @@ const data = [
     tags: '日用品',
     seller: 'ANNA',
     comments: '低价可刀！！！',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '3',
@@ -97,7 +98,7 @@ const data = [
     tags: '辅导教材',
     seller: 'LNN',
     comments: '....',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '4',
@@ -107,7 +108,7 @@ const data = [
     tags: '零食',
     seller: 'YAS',
     comments: '买多了',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '5',
@@ -116,7 +117,7 @@ const data = [
     state: '在售',
     tags: '服饰',
     seller: 'JACK',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '6',
@@ -125,7 +126,7 @@ const data = [
     state: '在售',
     tags: '教材',
     seller: 'BOB',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   },
   {
     key: '7',
@@ -135,7 +136,7 @@ const data = [
     tags: '辅导教材',
     seller: 'TIM',
     comments: '......',
-    images: require('@/assets/textimg.png')
+    images: require('@/assets/testimg.png')
   }
 ]
 export default {
@@ -145,6 +146,16 @@ export default {
     return {
       data,
       columns
+    }
+  },
+  methods: {
+    confirm (e) {
+      console.log(e)
+      message.success('删除成功')
+    },
+    cancel (e) {
+      console.log(e)
+      message.error('删除已取消')
     }
   }
 }
