@@ -1,41 +1,38 @@
 <template>
-  <a-layout-content
-    id="HistoryList"
-    :style="{ padding: '0 50px', marginTop: '64px' }"
-  >
   <a-table
-  :columns="columns"
-  :data-source="data"
-  :pagination="{ pageSize: 4 }"
+    id="HistoryList"
+    :columns="columns"
+    :data-source="data"
+    :pagination="{ pageSize: 4 }"
   >
-  <template #images_name="{ text: images_name }" >
-    <span>
-    <img :src="images_name[0]" style="width: 120px; height: 100px"
-    >
-    <span> {{images_name[1]}} </span>
-    </span>
-  </template>
-  <template #price>
-    <span></span>
-  </template>
+    <template #imageName="{ text: imageName }">
+      <span>
+        <img :src="imageName[0]" style="width: 120px; height: 100px" />
+        <span> {{ imageName[1] }} </span>
+      </span>
+    </template>
+    <template #price>
+      <span></span>
+    </template>
     <template #tags="{ text: tags }">
       <span>
         <a-tag
           v-for="tag in tags"
           :key="tag"
-          :color="tag === '二手' ? 'volcano' : tag === '全新' ? 'geekblue' : 'gray'"
+          :color="
+            tag === '二手' ? 'volcano' : tag === '全新' ? 'geekblue' : 'gray'
+          "
         >
           {{ tag.toUpperCase() }}
         </a-tag>
       </span>
     </template>
-  <template #action>
+    <template #action>
       <a-button>查看商品详情</a-button>
       <a-divider type="vertical" />
       <a-divider type="vertical" />
-  </template>
+    </template>
   </a-table>
-  </a-layout-content>
 </template>
 <script>
 const columns = [
@@ -46,10 +43,10 @@ const columns = [
     width: 120
   },
   {
-    dataIndex: 'images_name',
-    key: 'images_name',
+    dataIndex: 'imageName',
+    key: 'imageName',
     title: '商品',
-    slots: { customRender: 'images_name' },
+    slots: { customRender: 'imageName' },
     width: 400
   },
   {
@@ -82,7 +79,7 @@ const columns = [
 const data = [
   {
     key: '1',
-    images_name: [require('@/assets/image1.png'), '水嫩草莓'],
+    imageName: [require('@/assets/image1.png'), '水嫩草莓'],
     price: 32.75,
     state: '在售',
     tags: ['水果'],
@@ -90,14 +87,14 @@ const data = [
   },
   {
     key: '2',
-    images_name: [require('@/assets/image2.png'), '潮牌跑步鞋'],
-    price: 420.00,
+    imageName: [require('@/assets/image2.png'), '潮牌跑步鞋'],
+    price: 420.0,
     state: '在售',
     tags: ['服装'],
     time: '2019-1-1'
   },
   {
-    images_name: [require('@/assets/image4.png'), '高端人才必备手机'],
+    imageName: [require('@/assets/image4.png'), '高端人才必备手机'],
     key: '4',
     price: 7000,
     state: '在售',
@@ -105,7 +102,7 @@ const data = [
     time: '2017-5-1'
   },
   {
-    images_name: [require('@/assets/image5.png'), '潮流自行车'],
+    imageName: [require('@/assets/image5.png'), '潮流自行车'],
     key: '5',
     price: 500,
     state: '在售',
@@ -113,7 +110,7 @@ const data = [
     time: '2017-4-1'
   },
   {
-    images_name: [require('@/assets/image6.png'), '精神小伙同款上衣'],
+    imageName: [require('@/assets/image6.png'), '精神小伙同款上衣'],
     key: '6',
     price: 20,
     state: '在售',
@@ -121,7 +118,7 @@ const data = [
     time: '2017-3-1'
   },
   {
-    images_name: [require('@/assets/image7.png'), '上财女生必备神仙水'],
+    imageName: [require('@/assets/image7.png'), '上财女生必备神仙水'],
     key: '7',
     price: 24,
     state: '在售',

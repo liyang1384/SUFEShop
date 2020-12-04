@@ -1,68 +1,64 @@
 <template>
-  <a-layout-content
+  <a-table
     id="OrderList"
-    :style="{ padding: '0 50px', marginTop: '64px' }"
+    :columns="orderListColumns"
+    :data-source="OrderListdata"
   >
-    <div style="background: #fff; padding: 24px; minheight: 600px">
-      <a-table :columns="orderListColumns" :data-source="OrderListdata">
-        <template #title>
-          <a-form layout="inline" :model="form">
-            <a-form-item>
-              <a-radio-group v-model:value="form.orderState">
-                <a-radio-button value="1"> 买入订单 </a-radio-button>
-                <a-radio-button value="2"> 卖出订单 </a-radio-button>
-              </a-radio-group>
-            </a-form-item>
-            <a-form-item>
-              <a-input-search
-                v-model:value="form.searchText"
-                placeholder="输入商品名称或订单号进行搜索"
-                style="width: 400px"
-                @search="onSearch"
-              />
-            </a-form-item>
-            <a-form-item label="选择时间">
-              <a-range-picker
-                v-model:value="form.dateRange"
-                @change="onChange"
-              />
-            </a-form-item>
-            <a-form-item label="选择金额">
-              <a-input-group compact>
-                <a-input
-                  v-model:value="form.minAmount"
-                  style="width: 100px; text-align: center"
-                  placeholder="最小金额"
-                />
-                <a-input
-                  style="
-                    width: 30px;
-                    border-left: 0;
-                    pointer-events: none;
-                    backgroundcolor: #fff;
-                  "
-                  placeholder="~"
-                  disabled
-                />
-                <a-input
-                  v-model:value="form.maxAmount"
-                  style="width: 100px; text-align: center; border-left: 0"
-                  placeholder="最大金额"
-                />
-              </a-input-group>
-            </a-form-item>
-          </a-form>
-        </template>
-        <template #order="{ record }">
-          <div>订单号：{{ record.orderID }}</div>
-          <div>{{ record.commodityName }}</div>
-        </template>
-        <template #counterpartyTitle>
-          <div>{{ counterparty }}</div>
-        </template>
-      </a-table>
-    </div>
-  </a-layout-content>
+    <template #title>
+      <a-form layout="inline" :model="form">
+        <a-form-item>
+          <a-radio-group v-model:value="form.orderState">
+            <a-radio-button value="1"> 买入订单 </a-radio-button>
+            <a-radio-button value="2"> 卖出订单 </a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item>
+          <a-input-search
+            v-model:value="form.searchText"
+            placeholder="输入商品名称或订单号进行搜索"
+            style="width: 400px"
+            @search="onSearch"
+          />
+        </a-form-item>
+        <br />
+        <a-form-item label="选择时间">
+          <a-range-picker v-model:value="form.dateRange" @change="onChange" />
+        </a-form-item>
+        <a-form-item label="选择金额">
+          <a-input-group compact>
+            <a-input
+              v-model:value="form.minAmount"
+              style="width: 100px; text-align: center"
+              placeholder="最小金额"
+            />
+            <a-input
+              style="
+                width: 30px;
+                border-left: 0;
+                pointer-events: none;
+                backgroundcolor: #fff;
+              "
+              placeholder="~"
+              disabled
+            />
+            <a-input
+              v-model:value="form.maxAmount"
+              style="width: 100px; text-align: center; border-left: 0"
+              placeholder="最大金额"
+            />
+          </a-input-group>
+        </a-form-item>
+      </a-form>
+    </template>
+    <template #order="{ record }">
+      <div>订单号：{{ record.orderID }}</div>
+      <div>{{ record.commodityName }}</div>
+    </template>
+    <template #counterpartyTitle>
+      <div>{{ counterparty }}</div>
+    </template>
+    <template #action></template>
+  </a-table>
 </template>
 
 <script>
@@ -143,8 +139,7 @@ const OrderListdata = [
 
 export default {
   name: 'OrderList',
-  components: {
-  },
+  components: {},
   data () {
     return {
       orderListColumns,
@@ -159,8 +154,7 @@ export default {
     }
   },
   methods: {
-    onSearch (value) {
-    }
+    onSearch (value) {}
   },
   computed: {
     counterparty: function () {
@@ -173,7 +167,13 @@ export default {
 <style scope lang="scss">
 #OrderList {
   .ant-radio-button-wrapper {
-    margin: 0 10px;
+    margin: 0 20px;
+  }
+  .ant-table-title{
+    padding-top: 0;
+  }
+  .ant-form {
+    text-align: left;
   }
 }
 </style>

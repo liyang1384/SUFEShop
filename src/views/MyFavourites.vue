@@ -1,24 +1,26 @@
 <template>
-<a-layout-content
-    id="myfavourites"
-    :style="{ padding: '0 50px', marginTop: '64px' }"
-  >
   <a-table
-  :columns="columns"
-  :data-source="data"
-  :pagination="{ pageSize: 5 }"
+    id="myfavourites"
+    :columns="columns"
+    :data-source="data"
+    :pagination="{ pageSize: 5 }"
   >
-  <template #images="{ text: images }">
-    <img :src="images" style="width: 120px; height: 100px">
-  </template>
-  <template #action>
+    <template #images="{ text: images }">
+      <img :src="images" style="width: 120px; height: 100px" />
+    </template>
+    <template #action>
       <a-button>查看商品详情</a-button>
       <a-divider type="vertical" />
       <a-button>联系卖家</a-button>
       <a-divider type="vertical" />
-      <a-button type="primary" href="javascript:if (confirm(&#39;您确定要从收藏夹中删除选定的商品吗？&#39;)) location.href=&#39;user.php?act=delete_collection&amp;collection_id=29&#39;" class="f6">删除</a-button>
-  </template></a-table>
-  </a-layout-content>
+      <a-button
+        type="primary"
+        href="javascript:if (confirm(&#39;您确定要从收藏夹中删除选定的商品吗？&#39;)) location.href=&#39;user.php?act=delete_collection&amp;collection_id=29&#39;"
+        class="f6"
+        >删除</a-button
+      >
+    </template>
+  </a-table>
 </template>
 
 <script>
@@ -80,7 +82,7 @@ const data = [
   {
     key: '2',
     commodity: 'bbb',
-    price: 42.00,
+    price: 42.0,
     state: '在售',
     tags: '日用品',
     seller: 'ANNA',
@@ -90,7 +92,7 @@ const data = [
   {
     key: '3',
     commodity: 'ccc',
-    price: 32.20,
+    price: 32.2,
     state: '已售',
     tags: '辅导教材',
     seller: 'LNN',
@@ -138,8 +140,7 @@ const data = [
 ]
 export default {
   name: 'myfavourites',
-  components: {
-  },
+  components: {},
   data () {
     return {
       data,
@@ -147,5 +148,4 @@ export default {
     }
   }
 }
-
 </script>

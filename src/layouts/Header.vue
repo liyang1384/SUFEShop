@@ -1,40 +1,42 @@
 <!-- TODO: 添加响应式功能 -->
 <template>
   <!-- Header部分 -->
-  <a-layout-header id="header" style="position: fixed; zindex: 1; width: 100%">
-    <!-- 组件间隙包裹 -->
-    <a-space :size="spaceSize">
-      <!-- 网站标题组件 -->
-      <a-page-header title="财小二" />
-      <!-- 导航菜单组件 -->
-      <a-menu
-        theme="dark"
-        mode="horizontal"
-        v-model:selectedKeys="selectedKeys"
-        style="line-height: 64px"
-      >
-        <!-- 以列表形式渲染导航项目 -->
-        <a-menu-item v-for="navRoute in navigationRoute" :key="navRoute.name">
-          <!-- 嵌入 router link 网页链接-->
-          <router-link :to="navRoute.path">
-            {{ navRoute.name }}
-          </router-link>
-        </a-menu-item>
-      </a-menu>
-      <!-- 通知图标和用户头像图标 -->
-      <a-space size="large">
+  <a-layout-header id="header" style="position: fixed; z-index: 1; width: 100%">
+    <!-- 网站标题组件 -->
+
+    <!-- 导航菜单组件 -->
+    <a-menu
+      theme="dark"
+      mode="horizontal"
+      v-model:selectedKeys="selectedKeys"
+      style="line-height: 64px; display: flex"
+    >
+      <a-menu-item class="header-title">财小二</a-menu-item>
+      <span style="flex-grow: 1"></span>
+      <!-- 以列表形式渲染导航项目 -->
+      <a-menu-item v-for="navRoute in navigationRoute" :key="navRoute.name">
+        <!-- 嵌入 router link 网页链接-->
+        <router-link :to="navRoute.path">
+          {{ navRoute.name }}
+        </router-link>
+      </a-menu-item>
+      <span style="flex-grow: 1"></span>
+      <a-menu-item>
         <a-avatar style="background-color: #001529">
           <template #icon>
             <BellOutlined />
           </template>
         </a-avatar>
+      </a-menu-item>
+      <a-menu-item>
         <a-avatar>
           <template #icon>
             <UserOutlined />
           </template>
         </a-avatar>
-      </a-space>
-    </a-space>
+      </a-menu-item>
+    </a-menu>
+    <!-- 通知图标和用户头像图标 -->
   </a-layout-header>
 </template>
 
@@ -54,19 +56,24 @@ export default {
   // 设置响应式数据
   data () {
     return {
-      navigationRoute: [{
-        path: '/',
-        name: '首页'
-      }, {
-        path: '/orderlist',
-        name: '我的订单'
-      }, {
-        path: '/myfavourites',
-        name: '我的收藏夹'
-      }, {
-        path: '/',
-        name: '我的商品'
-      }],
+      navigationRoute: [
+        {
+          path: '/',
+          name: '首页'
+        },
+        {
+          path: '/orderlist',
+          name: '我的订单'
+        },
+        {
+          path: '/myfavourites',
+          name: '我的收藏夹'
+        },
+        {
+          path: '/',
+          name: '我的商品'
+        }
+      ],
       selectedKeys: ['首页']
     }
   },
@@ -82,6 +89,18 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 #header {
+  flex-direction: row;
+  justify-content: space-around;
+  .header-title {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .header-avatar{
+  }
+  .ant-menu-item .anticon{
+    margin-right: 0
+  }
 }
 </style>
 
