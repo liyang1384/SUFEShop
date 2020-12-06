@@ -56,7 +56,7 @@ export default {
     return {
       navigationRoute: [
         {
-          path: '/userview',
+          path: '/',
           name: '首页'
         },
         {
