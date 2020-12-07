@@ -37,14 +37,14 @@
           </a-col>
           <a-col :span="20" style="height: 120px">
             <a-descriptions>
-              <a-descriptions-item label="">
+              <a-descriptions-item >
                 <a>{{ CommodityName }}</a>
               </a-descriptions-item>
-              <a-descriptions-item label="">
+              <a-descriptions-item >
                 {{ kind }}
               </a-descriptions-item>
-              <a-descriptions-item label="价格">
-                ￥{{ Price }}
+              <a-descriptions-item >
+                {{ Price }}（元）
               </a-descriptions-item>
             </a-descriptions>
           </a-col>
