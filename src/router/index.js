@@ -7,6 +7,8 @@ import CommodityDetail from '../views/CommodityDetail.vue'
 import CreateOrder from '../views/CreateOrder.vue'
 import UserView from '../views/UserView.vue'
 import MessageView from '../views/MessageView.vue'
+import Login from '../views/Login.vue'
+
 const routes = [
   {
     path: '/',
@@ -49,6 +51,11 @@ const routes = [
         component: MessageView
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 
