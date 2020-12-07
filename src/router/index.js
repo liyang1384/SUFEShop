@@ -41,7 +41,7 @@ const routes = [
         component: CreateOrder
       },
       {
-        path: 'userview',
+        path: '',
         name: 'userview',
         component: UserView
       },
