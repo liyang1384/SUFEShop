@@ -19,6 +19,7 @@
         </router-link>
       </a-menu-item>
       <span style="flex-grow: 1"></span>
+      <!-- 通知图标和用户头像图标 -->
       <a-menu-item>
         <a-avatar style="background-color: #001529">
           <template #icon>
@@ -34,7 +35,6 @@
         </a-avatar>
       </a-menu-item>
     </a-menu>
-    <!-- 通知图标和用户头像图标 -->
   </a-layout-header>
 </template>
 
@@ -56,7 +56,7 @@ export default {
     return {
       navigationRoute: [
         {
-          path: '/userview',
+          path: '/',
           name: '首页'
         },
         {
