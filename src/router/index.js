@@ -5,6 +5,7 @@ import HistoryList from '../views/HistoryList.vue'
 import MyFavourites from '../views/MyFavourites.vue'
 import CommodityDetail from '../views/CommodityDetail.vue'
 import CreateOrder from '../views/CreateOrder.vue'
+import PayOrder from '../views/PayOrder.vue'
 import RefundReview from '../views/RefundReview.vue'
 import OrderReview from '../views/OrderReview.vue'
 import RefundAppeal from '../views/RefundAppeal.vue'
@@ -75,6 +76,11 @@ const routes = [
         path: 'createorder',
         name: 'CreateOrder',
         component: CreateOrder
+      },
+      {
+        path: 'payorder',
+        name: 'PayOrder',
+        component: PayOrder
       },
       {
         path: '',

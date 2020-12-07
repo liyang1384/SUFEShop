@@ -1,8 +1,8 @@
 <template>
   <div id="createorder">
-    <a-divider />
     <a-row>
       <a-col :span="14" :offset="8">
+        <p class="height-100">
         <a-steps :current="0">
           <a-step>
             <template #title> 确认订单 </template>
@@ -11,20 +11,21 @@
           <a-step title="确认收货" />
           <a-step title="双方互评" />
         </a-steps>
+        </p>
       </a-col>
     </a-row>
-    <div style="background-color: #f5f5f5; padding: 24px">
       <a-page-header
         :ghost="false"
         title="确认订单信息"
-        sub-title="请仔细核对订单信息~"
+        sub-title="请仔细核对订单信息"
         @back="() => $router.go(-1)"
       >
+        <a-divider />
         <a-row>
           <a-col :span="8">
             <img
               :src="images"
-              style="position: absolute; top: 5px; left: 20px; width: 300px"
+              style="position: absolute; left: 20px; width: 300px"
             />
           </a-col>
           <a-col :span="16">
@@ -48,7 +49,6 @@
             </a-descriptions>
           </a-col>
         </a-row>
-        <a-divider />
         <a-row>
           <a-col :span="8" :offset="16">
             <p color="red">实付款：￥{{ Price }}</p>
@@ -57,7 +57,6 @@
         </a-row>
       </a-page-header>
     </div>
-  </div>
 </template>
 
 <script>
@@ -79,8 +78,3 @@ export default {
 }
 </script>
 
-<style>
-tr:last-child td {
-  padding-bottom: 0;
-}
-</style>
