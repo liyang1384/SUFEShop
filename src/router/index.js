@@ -11,6 +11,9 @@ import RefundAppeal from '../views/RefundAppeal.vue'
 import ModifyCode from '../views/ModifyCode.vue'
 import OrderInformation from '../views/OrderInformation.vue'
 import PersonalPage from '../views/PersonalPage.vue'
+import UserView from '../views/UserView.vue'
+import MessageView from '../views/MessageView.vue'
+import Login from '../views/Login.vue'
 
 const routes = [
   {
@@ -72,8 +75,23 @@ const routes = [
         path: 'createorder',
         name: 'CreateOrder',
         component: CreateOrder
+      },
+      {
+        path: '',
+        name: 'userview',
+        component: UserView
+      },
+      {
+        path: 'messageview',
+        name: 'messageview',
+        component: MessageView
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 
