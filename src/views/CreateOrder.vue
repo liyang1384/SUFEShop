@@ -55,7 +55,7 @@
             <p style="color:red; font-size:20px">应付总金额：￥{{ Price }}</p>
             <p style="color:#BEBEBE">重要提示：本网所售商品均在线下进行交易。</p>
             <p style="color:#BEBEBE">请认真考虑，确定同意再提交订单。</p>
-            <a-button value="large" type="primary">确认购买</a-button>
+            <a-button size="large">确认购买</a-button>
           </a-col>
         </a-row>
     </div>
