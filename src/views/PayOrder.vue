@@ -63,7 +63,7 @@
 
 <script>
 export default {
-  name: 'CreateOrder',
+  name: 'PayOrder',
   components: {},
   data () {
     return {
