@@ -122,7 +122,7 @@ export default {
   },
   methods: {
     GetReciever: function (e) {
-      this.form.recieverName = e;
+      this.form.recieverName = e
     }
   }
 }
