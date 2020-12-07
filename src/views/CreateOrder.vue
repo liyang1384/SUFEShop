@@ -20,14 +20,14 @@
         sub-title="请仔细核对订单信息"
         @back="() => $router.go(-1)"
       >
+      <a-divider />
       <div size="small" align="left">
-          &nbsp;&nbsp;<a-avatar size="large"><br />
+          &nbsp;&nbsp;<a-avatar size="small">
           <template #icon><AliwangwangOutlined /></template>
           </a-avatar>
           &nbsp;卖家：&nbsp;&nbsp;<a>BILL</a>
       </div>
       </a-page-header>
-        <a-divider />
         <a-row>
           <a-col :span="4">
             <img
