@@ -1,5 +1,6 @@
 <template>
-<img src="../assets/logo.png" style="width: 50px; height: 20px;position:absolute;margin-left:0px" />
+<div v-if="seen">
+<img src="../assets/logo.png"  v-if="seen" style="width: 50px; height: 20px;position:absolute;margin-left:0px" />
   <a-card title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退款审核" size="small" style="width: 900px">
     <template #extra><a href="#"></a></template>
     <a-card size="small" title="交易信息" style="width: 900px">
@@ -34,9 +35,55 @@
   <br/>
   <a-card size="small" title="操作项" style="width: 900px">
     <template #extra><a href="#"></a></template>
-    <a-button type="primary" style="margin-right:100px;">同意</a-button>
-    <a-button type="primary" style="margin-left:200px;">拒绝</a-button>
+    <a-button type="primary" style="margin-right:300px;" @click="showConfirm_admit" >同意</a-button>
+    <a-button type="primary" style="margin-right:100px;" @click="showConfirm_reject">拒绝</a-button>
     <a-button style="margin-left:200px;">取消</a-button>
   </a-card>
   </a-card>
+  </div>
+  <br/><br/><br/>
+<a href="#" style="margin-left:0px">帮助</a>
+    <a href="#" style="margin-left:200px">隐私</a>
+    <a href="#" style="margin-left:200px">条款</a>
 </template>
+
+<script>
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+import { createVNode } from 'vue'
+import { Modal } from 'ant-design-vue'
+export default {
+  methods: {
+    showConfirm_reject () {
+      Modal.confirm({
+        title: '确认拒绝？',
+        icon: createVNode(ExclamationCircleOutlined),
+        content: '拒绝后，将使得买家此次退款申请无效',
+        onOk () {
+          return new Promise((resolve, reject) => {
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          }).catch(() => console.log('Oops errors!'))
+        },
+        onCancel () {}
+      })
+    },
+    showConfirm_admit () {
+      Modal.confirm({
+        title: '确认同意？',
+        icon: createVNode(ExclamationCircleOutlined),
+        content: '确认后，将判定卖家退款',
+        onOk () {
+          return new Promise((resolve, reject) => {
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          }).catch(() => console.log('Oops errors!'))
+        },
+        onCancel () {}
+      })
+    }
+  },
+  data () {
+    return {
+      seen: true
+    }
+  }
+}
+</script>>

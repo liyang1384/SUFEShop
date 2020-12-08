@@ -14,6 +14,7 @@ import PersonalPage from '../views/PersonalPage.vue'
 import UserView from '../views/UserView.vue'
 import MessageView from '../views/MessageView.vue'
 import Login from '../views/Login.vue'
+import ForgetCode from '../views/ForgetCode.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     name: 'UserLayout',
     component: UserLayout,
     children: [
+      {
+        path: 'forgetcode',
+        name: 'ForgetCode',
+        component: ForgetCode
+      },
       {
         path: 'personalpage',
         name: 'PersonalPage',

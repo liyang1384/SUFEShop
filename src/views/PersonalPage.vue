@@ -25,6 +25,10 @@
       <a-button type="primary">更换头像</a-button>
   </span>
 </div>
+<br/><br/><br/>
+<a href="#" style="margin-left:0px">帮助</a>
+    <a href="#" style="margin-left:200px">隐私</a>
+    <a href="#" style="margin-left:200px">条款</a>
 </template>
 
 <style scoped>

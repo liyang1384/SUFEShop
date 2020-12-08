@@ -22,4 +22,8 @@
     </a-card>
     <a-button type="primary">评价订单</a-button>
   </a-card>
+  <br/><br/><br/>
+<a href="#" style="margin-left:0px">帮助</a>
+    <a href="#" style="margin-left:200px">隐私</a>
+    <a href="#" style="margin-left:200px">条款</a>
 </template>
