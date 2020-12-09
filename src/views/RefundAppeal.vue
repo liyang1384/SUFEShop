@@ -9,26 +9,35 @@
     <p>实际付款：￥50</p>
     </a-card>
     <br/>
-    <a-radio-group v-model:value="value3" @change="onChange">
-    <a-radio :style="radioStyle" :value3="1">只退款</a-radio>
-    <a-radio :style="radioStyle" :value3="2">退货退款
+    <a-radio-group v-model:value="value" @change="onChange">
+    <a-radio :style="radioStyle" :value="true">只退款</a-radio>
+    <a-radio :style="radioStyle" :value="false">退货退款
     </a-radio>
     <p style="position: absolute;left: 200px;top: 270px;">退款类型:</p>
     <br/><br/>
     <div style="width=300"><a-input  v-model:value="value1" placeholder="退款金额" /></div>
     <p style="position: absolute;left: 200px;top: 320px;">退款金额:</p>
     <br/>
+    <span v-if=value >
     <p style="position: absolute;left: 200px;top: 370px;">货物状态:</p>
-    <a-radio-group name="radioGroup" v-model:value="value">
+    <a-radio-group name="radioGroup" v-model:value="value2">
     <a-radio value="1">已收到</a-radio>
     <a-radio value="2">未收到</a-radio>
     </a-radio-group>
+    </span>
+    <span v-if=!value>
+    <p style="position: absolute;left: 200px;top: 370px;">退货方式:</p>
+    <a-radio-group name="radioGroup" v-model:value="value2">
+    <a-radio value="1">上门退货</a-radio>
+    <a-radio value="2">自行送回</a-radio>
+    </a-radio-group>
+    </span>
     <br/><br/>
   </a-radio-group>
   <a-card size="small" title="具体描述" style="width: 900px">
-    <div><a-textarea v-model:value="value2" placeholder="退款原因" :rows="7" /></div>
+    <div><a-textarea v-model:value="value3" placeholder="退款原因" :rows="7" /></div>
     <br/><br/>
-    <div><a-textarea v-model:value="value2" placeholder="补充描述与凭证" :rows="7" /></div>
+    <div><a-textarea v-model:value="value4" placeholder="补充描述与凭证" :rows="7" /></div>
     </a-card>
   </a-card>
   <br/><br/><br/>
@@ -41,10 +50,11 @@
 export default {
   data () {
     return {
-      value: '1',
+      value: '0',
       value1: '',
       value2: '',
-      value3: '1'
+      value3: '',
+      value4: ''
     }
   }
 }

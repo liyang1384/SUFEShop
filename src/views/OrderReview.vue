@@ -33,7 +33,17 @@
   </a-card>
   <br/>
   <br/>
-  <a-button type="primary">提交评价</a-button>
+    <a-button type="primary" @click="showModal">
+      提交评价
+    </a-button>
+    <a-modal
+      title="确认提交？"
+      v-model:visible="visible"
+      :confirm-loading="confirmLoading"
+      @ok="handleOk"
+    >
+      <p>{{ ModalText }}</p>
+    </a-modal>
   </a-card>
   <br/><br/><br/>
 <a href="#" style="margin-left:0px">帮助</a>
@@ -45,10 +55,26 @@
 export default {
   data () {
     return {
+      ModalText: '',
+      visible: false,
+      confirmLoading: false,
       value: '',
       value1: 2,
       value2: 3,
       value3: 4
+    }
+  },
+  methods: {
+    showModal () {
+      this.visible = true;
+    },
+    handleOk (e) {
+      this.ModalText = 'The modal will be closed after two seconds';
+      this.confirmLoading = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.confirmLoading = false;
+      }, 2000);
     }
   }
 }
