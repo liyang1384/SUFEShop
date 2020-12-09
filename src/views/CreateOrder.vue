@@ -1,8 +1,8 @@
 <template>
   <div id="createorder">
-    <a-divider />
     <a-row>
       <a-col :span="14" :offset="8">
+        <p class="height-100">
         <a-steps :current="0">
           <a-step>
             <template #title> 确认订单 </template>
@@ -11,59 +11,65 @@
           <a-step title="确认收货" />
           <a-step title="双方互评" />
         </a-steps>
+        </p>
       </a-col>
     </a-row>
-    <div style="background-color: #f5f5f5; padding: 24px">
       <a-page-header
         :ghost="false"
         title="确认订单信息"
-        sub-title="请仔细核对订单信息~"
+        sub-title="请仔细核对订单信息"
         @back="() => $router.go(-1)"
       >
+      <a-divider />
+      <div size="small" align="left">
+          &nbsp;&nbsp;<a-avatar size="small">
+          <template #icon><AliwangwangOutlined /></template>
+          </a-avatar>
+          &nbsp;卖家：&nbsp;&nbsp;<a>BILL</a>
+      </div>
+      </a-page-header>
         <a-row>
-          <a-col :span="8">
+          <a-col :span="4">
             <img
               :src="images"
-              style="position: absolute; top: 5px; left: 20px; width: 300px"
+              style="position: absolute; left: 20px; width: 150px"
             />
           </a-col>
-          <a-col :span="16">
-            <a-descriptions
-              layout="vertical"
-              bordered
-              :column="{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }"
-            >
-              <a-descriptions-item label="商品名称" span="3">
-                {{ CommodityName }}
+          <a-col :span="20" style="height: 120px">
+            <a-descriptions>
+              <a-descriptions-item >
+                <a>{{ CommodityName }}</a>
               </a-descriptions-item>
-              <a-descriptions-item label="卖家">
-                {{ SellerName }}
-              </a-descriptions-item>
-              <a-descriptions-item label="商品类型">
+              <a-descriptions-item >
                 {{ kind }}
               </a-descriptions-item>
-              <a-descriptions-item label="价格">
-                ￥{{ Price }}
+              <a-descriptions-item >
+                {{ Price }}（元）
               </a-descriptions-item>
             </a-descriptions>
           </a-col>
         </a-row>
         <a-divider />
         <a-row>
-          <a-col :span="8" :offset="16">
-            <p color="red">实付款：￥{{ Price }}</p>
-            <a-button value="large" type="primary">确认购买</a-button>
+          <a-col :span="6" :offset="18">
+            <p style="color:red; font-size:20px">应付总金额：￥{{ Price }}</p>
+            <p style="color:#BEBEBE">重要提示：本网所售商品均在线下进行交易。</p>
+            <p style="color:#BEBEBE">请认真考虑，确定同意再提交订单。</p>
+            <a-button size="large">确认购买</a-button>
           </a-col>
         </a-row>
-      </a-page-header>
     </div>
-  </div>
 </template>
 
 <script>
+import {
+  AliwangwangOutlined
+} from '@ant-design/icons-vue'
 export default {
   name: 'CreateOrder',
-  components: {},
+  components: {
+    AliwangwangOutlined
+  },
   data () {
     return {
       images: require('@/assets/testimg.png'),
@@ -79,8 +85,3 @@ export default {
 }
 </script>
 
-<style>
-tr:last-child td {
-  padding-bottom: 0;
-}
-</style>
