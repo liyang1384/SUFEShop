@@ -4,6 +4,7 @@ import OrderList from '../views/OrderList.vue'
 import HistoryList from '../views/HistoryList.vue'
 import MyFavourites from '../views/MyFavourites.vue'
 import CommodityDetail from '../views/CommodityDetail.vue'
+import ModifyCommodityDetail from '../views/ModifyCommodityDetail.vue'
 import CreateOrder from '../views/CreateOrder.vue'
 import PayOrder from '../views/PayOrder.vue'
 import RefundReview from '../views/RefundReview.vue'
@@ -77,6 +78,11 @@ const routes = [
         path: 'commoditydetail',
         name: 'CommodityDetail',
         component: CommodityDetail
+      },
+      {
+        path: 'modifycommoditydetail',
+        name: 'ModifyCommodityDetail',
+        component: ModifyCommodityDetail
       },
       {
         path: 'createorder',
