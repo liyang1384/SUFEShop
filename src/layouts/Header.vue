@@ -68,7 +68,7 @@ export default {
           name: '我的收藏夹'
         },
         {
-          path: '/',
+          path: '/commoditylist',
           name: '我的商品'
         }
       ],
