@@ -57,7 +57,7 @@
       </div>
       <a-divider />
       <p style="position:absolute; right: 200px;bottom: 190px; color:red; font-size:20px">实付款：￥25.05</p>
-      <a-button size="large" style="position:absolute; right: 200px;bottom: 165px">确认支付</a-button>
+      <a-button size="large" style="position:absolute; right: 200px;bottom: 160px">确认支付</a-button>
     </div>
 </template>
 
