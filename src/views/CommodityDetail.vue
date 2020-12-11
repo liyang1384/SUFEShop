@@ -12,7 +12,7 @@
         <a-col :span="10">
           <img
             :src="images"
-            style="position: absolute; top: 10px; left: 70px; width: 350px"
+            style="position: absolute; top: 10px; left: 60px; width: 350px"
           />
         </a-col>
         <a-col :span="14" height=600>
