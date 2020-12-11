@@ -6,40 +6,35 @@
         title="商品详情"
         @back="() => $router.go(-1)"
       />
+      <p></p>
+      <h2 align=left style="solid rgb(235, 237, 240)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ CommodityName }}</h2>
       <a-row>
-        <a-col :span="8">
+        <a-col :span="10">
           <img
             :src="images"
-            style="position: absolute; top: 55px; left: 10px; width: 350px"
+            style="position: absolute; top: 10px; left: 70px; width: 350px"
           />
         </a-col>
-        <a-col :span="16">
-          <a-descriptions layout="vertical" bordered>
-            <a-descriptions-item label="商品名称" :span="2">
-              {{ CommodityName }}
-            </a-descriptions-item>
-            <a-descriptions-item label="卖家">
-              {{ SellerName }}
+        <a-col :span="14" height=600>
+          <div class="height-1000" align="left">
+            <br/>
+            <p>
+              卖家:&nbsp;&nbsp;{{ SellerName }}
               <a-divider type="vertical" />
               <a>联系卖家</a>
-            </a-descriptions-item>
-            <a-descriptions-item label="价格">
-              ￥{{ Price }}
-            </a-descriptions-item>
-            <a-descriptions-item label="商品状态">
-              <a-badge status="processing" />{{ state }}
-            </a-descriptions-item>
-            <a-descriptions-item label="发布时间">
-              {{ PublishTime }}
-            </a-descriptions-item>
-            <a-descriptions-item label="商品描述">
-              {{ Description }}
-            </a-descriptions-item>
-          </a-descriptions>
+            </p>
+            <p>价格:&nbsp;&nbsp;￥{{ Price }}</p>
+            <p>商品状态:&nbsp;&nbsp;<a-badge status="processing" />{{ state }}</p>
+            <p>发布时间:&nbsp;&nbsp;{{ PublishTime }}</p>
+            <br/>
+            <p>商品描述</p>
+            <p>{{ Description }}</p>
+            <br/>
+          </div>
         </a-col>
       </a-row>
-      <a-divider />
       <a-row>
+        <a-divider />
         <a-col :span="4" :offset="20">
           <a-button value="large" type="primary">购买商品</a-button>
         </a-col>
@@ -55,7 +50,7 @@ export default {
   data () {
     return {
       images: require('@/assets/testimg.png'),
-      CommodityName: 'aaa',
+      CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
       SellerName: 'BILL',
       PublishTime: '2020-11-25',
       state: '在售',
