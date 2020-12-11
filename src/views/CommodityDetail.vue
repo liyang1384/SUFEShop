@@ -6,7 +6,7 @@
         title="商品详情"
         @back="() => $router.go(-1)"
       />
-      <p></p>
+      <br/>
       <h2 align=left style="solid rgb(235, 237, 240)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ CommodityName }}</h2>
       <a-row>
         <a-col :span="10">
@@ -24,6 +24,7 @@
               <a>联系卖家</a>
             </p>
             <p>价格:&nbsp;&nbsp;￥{{ Price }}</p>
+            <p>商品类型:&nbsp;&nbsp;{{ Kind }}</p>
             <p>商品状态:&nbsp;&nbsp;<a-badge status="processing" />{{ state }}</p>
             <p>发布时间:&nbsp;&nbsp;{{ PublishTime }}</p>
             <br/>
@@ -53,6 +54,7 @@ export default {
       CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
       SellerName: 'BILL',
       PublishTime: '2020-11-25',
+      Kind: '教材',
       state: '在售',
       Price: 25,
       Description: '高数教材配套教辅，九成新，没做过，可议价.....'
