@@ -17,7 +17,8 @@ import UserView from '../views/UserView.vue'
 import MessageView from '../views/MessageView.vue'
 import Login from '../views/Login.vue'
 import ForgetCode from '../views/ForgetCode.vue'
-
+import CommodityPublish from '../views/CommodityPublish.vue'
+import CommodityList from '../views/CommodityList.vue'
 const routes = [
   {
     path: '/',
@@ -103,6 +104,16 @@ const routes = [
         path: 'messageview',
         name: 'messageview',
         component: MessageView
+      },
+      {
+        path: 'commoditypublish',
+        name: 'commoditypublish',
+        component: CommodityPublish
+      },
+      {
+        path: 'commoditylist',
+        name: 'commoditylist',
+        component: CommodityList
       }
     ]
   },
