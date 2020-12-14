@@ -45,7 +45,7 @@ import { BellOutlined, UserOutlined } from '@ant-design/icons-vue'
 // 导出本模块供其他组件使用
 export default {
   // 命名本模块为 Header
-  name: 'Header',
+  name: 'UserHeader',
   // 注册导入的图标组件
   components: {
     BellOutlined,
@@ -93,8 +93,6 @@ export default {
     color: white;
     font-weight: 600;
     font-size: 20px;
-  }
-  .header-avatar{
   }
   .ant-menu-item .anticon{
     margin-right: 0
