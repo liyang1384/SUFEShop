@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Header from '@/layouts/Header.vue'
+import Header from '@/layouts/UserHeader.vue'
 
 export default {
   name: 'UserLayout',
