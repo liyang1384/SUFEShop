@@ -19,6 +19,9 @@ import Login from '../views/Login.vue'
 import ForgetCode from '../views/ForgetCode.vue'
 import CommodityPublish from '../views/CommodityPublish.vue'
 import CommodityList from '../views/CommodityList.vue'
+import Register from '../views/Register.vue'
+import AdminLayout from '../layouts/AdminLayout.vue'
+
 const routes = [
   {
     path: '/',
@@ -121,6 +124,16 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/admin',
+    name: 'AdminLayout',
+    component: AdminLayout
   }
 ]
 
