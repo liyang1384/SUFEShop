@@ -17,7 +17,9 @@
         </a-col>
         <a-col :span="14" height=600>
           <div class="height-1000" align="left">
-            <br/>
+            <p>
+            <HeartTwoTone twoToneColor="#eb2f96" />&nbsp;&nbsp;
+            <a style="color:#BEBEBE">加入收藏夹</a></p>
             <p>
               卖家:&nbsp;&nbsp;{{ SellerName }}
               <a-divider type="vertical" />
@@ -37,7 +39,7 @@
       <a-row>
         <a-divider />
         <a-col :span="4" :offset="20">
-          <a-button value="large" type="primary">购买商品</a-button>
+          <a-button value="large" type="primary">立即购买</a-button>
         </a-col>
       </a-row>
     </div>
@@ -45,9 +47,12 @@
 </template>
 
 <script>
+import { HeartTwoTone } from '@ant-design/icons-vue'
 export default {
   name: 'CommodityDetail',
-  components: {},
+  components: {
+    HeartTwoTone
+  },
   data () {
     return {
       images: require('@/assets/testimg.png'),

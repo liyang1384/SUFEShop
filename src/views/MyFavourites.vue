@@ -10,7 +10,7 @@
     </template>
     <template #price="{ text }"> ￥{{ text }} </template>
     <template #action>
-      <a-button>查看商品详情</a-button>
+      <router-link :to="{ path: '/' }">查看商品详情</router-link>
       <a-divider type="vertical" />
       <a-button>联系卖家</a-button>
       <a-divider type="vertical" />
@@ -41,7 +41,7 @@ const columns = [
     dataIndex: 'commodity',
     key: 'commodity',
     title: '商品名称',
-    width: 200
+    width: 350
   },
   {
     title: '价格',
@@ -72,12 +72,12 @@ const columns = [
 const data = [
   {
     key: '1',
-    commodity: 'aaa',
-    price: 32.75,
+    commodity: '高数教材配套教辅，九成新，没做过，可议价',
+    price: 25,
     state: '在售',
     tags: '教材',
     seller: 'BILL',
-    comments: '高数教材。',
+    comments: '高数教材配套教辅，九成新，没做过，可议价.....',
     images: require('@/assets/testimg.png')
   },
   {
