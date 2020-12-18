@@ -1,7 +1,7 @@
 <template>
 <div class="box">
   <span>
-    <a-card size="small" title="基本设置" style="width:700px; margin-left: 200" align="left">
+    <a-card size="small" title="基本设置" style="width:900px; margin-left: 200" align="left">
     <template #extra><a href="#"></a></template>
     <br/><p><b>用户名</b></p>
     <a-input v-model:value="value1" placeholder="用户名" />
@@ -18,7 +18,7 @@
     <p><a-button type="primary">确认修改</a-button></p>
     </a-card>
     </span>
-    <span style="position: absolute;right: 200px;top: 140px;">
+    <span style="position: absolute;right: 100px;top: 140px;">
     <a-avatar size="large">
         <template #icon><UserOutlined /></template>
       </a-avatar>
