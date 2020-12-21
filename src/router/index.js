@@ -76,7 +76,7 @@ const routes = [
         component: HistoryList
       },
       {
-        path: 'commoditydetail',
+        path: 'commoditydetail/:CommodityId',
         name: 'CommodityDetail',
         component: CommodityDetail
       },

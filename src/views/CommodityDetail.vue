@@ -55,6 +55,7 @@ export default {
   },
   data () {
     return {
+      CommodityID: 1000324,
       images: require('@/assets/testimg.png'),
       CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
       SellerName: 'BILL',
