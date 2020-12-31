@@ -55,7 +55,7 @@
             <p style="color:red; font-size:20px">应付总金额：￥{{ Price }}</p>
             <p style="color:#BEBEBE">重要提示：本网所售商品均在线下进行交易。</p>
             <p style="color:#BEBEBE">请认真考虑，确定同意再提交订单。</p>
-            <a-button size="large">确认购买</a-button>
+            <a-button size="large" @click="handleChangePage (CommodityID)">确认购买</a-button>
           </a-col>
         </a-row>
     </div>
@@ -72,6 +72,7 @@ export default {
   },
   data () {
     return {
+      CommodityID: '1000324',
       images: require('@/assets/testimg.png'),
       CommodityName: '九成新的高数教材配套教辅书，没有做过',
       SellerName: 'BILL',
@@ -79,7 +80,14 @@ export default {
       PublishTime: '2020-11-25',
       state: '在售',
       Price: 25.05,
-      Description: '高数教材配套教辅，九成新，没做过，可议价.....'
+      Description: '高数教材配套教辅，九成新，没做过，可议价.....',
+      OrderID: '10000421421'
+    }
+  },
+  methods: {
+    handleChangePage (OrderID) {
+      console.log(OrderID)
+      this.$router.push(`/PayOrder/${OrderID}`)
     }
   }
 }

@@ -22,13 +22,13 @@
       >
       <a-descriptions size="small" >
         <a-descriptions-item label="订单编号">
-          10000421421
+          {{OrderID}}
         </a-descriptions-item>
       <a-descriptions-item label="商品名称">
-          全新高数配套教辅
+          {{CommodityName}}
         </a-descriptions-item>
         <a-descriptions-item label="下单时间">
-          2020-12-10
+          {{order_time}}
         </a-descriptions-item>
       </a-descriptions>
       </a-page-header>
@@ -72,7 +72,15 @@ export default {
         display: 'block',
         height: '50px',
         lineHeight: '40px'
-      }
+      },
+      OrderID: '10000421421',
+      CommodityID: '1000324',
+      images: require('@/assets/testimg.png'),
+      CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
+      SellerName: 'BILL',
+      order_time: '2020-12-10',
+      Kind: '教材',
+      Price: 25
     }
   },
   methods: {

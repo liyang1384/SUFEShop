@@ -39,7 +39,7 @@
       <a-row>
         <a-divider />
         <a-col :span="4" :offset="20">
-          <a-button value="large" type="primary">立即购买</a-button>
+          <a-button value="large" type="primary" @click="handleChangePage(CommodityID)">立即购买</a-button>
         </a-col>
       </a-row>
     </div>
@@ -58,7 +58,7 @@ export default {
   },
   data () {
     return {
-      CommodityID: 1000324,
+      CommodityID: '1000324',
       images: require('@/assets/testimg.png'),
       CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
       SellerName: 'BILL',
@@ -67,6 +67,12 @@ export default {
       state: '在售',
       Price: 25,
       Description: '高数教材配套教辅，九成新，没做过，可议价.....'
+    }
+  },
+  methods: {
+    handleChangePage (CommodityID) {
+      console.log(CommodityID)
+      this.$router.push(`/CreateOrder/${CommodityID}`)
     }
   }
 }

@@ -86,12 +86,12 @@ const routes = [
         component: ModifyCommodityDetail
       },
       {
-        path: 'createorder',
+        path: 'createorder/:id',
         name: 'CreateOrder',
         component: CreateOrder
       },
       {
-        path: 'payorder',
+        path: 'payorder/:id',
         name: 'PayOrder',
         component: PayOrder
       },
