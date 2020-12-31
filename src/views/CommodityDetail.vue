@@ -49,6 +49,9 @@
 <script>
 import { HeartTwoTone } from '@ant-design/icons-vue'
 export default {
+/* mounted () {
+    console.log(this.$route.params.id)
+  },*/
   name: 'CommodityDetail',
   components: {
     HeartTwoTone
