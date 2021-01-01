@@ -79,7 +79,7 @@ const routes = [
         component: HistoryList
       },
       {
-        path: 'commoditydetail',
+        path: 'commoditydetail/:id',
         name: 'CommodityDetail',
         component: CommodityDetail
       },
@@ -89,12 +89,12 @@ const routes = [
         component: ModifyCommodityDetail
       },
       {
-        path: 'createorder',
+        path: 'createorder/:id',
         name: 'CreateOrder',
         component: CreateOrder
       },
       {
-        path: 'payorder',
+        path: 'payorder/:id',
         name: 'PayOrder',
         component: PayOrder
       },

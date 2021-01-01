@@ -17,7 +17,9 @@
         </a-col>
         <a-col :span="14" height=600>
           <div class="height-1000" align="left">
-            <br/>
+            <p>
+            <HeartTwoTone twoToneColor="#eb2f96" />&nbsp;&nbsp;
+            <a style="color:#BEBEBE">加入收藏夹</a></p>
             <p>
               卖家:&nbsp;&nbsp;{{ SellerName }}
               <a-divider type="vertical" />
@@ -37,7 +39,7 @@
       <a-row>
         <a-divider />
         <a-col :span="4" :offset="20">
-          <a-button value="large" type="primary">购买商品</a-button>
+          <a-button value="large" type="primary" @click="handleChangePage(CommodityID)">立即购买</a-button>
         </a-col>
       </a-row>
     </div>
@@ -45,11 +47,18 @@
 </template>
 
 <script>
+import { HeartTwoTone } from '@ant-design/icons-vue'
 export default {
+/* mounted () {
+    console.log(this.$route.params.id)
+  },*/
   name: 'CommodityDetail',
-  components: {},
+  components: {
+    HeartTwoTone
+  },
   data () {
     return {
+      CommodityID: '1000324',
       images: require('@/assets/testimg.png'),
       CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
       SellerName: 'BILL',
@@ -58,6 +67,12 @@ export default {
       state: '在售',
       Price: 25,
       Description: '高数教材配套教辅，九成新，没做过，可议价.....'
+    }
+  },
+  methods: {
+    handleChangePage (CommodityID) {
+      console.log(CommodityID)
+      this.$router.push(`/CreateOrder/${CommodityID}`)
     }
   }
 }

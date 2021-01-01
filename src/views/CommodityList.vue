@@ -88,10 +88,10 @@ const columns = [
 const data = [
   {
     key: '1',
-    imageName: [require('@/assets/image1.png'), '水嫩草莓'],
+    imageName: [require('@/assets/image1.png'), '马原教科书'],
     price: 32.75,
     state: '已发布',
-    tags: ['水果'],
+    tags: ['教科书'],
     time: '2020-1-1'
   },
   {

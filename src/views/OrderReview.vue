@@ -1,16 +1,23 @@
 <template>
-  <a-card title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单评价" style="width: 900px">
+  <a-card title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单评价" style="width:1200px">
     <template #extra><a href="#"></a></template>
     <br/>
-    <a-card size="small" title="交易信息" style="width: 900px">
+    <a-card size="small" title="交易信息" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
+    <div style="position: absolute;right: 300px;top: 60px;">
+    <p>商品类别：草莓</p>
+    <p>卖家名称：sortedList</p>
+    <p>支付方式：支付宝 <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
+    </div>
+    <div style="position: absolute;right: 700px;top: 60px;">
     <p>商品名称：草莓</p>
     <p>商品金额：￥50</p>
     <p>实际付款：￥50</p>
+    </div>
     </a-card>
     <br/>
-    <a-card size="small" title="评分" style="width: 900px">
+    <a-card size="small" title="评分" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     描述相符合 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a-rate v-model:value="value1" />
@@ -22,11 +29,11 @@
     <a-rate v-model:value="value3" />
     <br/>
     </a-card>
-    <a-card size="small" title="评价" style="width: 900px">
+    <a-card size="small" title="评价" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     <p><a-input v-model:value="value" placeholder="请输入评价" /></p>
   </a-card>
-  <a-card size="small" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传照片" style="width: 900px">
+  <a-card size="small" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传照片" style="width: 1200px">
     <template #extra><a href="#"><a-button type="primary">上传照片</a-button></a></template>
     <img src="../assets/image1.png" style="width: 120px; height: 100px; margin-right:100px;" />
     <img src="../assets/image1.png" style="width: 120px; height: 100px; margin-right:100px;" />

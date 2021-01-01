@@ -1,12 +1,19 @@
 <template>
-  <a-card title="退款申请" style="width: 900px">
+  <a-card title="退款申请" style="width: 1200px">
     <template #extra><a href="#"></a></template>
-    <a-card size="small" title="退款商品信息" style="width: 900px">
+    <a-card size="small" title="退款商品信息" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
+    <div style="position: absolute;right: 300px;top: 60px;">
+    <p>商品类别：草莓</p>
+    <p>卖家名称：sortedList</p>
+    <p>支付方式：支付宝 <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
+    </div>
+    <div style="position: absolute;right: 700px;top: 60px;">
     <p>商品名称：草莓</p>
     <p>商品金额：￥50</p>
     <p>实际付款：￥50</p>
+    </div>
     </a-card>
     <br/>
     <a-radio-group v-model:value="value" @change="onChange">
@@ -34,11 +41,16 @@
     </span>
     <br/><br/>
   </a-radio-group>
-  <a-card size="small" title="具体描述" style="width: 900px">
-    <div><a-textarea v-model:value="value3" placeholder="退款原因" :rows="7" /></div>
+    <a-card size="small" title="" style="width: 1200px">
+    <div>
+    <p>退款原因</p>
+    <a-textarea v-model:value="value3" placeholder="退款原因" :rows="7" />
+    </div>
     <br/><br/>
+    <p>补充描述与凭证</p>
     <div><a-textarea v-model:value="value4" placeholder="补充描述与凭证" :rows="7" /></div>
     </a-card>
+    <a-button type="primary" style="margin-left:50px;">提交</a-button>
   </a-card>
   <br/><br/><br/>
 <a href="#" style="margin-left:0px">帮助</a>
