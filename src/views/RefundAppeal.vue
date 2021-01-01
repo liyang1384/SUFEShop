@@ -8,7 +8,7 @@
     <p>商品类别：<span v-html="class_of_commidity"></span></p>
     <p>卖家名称：<span v-html="seller_of_commidity"></span></p>
     <p>支付方式：<span v-html="pay_method"></span>
-    <img src="url_of_pay_method" style="width:30px;lenght:30px"/></p>
+    <img v-html="url_of_pay_method" style="width:30px;lenght:30px"/></p>
     </div>
     <div style="position: absolute;right: 700px;top: 60px;">
     <p>商品名称：<span v-html="name_of_commidity"></span></p>
