@@ -15,31 +15,39 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
-    <a-layout-header class="admin-header">
-      <menu-unfold-outlined
-        v-if="collapsed"
-        class="trigger"
-        @click="() => (collapsed = !collapsed)"
-      />
-      <menu-fold-outlined
-        v-else
-        class="trigger"
-        @click="() => (collapsed = !collapsed)"
-      />
-    </a-layout-header>
-    <a-layout-content
-      class="admin-layout-content"
-      :style="`min-height: ${minHeight}px;`"
-    >
-      <div style="position: relative">
-        <slot></slot>
-      </div>
-    </a-layout-content>
+    <a-layout>
+      <a-layout-header class="admin-header">
+        <menu-unfold-outlined
+          v-if="collapsed"
+          class="trigger"
+          @click="() => (collapsed = !collapsed)"
+        />
+        <menu-fold-outlined
+          v-else
+          class="trigger"
+          @click="() => (collapsed = !collapsed)"
+        />
+      </a-layout-header>
+      <a-layout-content>
+        <a-breadcrumb style="padding: 16px 24px">
+          <a-breadcrumb-item>首页</a-breadcrumb-item>
+          <a-breadcrumb-item>{{ breadcrumbItem }}</a-breadcrumb-item>
+        </a-breadcrumb>
+        <div style="padding: 0 16px 24px 24px">
+          <router-view/>
+        </div>
+      </a-layout-content>
+    </a-layout>
   </a-layout>
 </template>
 
 <script>
-import { MenuUnfoldOutlined, MenuFoldOutlined, UserSwitchOutlined, ShoppingCartOutlined } from '@ant-design/icons-vue';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserSwitchOutlined,
+  ShoppingCartOutlined
+} from '@ant-design/icons-vue';
 export default {
   name: 'AdminLayout',
   components: {
@@ -52,8 +60,14 @@ export default {
     return {
       minHeight: window.innerHeight - 64 - 122,
       collapsed: false,
-      selectedKeys: '1'
+      selectedKeys: ['1']
     };
+  },
+  computed: {
+    breadcrumbItem: function () {
+      console.log(this.selectedKeys[0])
+      return this.selectedKeys[0] === '1' ? '商品审核' : '用户管理';
+    }
   }
 };
 </script>
@@ -69,7 +83,6 @@ export default {
   }
   .admin-header {
     background: #fff;
-    width: 100%;
     justify-content: flex-start;
   }
   .trigger {

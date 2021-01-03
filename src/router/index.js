@@ -133,7 +133,14 @@ const routes = [
   {
     path: '/admin',
     name: 'AdminLayout',
-    component: AdminLayout
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        name: 'CommodityReview',
+        component: () => import('@/views/CommodityReview')
+      }
+    ]
   }
 ]
 
