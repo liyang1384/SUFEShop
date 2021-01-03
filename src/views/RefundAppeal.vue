@@ -77,6 +77,7 @@
 
 <script>
 import { PlusOutlined } from '@ant-design/icons-vue';
+import { getRefundDetail } from '@/axios/refund.js';
 
 function getBase64 (file) {
   return new Promise((resolve, reject) => {
@@ -125,6 +126,13 @@ export default {
     },
     handleChange ({ fileList }) {
       this.fileList = fileList;
+    },
+    submit (e) {
+      // data
+      getRefundDetail(data)
+        .then(function (response) {
+
+        })
     }
   }
 }
