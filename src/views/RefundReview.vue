@@ -5,7 +5,7 @@
     <template #extra><a href="#"></a></template>
     <a-card size="small" title="交易信息" style="width: 1200px">
     <template #extra><a href="#"></a></template>
-    <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
+    <img :src="Image" style="width: 120px; height: 100px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 500px;top: 60px;">
     <p>商品类别：<span v-html="clas_of_commidity"></span></p>
     <p>卖家名称：<span v-html="seller"></span></p>
@@ -97,6 +97,7 @@ export default {
   data () {
     return {
       seen: true,
+      Image: require('../assets/image1.png'),
       pay_method: '支付宝',
       no_of_order: '0001',
       name_of_commidity: '草莓',

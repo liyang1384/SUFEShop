@@ -1,7 +1,7 @@
 <template>
   <a-card size="small" title="订单详情" style="width: 1200px;height:650px">
     <template #extra><a href="#"></a></template>
-    <img src="../assets/image1.png" style="width: 240px; height: 180px;margin-right:0px" align="left" />
+    <img :src="Image" style="width: 240px; height: 180px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 700px;top: 80px;">
     <p><b>商品名称：<span v-html="name_of_commidity"></span></b></p>
     <p><b>商品类别：<span v-html="class_of_commidity"></span></b></p>
@@ -12,7 +12,7 @@
     <br/>
     <br/>
     <div style="position: absolute;right: 60px;top: 100px;">
-    <b>第三方支付方式：<span v-html="method_of_pay"></span></b>
+    <b>第三方支付方式：<span v-html="pay_method"></span></b>
     <img src="../assets/alipayimg.png" >
     </div>
   <div style="position: absolute;left: 600px;top: 400px;">
@@ -43,6 +43,7 @@ export default {
   data () {
     return {
       reverse: false,
+      Image: require('../assets/image1.png'),
       name_of_commidity: '草莓',
       class_of_commidity: '水果',
       price_of_commidity: '50',

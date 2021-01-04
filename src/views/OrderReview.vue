@@ -20,24 +20,35 @@
     <a-card size="small" title="评分" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     描述相符合 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a-rate v-model:value="value1" />
+    <a-rate v-model:value="description" />
     <br/>
     送货速度 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a-rate v-model:value="value2" />
+    <a-rate v-model:value="speed" />
     <br/>
     交流态度 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a-rate v-model:value="value3" />
+    <a-rate v-model:value="attitude" />
     <br/>
     </a-card>
-    <a-card size="small" title="评价" style="width: 1200px">
-    <template #extra><a href="#"></a></template>
-    <p><a-input v-model:value="value" placeholder="请输入评价" /></p>
-  </a-card>
-  <a-card size="small" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传照片" style="width: 1200px">
-    <template #extra><a href="#"><a-button type="primary">上传照片</a-button></a></template>
-    <img src="../assets/image1.png" style="width: 120px; height: 100px; margin-right:100px;" />
-    <img src="../assets/image1.png" style="width: 120px; height: 100px; margin-right:100px;" />
-  </a-card>
+    <a-card size="small" title="" style="width: 1200px">
+    <a-textarea v-model:value="review" placeholder="输入评价" :rows="4" />
+    <div class="clearfix">
+    <a-upload
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      list-type="picture-card"
+      :file-list="fileList"
+      @preview="handlePreview"
+      @change="handleChange"
+    >
+      <div v-if="fileList.length < 8">
+        <plus-outlined />
+        <div class="ant-upload-text">Upload</div>
+      </div>
+    </a-upload>
+    <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+      <img alt="example" style="width: 100%" :src="previewImage" />
+    </a-modal>
+  </div>
+    </a-card>
   <br/>
   <br/>
     <a-button type="primary" @click="showModal">
@@ -59,16 +70,30 @@
 </template>
 
 <script>
+import { PlusOutlined } from '@ant-design/icons-vue';
+
+function getBase64 (file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 export default {
+  components: {
+    PlusOutlined
+  },
   data () {
     return {
+      fileList: [],
       ModalText: '',
       visible: false,
       confirmLoading: false,
-      value: '',
-      value1: 2,
-      value2: 3,
-      value3: 4,
+      review: '',
+      description: 2,
+      speed: 3,
+      attitude: 4,
       name_of_commidity: '草莓',
       class_of_commidity: '水果',
       price_of_commidity: '50',
@@ -78,6 +103,19 @@ export default {
     }
   },
   methods: {
+    handleCancel () {
+      this.previewVisible = false;
+    },
+    async handlePreview (file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
+      }
+      this.previewImage = file.url || file.preview;
+      this.previewVisible = true;
+    },
+    handleChange ({ fileList }) {
+      this.fileList = fileList;
+    },
     showModal () {
       this.visible = true;
     },
