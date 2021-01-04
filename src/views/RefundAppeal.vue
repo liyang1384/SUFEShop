@@ -6,7 +6,7 @@
     <img :src="Image" style="width: 120px; height: 100px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 300px;top: 60px;">
     <p>商品类别：<span v-html="class_of_commidity"></span></p>
-    <p>卖家名称：<span v-html="seller_of_commidity"></span></p>
+    <p>卖家名称：<span v-html="seller"></span></p>
     <p>支付方式：<span v-html="pay_method"></span>
     <img v-html="url_of_pay_method" style="width:30px;lenght:30px"/></p>
     </div>
@@ -101,7 +101,7 @@ export default {
       refund_reason: '',
       Image: require('../assets/image1.png'),
       class_of_commidity: '水果',
-      seller_of_commidity: 'sortedList',
+      seller: 'sortedList',
       pay_method: '支付宝',
       name_of_commidity: '草莓',
       price_of_commidity: '50',

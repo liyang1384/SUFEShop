@@ -6,14 +6,14 @@
     <template #extra><a href="#"></a></template>
     <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 300px;top: 60px;">
-    <p>商品类别：草莓</p>
-    <p>卖家名称：sortedList</p>
-    <p>支付方式：支付宝 <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
+    <p>商品类别：<span v-html="class_of_commidity"></span></p>
+    <p>卖家名称：<span v-html="seller"></span></p>
+    <p>支付方式：<span v-html="pay_method"></span> <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
     </div>
     <div style="position: absolute;right: 700px;top: 60px;">
-    <p>商品名称：草莓</p>
-    <p>商品金额：￥50</p>
-    <p>实际付款：￥50</p>
+    <p>商品名称：<span v-html="name_of_commidity"></span></p>
+    <p>商品金额：<span v-html="price_of_commidity"></span></p>
+    <p>实际付款：<span v-html="real_price_of_commidity"></span></p>
     </div>
     </a-card>
     <br/>
@@ -68,7 +68,13 @@ export default {
       value: '',
       value1: 2,
       value2: 3,
-      value3: 4
+      value3: 4,
+      name_of_commidity: '草莓',
+      class_of_commidity: '水果',
+      price_of_commidity: '50',
+      real_price_of_commidity: '50',
+      pay_method: '支付宝',
+      seller: 'sorted'
     }
   },
   methods: {

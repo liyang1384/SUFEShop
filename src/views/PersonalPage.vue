@@ -13,7 +13,7 @@
     <a-input v-model:value="value4" placeholder="邮箱" />
     <br/><br/><p><b>手机号</b></p>
     <a-input v-model:value="value5" placeholder="手机号" />
-    <br/><br/><br/><h4><b>信用分: 80</b></h4>
+    <br/><br/><br/><h4><b>信用分: <span v-html="credit"></span></b></h4>
     <br/>
     <p><a-button type="primary">确认修改</a-button></p>
     </a-card>
@@ -65,7 +65,8 @@ export default {
       value3: '',
       value4: '',
       value5: '',
-      value6: ''
+      value6: '',
+      credit: '80'
     }
   }
 }

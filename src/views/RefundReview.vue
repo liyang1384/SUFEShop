@@ -8,12 +8,12 @@
     <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 500px;top: 60px;">
     <p>商品类别：<span v-html="clas_of_commidity"></span></p>
-    <p><a href='seller_info'>卖家名称：<span v-html="seller"></span></a></p>
-    <p><a href='buyer_info'>买家名称：<span v-html="buyer"></span></a></p>
+    <p>卖家名称：<span v-html="seller"></span></p>
+    <p>买家名称：<span v-html="buyer"></span></p>
     </div>
     <div style="position: absolute;right: 300px;top: 60px;">
-    <p>支付方式：<span v-html="method_of_pay"></span> <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
-    <p><a href="#">订单明细</a></p>
+    <p>支付方式：<span v-html="pay_method"></span> <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
+    <p>订单编号：<span v-html="no_of_order"></span></p>
     </div>
     <div style="position: absolute;right: 700px;top: 60px;">
     <p>商品名称：<span v-html="name_of_commidity"></span></p>
@@ -97,7 +97,10 @@ export default {
   data () {
     return {
       seen: true,
-      clas_of_commidity: '草莓',
+      pay_method: '支付宝',
+      no_of_order: '0001',
+      name_of_commidity: '草莓',
+      clas_of_commidity: '水果',
       seller: 'sorted',
       buyer: 'sortedList',
       credit_of_buyer: 80,
