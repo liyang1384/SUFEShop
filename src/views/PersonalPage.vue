@@ -127,7 +127,8 @@ export default {
       real_name_of_user: '',
       email: '',
       phone: '',
-      credit: '80'
+      credit: '80',
+      portrait: ''
     }
   }
 }

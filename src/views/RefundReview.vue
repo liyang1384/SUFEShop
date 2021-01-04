@@ -27,8 +27,10 @@
     <template #extra><a href="#"></a></template>
     <br/><br/><br/><br/><br/><br/>
     <div style="position: absolute;right: 700px;top: 50px;">
-    <p>退款申请类型：<span v-html="refund_type"></span></p>
+    <p>退款申请类型：<span v-html="type_of_refund"></span></p>
     <p>退款金额：￥<span v-html="amount_of_refund"></span></p>
+    <p>货物状态：<span v-html="status_of_goods"></span></p>
+    <p>退款方式：<span v-html="way_of_refund"></span></p>
     </div>
     <div style="position: absolute;right: 400px;top: 50px;">
     <p>退款时间: <span v-html="time_of_refund"></span></p>
@@ -98,6 +100,8 @@ export default {
     return {
       seen: true,
       Image: require('../assets/image1.png'),
+      way_of_refund: '100',
+      status_of_goods: '100',
       method_of_pay: '支付宝',
       no_of_order: '0001',
       name_of_commidity: '草莓',
