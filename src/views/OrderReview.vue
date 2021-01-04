@@ -5,15 +5,18 @@
     <a-card size="small" title="交易信息" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
-    <div style="position: absolute;right: 300px;top: 60px;">
+    <div style="position: absolute;right: 500px;top: 60px;">
     <p>商品类别：<span v-html="class_of_commidity"></span></p>
     <p>卖家名称：<span v-html="seller"></span></p>
-    <p>支付方式：<span v-html="pay_method"></span> <img src="../assets/alipayimg.png" style="width:30px;lenght:30px"></p>
+    <p>支付方式：<span v-html="method_of_pay"></span></p>
     </div>
     <div style="position: absolute;right: 700px;top: 60px;">
     <p>商品名称：<span v-html="name_of_commidity"></span></p>
     <p>商品金额：<span v-html="price_of_commidity"></span></p>
     <p>实际付款：<span v-html="real_price_of_commidity"></span></p>
+    </div>
+    <div style="position: absolute;right: 200px;top: 60px;">
+    <p>订单编号：<span v-html="no_of_order"></span></p>
     </div>
     </a-card>
     <br/>
@@ -98,8 +101,9 @@ export default {
       class_of_commidity: '水果',
       price_of_commidity: '50',
       real_price_of_commidity: '50',
-      pay_method: '支付宝',
-      seller: 'sorted'
+      method_of_pay: '支付宝',
+      seller: 'sorted',
+      no_of_order: '0001'
     }
   },
   methods: {

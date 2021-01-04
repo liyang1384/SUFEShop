@@ -4,15 +4,15 @@
     <a-card size="small" title="基本设置" style="width:900px; margin-left: 200" align="left">
     <template #extra><a href="#"></a></template>
     <br/><p><b>用户名</b></p>
-    <a-input v-model:value="value1" placeholder="用户名" />
+    <a-input v-model:value="name_of_user" placeholder="用户名" />
     <br/><br/><p><b>昵称</b></p>
-    <a-input v-model:value="value2" placeholder="昵称" />
+    <a-input v-model:value="nickname_of_user" placeholder="昵称" />
     <br/><br/><p><b>真实姓名</b></p>
-    <a-input v-model:value="value3" placeholder="真实姓名" />
+    <a-input v-model:value="real_name_of_user" placeholder="真实姓名" />
     <br/><br/><p><b>邮箱</b></p>
-    <a-input v-model:value="value4" placeholder="邮箱" />
+    <a-input v-model:value="email" placeholder="邮箱" />
     <br/><br/><p><b>手机号</b></p>
-    <a-input v-model:value="value5" placeholder="手机号" />
+    <a-input v-model:value="phone" placeholder="手机号" />
     <br/><br/><br/><h4><b>信用分: <span v-html="credit"></span></b></h4>
     <br/>
     <p><a-button type="primary">确认修改</a-button></p>
@@ -122,12 +122,11 @@ export default {
       imageUrl: '',
       Image: require('../assets/image1.png'),
       show_portrait: true,
-      value1: '',
-      value2: '',
-      value3: '',
-      value4: '',
-      value5: '',
-      value6: '',
+      name_of_user: '',
+      nickname_of_user: '',
+      real_name_of_user: '',
+      email: '',
+      phone: '',
       credit: '80'
     }
   }

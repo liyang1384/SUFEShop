@@ -12,8 +12,7 @@
     <br/>
     <br/>
     <div style="position: absolute;right: 60px;top: 100px;">
-    <b>第三方支付方式：<span v-html="pay_method"></span></b>
-    <img src="../assets/alipayimg.png" >
+    <b>第三方支付方式：<span v-html="method_of_pay"></span></b>
     </div>
   <div style="position: absolute;left: 600px;top: 400px;">
   <a-button type="primary" style="position: absolute;right: 230px;top: 20px;">评价订单</a-button>
@@ -48,13 +47,14 @@ export default {
       class_of_commidity: '水果',
       price_of_commidity: '50',
       real_price_of_commidity: '50',
-      pay_method: '支付宝',
+      method_of_pay: '支付宝',
       time_of_deal: '2020/12/20',
       time_of_pay: '2020/12/20',
       time_of_delivery: '2020/12/20',
       time_of_receive: '2020/12/20',
       no_of_order: '0001',
-      seller: 'sorted'
+      seller: 'sorted',
+      buyer: 'sortedList'
     }
   },
   methods: {
