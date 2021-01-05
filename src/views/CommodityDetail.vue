@@ -18,8 +18,7 @@
         <a-col :span="14" height=600>
           <div class="height-1000" align="left">
             <p>
-            <HeartTwoTone twoToneColor="#eb2f96" />&nbsp;&nbsp;
-            <a style="color:#BEBEBE">加入收藏夹</a></p>
+            <a style="color:#BEBEBE"><HeartTwoTone twoToneColor="#eb2f96" />&nbsp;&nbsp;加入收藏夹</a></p>
             <p>
               卖家:&nbsp;&nbsp;{{ SellerName }}
               <a-divider type="vertical" />
