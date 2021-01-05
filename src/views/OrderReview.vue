@@ -89,6 +89,7 @@ export default {
   },
   data () {
     return {
+      status_of_order: '0',
       Image: require('../assets/image1.png'),
       fileList: [],
       ModalText: '',

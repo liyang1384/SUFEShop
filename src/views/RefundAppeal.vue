@@ -94,6 +94,7 @@ export default {
   },
   data () {
     return {
+      status_of_order: '1',
       type_of_refund: '',
       amount_of_refund: '',
       status_of_goods: '',
@@ -106,7 +107,6 @@ export default {
       name_of_commidity: '草莓',
       price_of_commidity: '50',
       real_price_of_commidity: '50',
-      url_of_pay_method: '../assets/alipayimg.png',
       previewVisible: false,
       previewImage: '',
       fileList: [

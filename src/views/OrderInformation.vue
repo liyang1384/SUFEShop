@@ -42,6 +42,7 @@ export default {
   data () {
     return {
       reverse: false,
+      status_of_order: '0',
       Image: require('../assets/image1.png'),
       name_of_commidity: '草莓',
       class_of_commidity: '水果',
