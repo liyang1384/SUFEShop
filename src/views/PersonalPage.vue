@@ -156,6 +156,7 @@ export default {
         this.credit = response.data.credit;
         this.avator = response.data.avatar
       })
+    console.log(this.user_name)
   }
 }
 </script>
