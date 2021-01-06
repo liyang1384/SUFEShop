@@ -38,17 +38,18 @@
     <template #action="{ record }">
       <a-button @click="handleChangePage(record.commodity_id)" type="primary" >重新编辑商品信息</a-button>
       <a-divider type="vertical" />
-      <a-button type="danger">删除该商品</a-button>
+      <a-button type="danger" @click="deleteCommodity(record.commodity_id)">删除该商品</a-button>
       <a-divider type="vertical" />
     </template>
   </a-table>
 </template>
 <script>
+import { getMyCommodity, DeleteCommodity } from '@/axios/commodity.js';
 const columns = [
   {
     title: '发布日期',
-    key: 'time',
-    dataIndex: 'time',
+    key: 'on_shelf_time',
+    dataIndex: 'on_shelf_time',
     width: 120
   },
   {
@@ -66,15 +67,15 @@ const columns = [
   },
   {
     title: '商品状态',
-    dataIndex: 'state',
-    key: 'state',
+    dataIndex: 'application_state',
+    key: 'application_state',
     width: 200
   },
   {
     title: '商品类别',
-    key: 'tags',
-    dataIndex: 'tags',
-    slots: { customRender: 'tags' },
+    key: 'commodity_type',
+    dataIndex: 'commodity_type',
+    slots: { customRender: 'commodity_type' },
     width: 200
   },
   {
@@ -90,49 +91,9 @@ const data = [
     commodity_id: '1',
     imageName: [require('@/assets/image1.png'), '马原教科书'],
     price: 32.75,
-    state: '已发布',
-    tags: ['教科书'],
-    time: '2020-1-1'
-  },
-  {
-    commodity_id: '2',
-    imageName: [require('@/assets/image2.png'), '潮牌跑步鞋'],
-    price: 420.0,
-    state: '已发布',
-    tags: ['服装'],
-    time: '2019-1-1'
-  },
-  {
-    imageName: [require('@/assets/image4.png'), '高端人才必备手机'],
-    commodity_id: '4',
-    price: 7000,
-    state: '已发布',
-    tags: ['手机'],
-    time: '2017-5-1'
-  },
-  {
-    imageName: [require('@/assets/image5.png'), '潮流自行车'],
-    commodity_id: '5',
-    price: 500,
-    state: '已发布',
-    tags: ['自行车', '二手'],
-    time: '2017-4-1'
-  },
-  {
-    imageName: [require('@/assets/image6.png'), '精神小伙同款上衣'],
-    commodity_id: '6',
-    price: 20,
-    state: '已发布',
-    tags: ['教材', '全新'],
-    time: '2017-3-1'
-  },
-  {
-    imageName: [require('@/assets/image7.png'), '上财女生必备神仙水'],
-    commodity_id: '7',
-    price: 24,
-    state: '已发布',
-    tags: ['化妆品'],
-    time: '2017-1-1'
+    application_state: '在售',
+    commodity_type: ['教科书'],
+    on_shelf_time: '2020-1-1'
   }
 ]
 
@@ -146,8 +107,55 @@ export default {
       }
     }
   },
+  mounted () {
+    this.onSearch()
+  },
   methods: {
-    onSearch (value) {
+    onSearch () {
+      getMyCommodity(this.form)
+        .then((response) => {
+          const status_code = response.status
+          if (status_code === 200) {
+            this.data.commodity_id = response.data.commodity_id;
+            this.data.price = response.data.price;
+            this.data.commodity_type = response.data.commodity_type;
+            this.data.imageName[0] = response.data.commodity_picture;
+            this.data.imageName[1] = response.data.commodity_name;
+            this.data.application_state = response.data.application_state;
+            this.data.on_shelf_time = response.data.on_shelf_time;
+            if (this.$store.user_id != null) {
+              this.$router.push({ path: '' })
+              this.$message.info('成功')
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('失败')
+        });
+    },
+    deleteCommodity (id) {
+      DeleteCommodity(id)
+        .then((response) => {
+          const status_code = response.status
+          if (status_code === 200) {
+            this.data.commodity_id = response.data.commodity_id;
+            this.data.price = response.data.price;
+            this.data.commodity_type = response.data.commodity_type;
+            this.data.imageName[0] = response.data.commodity_picture;
+            this.data.imageName[1] = response.data.commodity_name;
+            this.data.application_state = response.data.application_state;
+            this.data.on_shelf_time = response.data.on_shelf_time;
+            if (this.$store.user_id != null) {
+              this.$router.push({ path: '' })
+              this.$message.info('成功')
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('失败')
+        });
     },
     handleChangePage (CommodityID) {
       console.log(CommodityID)

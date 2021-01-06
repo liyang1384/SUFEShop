@@ -20,7 +20,9 @@
     </div>
     </a-card>
     <br/>
-    <a-card size="small" title="评分" style="width: 1200px">
+    <span v-if="this.order_type==1">对买家的评价 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a-rate v-if="this.order_type==1" v-model:value="score" />
+    <a-card v-if="this.order_type==0" size="small" title="评分" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     描述相符合 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a-rate v-model:value="commidity_quality" />
@@ -34,23 +36,6 @@
     </a-card>
     <a-card size="small" title="" style="width: 1200px">
     <a-textarea v-model:value="comment" placeholder="输入评价" :rows="4" />
-    <div class="clearfix">
-    <a-upload
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      list-type="picture-card"
-      :file-list="fileList"
-      @preview="handlePreview"
-      @change="handleChange"
-    >
-      <div v-if="fileList.length < 8">
-        <plus-outlined />
-        <div class="ant-upload-text">Upload</div>
-      </div>
-    </a-upload>
-    <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-      <img alt="example" style="width: 100%" :src="previewImage" />
-    </a-modal>
-  </div>
     </a-card>
   <br/>
   <br/>
@@ -58,7 +43,18 @@
       提交评价
     </a-button>
     <a-modal
-      v-on="onpostOrderReview"
+      v-if="order_type==0"
+      v-on="onpostOrderReview_Buyer"
+      title="确认提交吗？"
+      v-model:visible="visible"
+      :confirm-loading="confirmLoading"
+      @ok="handleOk"
+    >
+      <p>{{ ModalText }}</p>
+    </a-modal>
+    <a-modal
+      v-if="order_type==1"
+      v-on="onpostOrderReview_Seller"
       title="确认提交？"
       v-model:visible="visible"
       :confirm-loading="confirmLoading"
@@ -74,8 +70,7 @@
 </template>
 
 <script>
-import { PlusOutlined } from '@ant-design/icons-vue';
-import { getOrderInfo_Review, postOrderReview } from '../axios/order';
+import { getOrderInfo_Review, postOrderReview_Buyer, postOrderReview_Seller } from '../axios/order';
 
 function getBase64 (file) {
   return new Promise((resolve, reject) => {
@@ -86,9 +81,6 @@ function getBase64 (file) {
   });
 }
 export default {
-  components: {
-    PlusOutlined
-  },
   data () {
     return {
       status_of_order: '0',
@@ -108,7 +100,10 @@ export default {
       payment_platform: '支付宝',
       seller: 'sorted',
       user_id: this.$store.user_id,
-      order_id: this.$store.order_id
+      order_id: this.$store.order_id,
+      buyer: '',
+      order_type: '0',
+      score: 4
     }
   },
   created: function () {
@@ -124,10 +119,12 @@ export default {
       this.payment_platform = response.data.payment_platform;
       this.seller = response.data.seller;
       this.commidity_picture = response.data.commidity_picture.url;
+      // this.order_type = response.data.order_type;
+      this.buyer = response.data.buyer
     })
   },
   methods: {
-    onpostOrderReview (e) {
+    onpostOrderReview_Seller (e) {
       const form_1 = {
         order_id: this.order_id,
         comment: this.comment,
@@ -135,7 +132,17 @@ export default {
         deal_speed: this.deal_speed,
         seller_attitude: this.seller
       };
-      postOrderReview(form_1)
+      postOrderReview_Seller(form_1)
+    },
+    onpostOrderReview_Buyer (e) {
+      const form_1 = {
+        order_id: this.order_id,
+        comment: this.comment,
+        commidity_quality: this.commidity_quality,
+        deal_speed: this.deal_speed,
+        seller_attitude: this.seller
+      };
+      postOrderReview_Buyer(form_1)
     },
     handleCancel () {
       this.previewVisible = false;

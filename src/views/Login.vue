@@ -53,7 +53,11 @@ export default {
           if (status_code === 200) {
             this.$store.commit('login', response.data)
             if (this.$store.user_id != null) {
-              this.$router.push({ path: '' })
+              if (this.$store.identity === 'USER') {
+                this.$router.push({ path: '' })
+              } else {
+                this.$router.push({ path: '/admin' })
+              }
               this.$message.info('登录成功')
             }
           }

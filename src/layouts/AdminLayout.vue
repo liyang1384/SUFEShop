@@ -6,12 +6,16 @@
       </div>
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
         <a-menu-item key="1">
-          <ShoppingCartOutlined />
-          <span>商品审核</span>
+          <router-link to="/admin">
+            <ShoppingCartOutlined />
+            <span>商品审核</span>
+          </router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <UserSwitchOutlined />
-          <span>用户管理</span>
+          <router-link to="/admin/usermanagement">
+            <UserSwitchOutlined />
+            <span>用户管理</span>
+          </router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>

@@ -22,6 +22,8 @@ import CommodityList from '../views/CommodityList.vue'
 import Register from '../views/Register.vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
 
+// import store from '../store/index.js'
+
 const routes = [
   {
     path: '/',
@@ -141,7 +143,7 @@ const routes = [
         component: () => import('@/views/CommodityReview')
       },
       {
-        path: '/usermanagement',
+        path: 'usermanagement',
         name: 'UserManagement',
         component: () => import('@/views/UserManagement')
       }
@@ -152,6 +154,12 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // if (to.name !== 'Login' && to.name !== 'Register' && store.state.user_id === null) next({ name: 'Login' })
+  // else
+  next()
 })
 
 export default router

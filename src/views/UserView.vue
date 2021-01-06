@@ -4,7 +4,7 @@
       <a-form layout="inline" :model="form">
         <a-form-item>
           <a-input-search
-            v-model:value="form.searchText"
+            v-model:value="form.commodity_name"
             placeholder="输入内容查找商品"
             style="width: 400px"
             @search="onSearch"
@@ -12,12 +12,12 @@
         </a-form-item>
         <br />
         <a-form-item label="商品类型" >
-            <a-select value=1>  </a-select>
+            <a-input placeholder="请输入商品类型" v-model:value="form.commodity_type">  </a-input>
         </a-form-item>
         <a-form-item label="价格区间">
           <a-input-group compact>
             <a-input
-              v-model:value="form.minAmount"
+              v-model:value="form.min_price"
               style="width: 100px; text-align: center"
               placeholder="最小价格"
             />
@@ -32,15 +32,12 @@
               disabled
             />
             <a-input
-              v-model:value="form.maxAmount"
+              v-model:value="form.max_price"
               style="width: 100px; text-align: center; border-left: 0"
               placeholder="最大价格"
             />
           </a-input-group>
         </a-form-item>
-        <a-form-item label="信用等级">
-            <a-select value="1">  </a-select>
-          </a-form-item>
       </a-form>
     </template>
     <a-card title="商品列表" style="width: 1300px text-align: center;">
@@ -66,57 +63,15 @@
 </template>
 
 <script>
-
-// 此处数据为虚拟数据，后端完成接口时应删除
-
+import { getAllCommodity } from '@/axios/commodity.js';
 const data = [
   {
     commodity_id: '1',
     imageName: [require('@/assets/image1.png'), '马原教科书'],
     price: 32.75,
-    state: '在售',
-    tags: ['教科书'],
-    time: '2020-1-1'
-  },
-  {
-    commodity_id: '2',
-    imageName: [require('@/assets/image2.png'), '潮牌跑步鞋'],
-    price: 420.0,
-    state: '在售',
-    tags: ['服装'],
-    time: '2019-1-1'
-  },
-  {
-    imageName: [require('@/assets/image4.png'), '高端人才必备手机'],
-    commodity_id: '4',
-    price: 7000,
-    state: '在售',
-    tags: ['手机'],
-    time: '2017-5-1'
-  },
-  {
-    imageName: [require('@/assets/image5.png'), '潮流自行车'],
-    commodity_id: '5',
-    price: 500,
-    state: '在售',
-    tags: ['自行车', '二手'],
-    time: '2017-4-1'
-  },
-  {
-    imageName: [require('@/assets/image6.png'), '精神小伙同款上衣'],
-    commodity_id: '6',
-    price: 20,
-    state: '在售',
-    tags: ['教材', '全新'],
-    time: '2017-3-1'
-  },
-  {
-    imageName: [require('@/assets/image7.png'), '上财女生必备神仙水'],
-    commodity_id: '7',
-    price: 24,
-    state: '在售',
-    tags: ['化妆品'],
-    time: '2017-1-1'
+    application_state: '在售',
+    commodity_type: ['教科书'],
+    on_shelf_time: '2020-1-1'
   }
 ]
 
@@ -128,16 +83,37 @@ export default {
     return {
       data,
       form: {
-        category: '',
-        searchText: '',
-        dateRange: [],
-        minAmount: undefined,
-        maxAmount: undefined
+        commodity_type: '',
+        commodity_name: '',
+        min_price: undefined,
+        max_price: undefined
       }
     }
   },
   methods: {
-    onSearch (value) {},
+    onSearch (params) {
+      getAllCommodity(this.form)
+        .then((response) => {
+          const status_code = response.status
+          if (status_code === 200) {
+            this.data.commodity_id = response.data.commodity_id;
+            this.data.price = response.data.price;
+            this.data.commodity_type = response.data.commodity_type;
+            this.data.imageName[0] = response.data.commodity_picture;
+            this.data.imageName[1] = response.data.commodity_name;
+            this.data.application_state = response.data.application_state;
+            this.data.on_shelf_time = response.data.on_shelf_time;
+            if (this.$store.user_id != null) {
+              this.$router.push({ path: '' })
+              this.$message.info('成功')
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('失败')
+        });
+    },
     handleChangePage (CommodityID) {
       console.log(CommodityID)
       this.$router.push(`/CommodityDetail/${CommodityID}`)
