@@ -1,5 +1,21 @@
 import instance from './index.js'
 
+export function checkPassword (params) {
+  return instance({
+    url: 'user/userdetail/',
+    method: 'get',
+    params: params
+  })
+}
+
+export function setPassword (data) {
+  return instance({
+    url: 'user/userdetail/',
+    method: 'put',
+    data: data
+  })
+}
+
 export function getUserDetail (params) {
   return instance({
     url: 'user/userdetail/',

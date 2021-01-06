@@ -52,7 +52,7 @@
     </a-modal>
     </div>
     </a-card>
-    <a-button type="primary" style="margin-left:50px;">提交</a-button>
+    <a-button v-on="onPostRefundInfo"  type="primary" style="margin-left:50px;">提交</a-button>
   </a-card>
   <br/><br/><br/>
 <a href="#" style="margin-left:0px">帮助</a>
@@ -62,6 +62,7 @@
 
 <script>
 import { PlusOutlined } from '@ant-design/icons-vue';
+import { getOrderInfo_appeal, postRefundInfo } from '../axios/refund';
 // import { getRefundDetail } from '@/axios/refund.js';
 
 function getBase64 (file) {
@@ -74,6 +75,24 @@ function getBase64 (file) {
 }
 
 export default {
+  created: function() {
+    const form_0 = { 
+      user_id: this.user_id,
+      order_id: this.order_id
+    };
+    getOrderInfo_appeal(form_0).then((response) => {
+      this.commidity_picture = response.data.commidity_picture.url;
+      this.commidity_name = response.data.commidity_name;
+      this.commidity_type = response.data.commidity_type;
+      this.price = response.data.price;
+      this.amount = response.data.amount;
+      this.seller = response.data.seller;
+      this.order_id = response.data.order_id;
+      this.order_time = response.data.order_time;
+      this.payment_time = response.data.payment_time;
+      this.payment_platform = response.data.payment_platform
+    })
+  },
   components: {
     PlusOutlined
   },
@@ -92,11 +111,22 @@ export default {
       amount: '50',
       previewVisible: false,
       previewImage: '',
-      fileList: [
-      ]
+      user_id: this.$store.user_id,
+      order_id: this.$store.order_id
     }
   },
   methods: {
+    onPostRefundInfo (e) {
+      const form_1={
+        user_id: this.user_id,
+        order_id: this.order_id,
+        refund_type: this.refund_type,
+        refund_amount: this.refund_amount,
+        refund_reason: this.refund_reason,
+        refund_time: this.refund_time
+      };
+      postRefundInfo(form_1)
+    },
     handleCancel () {
       this.previewVisible = false;
     },
