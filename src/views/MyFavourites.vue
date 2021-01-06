@@ -39,7 +39,6 @@ const columns = [
   },
   {
     dataIndex: 'commodity_name',
-    key: 'commodity',
     title: '商品名称',
     width: 350,
     align: 'center'
@@ -47,7 +46,6 @@ const columns = [
   {
     title: '价格',
     dataIndex: 'price',
-    key: 'price',
     width: 120,
     slots: { customRender: 'price' },
     align: 'center'
@@ -55,18 +53,15 @@ const columns = [
   {
     title: '商品状态',
     dataIndex: 'commodity_state',
-    key: 'state',
     align: 'center'
   },
   {
     title: '商品类别',
-    key: 'commodity_type',
-    dataIndex: 'tags',
+    dataIndex: 'commodity_type',
     align: 'center'
   },
   {
     title: '操作',
-    key: 'action',
     dataIndex: 'action',
     slots: { customRender: 'action' },
     align: 'center'
