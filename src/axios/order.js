@@ -35,8 +35,8 @@ export function getBoughtOrderList (params) {
 export function createOrder (data) {
   return instance({
     url: 'order/GenerateOrderDetail/',
-    // 请求方法:create
-    method: 'create',
+    // 请求方法:post
+    method: 'post',
     data: data
   })
 }
@@ -45,8 +45,8 @@ export function createOrder (data) {
 export function payOrder (data) {
   return instance({
     url: 'order/PayOrderDetail/',
-    // 请求方法：create
-    method: 'create',
+    // 请求方法：post
+    method: 'post',
     data: data
   })
 }
