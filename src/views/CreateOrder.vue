@@ -53,7 +53,7 @@
             <p style="color:red; font-size:20px">应付总金额：￥{{ Price }}</p>
             <p style="color:#BEBEBE">重要提示：本网所售商品均在线下进行交易。</p>
             <p style="color:#BEBEBE">请认真考虑，确定同意再提交订单。</p>
-            <a-button size="large" @click="handleChangePage (CommodityID)">确认购买</a-button>
+            <a-button size="large" @click="handleChangePage ()">确认购买</a-button>
           </a-col>
         </a-row>
     </div>
@@ -83,9 +83,9 @@ export default {
     }
   },
   methods: {
-    handleChangePage (OrderID) {
-      console.log(OrderID)
-      this.$router.push(`/PayOrder/${OrderID}`)
+    handleChangePage () {
+      console.log(this.OrderID)
+      this.$router.push(`/PayOrder/${this.OrderID}`)
     }
   }
 }
