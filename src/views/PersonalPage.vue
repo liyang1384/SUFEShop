@@ -74,8 +74,8 @@
 <script>
 import { PlusOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
-import { getUserDetail } from '../axios/user.js';
-import { putUserDetail } from '../axios/user.js';
+import { getUserDetail, putUserDetail } from '../axios/user.js';
+
 function getBase64 (img, callback) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
@@ -89,8 +89,8 @@ export default {
     UserOutlined
   },
   methods: {
-    update_user_info (e){
-      let form ={
+    update_user_info (e) {
+      const form = {
         user_id: this.user_id,
         nick_name: this.nick_name,
         user_name: this.user_name,
@@ -145,17 +145,17 @@ export default {
       user_id: ''
     }
   },
-  created: function(){
-    let form_1={user_id: this.user_id};
+  created: function () {
+    const form_1 = { user_id: this.user_id };
     getUserDetail(form_1)
-    .then((response) => {
-      this.nick_name=response.data.nick_name;
-      this.user_name=response.data.user_name;
-      this.email=response.data.email;
-      this.mobile=response.data.mobile;
-      this.credit=response.data.credit;
-      this.avator=response.data.avatar  
-    })
+      .then((response) => {
+        this.nick_name = response.data.nick_name;
+        this.user_name = response.data.user_name;
+        this.email = response.data.email;
+        this.mobile = response.data.mobile;
+        this.credit = response.data.credit;
+        this.avator = response.data.avatar
+      })
   }
 }
 </script>
