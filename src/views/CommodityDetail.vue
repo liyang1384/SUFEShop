@@ -7,30 +7,29 @@
         @back="() => $router.go(-1)"
       />
       <br/>
-      <h2 align=left style="solid rgb(235, 237, 240)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ CommodityName }}</h2>
+      <h2 align=left style="solid rgb(235, 237, 240)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ proDetail.commodity_name }}</h2>
       <a-row>
         <a-col :span="10">
           <img
-            :src="images"
+            :src="proDetail.commodity_picture"
             style="position: absolute; top: 10px; left: 60px; width: 350px"
           />
         </a-col>
         <a-col :span="14" height=600>
           <div class="height-1000" align="left">
             <p>
-            <a style="color:#BEBEBE" ><HeartTwoTone twoToneColor="grey" />&nbsp;&nbsp;加入收藏夹</a></p><!--#eb2f96-->
+            <a style="color:#BEBEBE" ><HeartTwoTone twoToneColor="likecolor" />&nbsp;&nbsp;加入收藏夹</a></p><!--#eb2f96-->
             <p>
-              卖家:&nbsp;&nbsp;{{ SellerName }}
+              卖家:&nbsp;&nbsp;{{ proDetail.user_name }}
               <a-divider type="vertical" />
               <a>联系卖家</a>
             </p>
-            <p>价格:&nbsp;&nbsp;￥{{ Price }}</p>
-            <p>商品类型:&nbsp;&nbsp;{{ Kind }}</p>
-            <p>商品状态:&nbsp;&nbsp;<a-badge status="processing" />{{ state }}</p>
-            <p>发布时间:&nbsp;&nbsp;{{ PublishTime }}</p>
+            <p>价格:&nbsp;&nbsp;￥{{ proDetail.price }}</p>
+            <p>商品类型:&nbsp;&nbsp;{{ proDetail.commodity_type }}</p>
+            <p>商品状态:&nbsp;&nbsp;<a-badge status="processing" />{{ proDetail.commodity_state }}</p>
             <br/>
             <p>商品描述</p>
-            <p>{{ Description }}</p>
+            <p>{{ proDetail }}</p>
             <br/>
           </div>
         </a-col>
@@ -38,7 +37,7 @@
       <a-row>
         <a-divider />
         <a-col :span="4" :offset="20">
-          <a-button value="large" type="primary" @click="handleChangePage(CommodityID)">立即购买</a-button>
+          <a-button value="large" type="primary" @click="handleChangePage(commodity_id)">立即购买</a-button>
         </a-col>
       </a-row>
     </div>
@@ -47,6 +46,7 @@
 
 <script>
 import { HeartTwoTone } from '@ant-design/icons-vue'
+import { getCommodity } from '@/axios/commodity.js'
 export default {
 /* mounted () {
     console.log(this.$route.params.id)
@@ -57,7 +57,10 @@ export default {
   },
   data () {
     return {
-      CommodityID: '1000324',
+      likecolor: 'grey',
+      commodity_id: '',
+      proDetail: {}
+      /* commodity_id: '10000239',
       images: require('@/assets/testimg.png'),
       CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
       SellerName: 'BILL',
@@ -65,13 +68,26 @@ export default {
       Kind: '教材',
       state: '在售',
       Price: 25,
-      Description: '高数教材配套教辅，九成新，没做过，可议价.....'
+      Description: '高数教材配套教辅，九成新，没做过，可议价.....'*/
     }
   },
+  created () {
+    this.commodity_id = this.$route.params.commodity_id;
+    this.getDetails();
+  },
   methods: {
-    handleChangePage (CommodityID) {
-      console.log(CommodityID)
-      this.$router.push(`/CreateOrder/${CommodityID}`)
+    getDetails () { //  请求商品详情
+      getCommodity(this.commodity_id)
+        .then((response) => {
+          console.log(response.data);
+          this.proDetail = response.data;
+        }).catch(function (error) {
+          console.log(error);
+        });
+    },
+    handleChangePage (commodity_id) {
+      console.log(commodity_id)
+      this.$router.push(`/CreateOrder/${commodity_id}`)
     }
   }
 }

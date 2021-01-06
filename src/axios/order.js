@@ -26,7 +26,7 @@ export function getOrderInfo_Info (params) {
 
 export function getBoughtOrderList (params) {
   return instance({
-    url: 'order/boughtorderlist/',
+    url: 'order/orderlist/',
     method: 'get',
     params: params
   })
@@ -52,3 +52,11 @@ export function payOrder (data) {
 }
 // 支付订单
 
+// 获取订单列表
+export function getOrderList (params) {
+  return instance({
+    url: 'order/orderlist/',
+    method: 'get',
+    params: params
+  })
+}
