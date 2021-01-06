@@ -22,7 +22,7 @@ import CommodityList from '../views/CommodityList.vue'
 import Register from '../views/Register.vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
 
-import store from '../store/index.js'
+// import store from '../store/index.js'
 
 const routes = [
   {
