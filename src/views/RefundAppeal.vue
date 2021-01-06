@@ -33,24 +33,6 @@
     <a-textarea v-model:value="refund_reason" placeholder="退款原因" :rows="7" />
     </div>
     <br/><br/>
-    <p>补充描述与凭证</p>
-    <div class="clearfix">
-    <a-upload
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      list-type="picture-card"
-      :file-list="fileList"
-      @preview="handlePreview"
-      @change="handleChange"
-    >
-      <div v-if="fileList.length < 8">
-        <plus-outlined />
-        <div class="ant-upload-text">Upload</div>
-      </div>
-    </a-upload>
-    <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-      <img alt="example" style="width: 100%" :src="previewImage" />
-    </a-modal>
-    </div>
     </a-card>
     <a-button v-on="onPostRefundInfo"  type="primary" style="margin-left:50px;">提交</a-button>
   </a-card>
@@ -61,7 +43,6 @@
 </template>
 
 <script>
-import { PlusOutlined } from '@ant-design/icons-vue';
 import { getOrderInfo_appeal, postRefundInfo } from '../axios/refund';
 // import { getRefundDetail } from '@/axios/refund.js';
 
@@ -93,9 +74,6 @@ export default {
       this.payment_platform = response.data.payment_platform
     })
   },
-  components: {
-    PlusOutlined
-  },
   data () {
     return {
       order_status: '1',
@@ -122,8 +100,7 @@ export default {
         order_id: this.order_id,
         refund_type: this.refund_type,
         refund_amount: this.refund_amount,
-        refund_reason: this.refund_reason,
-        refund_time: this.refund_time
+        refund_reason: this.refund_reason
       };
       postRefundInfo(form_1)
     },

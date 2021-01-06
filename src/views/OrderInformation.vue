@@ -21,7 +21,7 @@
   </div>
   <div style="position: absolute;right: 400px;top: 80px;">
     <a-timeline pending="" :reverse="reverse">
-    <p><b>订单编号：000001</b></p>
+    <p><b>订单编号 <span v-html="order_id"></span></b></p>
       <a-timeline-item><b>下单时间 <span v-html="order_time"></span></b></a-timeline-item>
       <a-timeline-item><b>付款时间 <span v-html="payment_time"></span></b></a-timeline-item>
     </a-timeline>
@@ -47,7 +47,7 @@ export default {
       price: '50',
       amount: '50',
       payment_platform: '支付宝',
-      deal_time: '2020/12/20',
+      order_time: '2020/12/20',
       payment_time: '2020/12/20',
       seller: 'sorted',
       buyer: 'sortedList',
@@ -71,7 +71,7 @@ export default {
       this.price = response.data.price;
       this.amount = response.data.amount;
       this.payment_platform = response.data.payment_platform;
-      this.deal_time = response.data.deal_time;
+      this.order_time = response.data.order_time;
       this.payment_time = response.data.payment_time;
       this.seller = response.data.seller;
       this.buyer = response.data.buyer

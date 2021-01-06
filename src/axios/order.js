@@ -1,8 +1,16 @@
 import instance from './index.js'
 
-export function postOrderReview (data) {
+export function postOrderReview_Buyer (data) {
   return instance({
-    url: 'order/boughtorderlist/',
+    url: 'order/buyerreviewdetail',
+    method: 'post',
+    data: data
+  })
+}
+
+export function postOrderReview_Seller (data) {
+  return instance({
+    url: 'order/sellerreviewdetail/',
     method: 'post',
     data: data
   })
