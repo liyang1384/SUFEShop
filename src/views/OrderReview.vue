@@ -4,36 +4,36 @@
     <br/>
     <a-card size="small" title="交易信息" style="width: 1200px">
     <template #extra><a href="#"></a></template>
-    <img :src="Image" style="width: 120px; height: 100px;margin-right:0px" align="left" />
+    <img :src="commidity_picture" style="width: 120px; height: 100px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 500px;top: 60px;">
-    <p>商品类别：<span v-html="class_of_commidity"></span></p>
+    <p>商品类别：<span v-html="commidity_type"></span></p>
     <p>卖家名称：<span v-html="seller"></span></p>
-    <p>支付方式：<span v-html="method_of_pay"></span></p>
+    <p>支付方式：<span v-html="payment_platform"></span></p>
     </div>
     <div style="position: absolute;right: 700px;top: 60px;">
-    <p>商品名称：<span v-html="name_of_commidity"></span></p>
-    <p>商品金额：<span v-html="price_of_commidity"></span></p>
-    <p>实际付款：<span v-html="real_price_of_commidity"></span></p>
+    <p>商品名称：<span v-html="commidity_name"></span></p>
+    <p>商品金额：<span v-html="price"></span></p>
+    <p>实际付款：<span v-html="amount"></span></p>
     </div>
     <div style="position: absolute;right: 200px;top: 60px;">
-    <p>订单编号：<span v-html="no_of_order"></span></p>
+    <p>订单编号：<span v-html="order_id"></span></p>
     </div>
     </a-card>
     <br/>
     <a-card size="small" title="评分" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     描述相符合 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a-rate v-model:value="description" />
+    <a-rate v-model:value="commidity_quality" />
     <br/>
     送货速度 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a-rate v-model:value="speed" />
+    <a-rate v-model:value="deal_speed" />
     <br/>
     交流态度 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a-rate v-model:value="attitude" />
+    <a-rate v-model:value="seller_attitude" />
     <br/>
     </a-card>
     <a-card size="small" title="" style="width: 1200px">
-    <a-textarea v-model:value="review" placeholder="输入评价" :rows="4" />
+    <a-textarea v-model:value="comment" placeholder="输入评价" :rows="4" />
     <div class="clearfix">
     <a-upload
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -90,22 +90,22 @@ export default {
   data () {
     return {
       status_of_order: '0',
-      Image: require('../assets/image1.png'),
+      commidity_picture: require('../assets/image1.png'),
       fileList: [],
       ModalText: '',
       visible: false,
       confirmLoading: false,
-      review: '',
-      description: 2,
-      speed: 3,
-      attitude: 4,
-      name_of_commidity: '草莓',
-      class_of_commidity: '水果',
-      price_of_commidity: '50',
-      real_price_of_commidity: '50',
-      method_of_pay: '支付宝',
+      comment: '',
+      commidity_quality: 2,
+      deal_speed: 3,
+      seller_attitude: 4,
+      commidity_name: '草莓',
+      commidity_type: '水果',
+      price: '50',
+      amount: '50',
+      payment_platform: '支付宝',
       seller: 'sorted',
-      no_of_order: '0001'
+      order_id: '0001'
     }
   },
   methods: {

@@ -4,15 +4,15 @@
     <a-card size="small" title="基本设置" style="width:900px; margin-left: 200" align="left">
     <template #extra><a href="#"></a></template>
     <br/><p><b>用户名</b></p>
-    <a-input v-model:value="name_of_user" placeholder="用户名" />
+    <a-input v-model:value="user_id" placeholder="用户名" />
     <br/><br/><p><b>昵称</b></p>
-    <a-input v-model:value="nickname_of_user" placeholder="昵称" />
+    <a-input v-model:value="nick_name" placeholder="昵称" />
     <br/><br/><p><b>真实姓名</b></p>
-    <a-input v-model:value="real_name_of_user" placeholder="真实姓名" />
+    <a-input v-model:value="user_name" placeholder="真实姓名" />
     <br/><br/><p><b>邮箱</b></p>
     <a-input v-model:value="email" placeholder="邮箱" />
     <br/><br/><p><b>手机号</b></p>
-    <a-input v-model:value="phone" placeholder="手机号" />
+    <a-input v-model:value="mobile" placeholder="手机号" />
     <br/><br/><br/><h4><b>信用分: <span v-html="credit"></span></b></h4>
     <br/>
     <p><a-button type="primary">确认修改</a-button></p>
@@ -23,7 +23,7 @@
         <template #icon><UserOutlined /></template>
       </a-avatar>
       <a-button type="primary">更换头像</a-button>
-    <img :src="Image" v-if="show_portrait"  style="position: absolute;right: 0px;top: 0px;width: 120px; height: 100px;" align="left" />
+    <img :src="avator" v-if="show_portrait"  style="position: absolute;right: 0px;top: 0px;width: 120px; height: 100px;" align="left" />
     <a-upload
     v-model:fileList="fileList"
     name="avatar"
@@ -122,13 +122,13 @@ export default {
       imageUrl: '',
       Image: require('../assets/image1.png'),
       show_portrait: true,
-      name_of_user: '',
-      nickname_of_user: '',
-      real_name_of_user: '',
+      user_id: '',
+      nick_name: '',
+      user_name: '',
       email: '',
-      phone: '',
+      mobile: '',
       credit: '80',
-      portrait: ''
+      avator: ''
     }
   }
 }
