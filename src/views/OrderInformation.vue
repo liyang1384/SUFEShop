@@ -35,7 +35,7 @@
 </div>
 </template>
 
-<script>
+<script>import { getOrderInfo_Info } from '../axios/order';
 export default {
   data () {
     return {
@@ -49,15 +49,33 @@ export default {
       payment_platform: '支付宝',
       deal_time: '2020/12/20',
       payment_time: '2020/12/20',
-      order_id: '0001',
       seller: 'sorted',
-      buyer: 'sortedList'
+      buyer: 'sortedList',
+      user_id: this.$store.user_id,
+      order_id: this.$store.order_id
     }
   },
   methods: {
     handleClick () {
       this.reverse = !this.reverse;
     }
+  },
+  created: function () {
+    const form_0 = {
+      order_id: this.order_id
+    };
+    getOrderInfo_Info(form_0).then((response) => {
+      this.commidity_picture = response.data.commidity_picture.url;
+      this.commidity_name = response.data.commidity_name;
+      this.commidity_type = response.data.commidity_type;
+      this.price = response.data.price;
+      this.amount = response.data.amount;
+      this.payment_platform = response.data.payment_platform;
+      this.deal_time = response.data.deal_time;
+      this.payment_time = response.data.payment_time;
+      this.seller = response.data.seller;
+      this.buyer = response.data.buyer
+    })
   }
 }
 </script>

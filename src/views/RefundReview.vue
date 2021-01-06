@@ -97,7 +97,6 @@ export default {
       seen: true,
       commidity_picture: require('../assets/image1.png'),
       payment_platform: '支付宝',
-      order_id: '0001',
       commidity_name: '草莓',
       commidity_type: '水果',
       seller: 'sorted',
@@ -108,7 +107,9 @@ export default {
       amount_of_refund: 30,
       type_of_refund: '退货退款',
       refund_reason: '不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了',
-      order_status: ''
+      order_status: '',
+      user_id: this.$store.user_id,
+      order_id: this.$store.order_id
     }
   }
 }

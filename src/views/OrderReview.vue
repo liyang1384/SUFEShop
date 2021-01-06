@@ -58,6 +58,7 @@
       提交评价
     </a-button>
     <a-modal
+      v-on="onpostOrderReview"
       title="确认提交？"
       v-model:visible="visible"
       :confirm-loading="confirmLoading"
@@ -74,6 +75,7 @@
 
 <script>
 import { PlusOutlined } from '@ant-design/icons-vue';
+import { getOrderInfo_Review, postOrderReview } from '../axios/order';
 
 function getBase64 (file) {
   return new Promise((resolve, reject) => {
@@ -105,10 +107,36 @@ export default {
       amount: '50',
       payment_platform: '支付宝',
       seller: 'sorted',
-      order_id: '0001'
+      user_id: this.$store.user_id,
+      order_id: this.$store.order_id
     }
   },
+  created: function () {
+    const form_0={
+      user_id: this.user_id,
+      order_id: this.order_id
+    };
+    getOrderInfo_Review (form_0).then((response) => {
+      this.commidity_name = response.data.commidity_name;
+      this.commidity_type = response.data.commidity_type;
+      this.price = response.data.price;
+      this.amount = response.data.amount;
+      this.payment_platform = response.data.payment_platform;
+      this.seller = response.data.seller;
+      this.commidity_picture = response.data.commidity_picture.url;
+    })
+  },
   methods: {
+    onpostOrderReview (e) {
+      const form_1={
+        order_id: this.order_id,
+        comment: this.comment,
+        commidity_quality: this.commidity_quality,
+        deal_speed: this.deal_speed,
+        seller_attitude: this.seller
+      };
+      postOrderReview(form_1)
+    },
     handleCancel () {
       this.previewVisible = false;
     },
