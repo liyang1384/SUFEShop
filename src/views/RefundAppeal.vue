@@ -75,8 +75,8 @@ function getBase64 (file) {
 }
 
 export default {
-  created: function() {
-    const form_0 = { 
+  created: function () {
+    const form_0 = {
       user_id: this.user_id,
       order_id: this.order_id
     };
@@ -117,7 +117,7 @@ export default {
   },
   methods: {
     onPostRefundInfo (e) {
-      const form_1={
+      const form_1 = {
         user_id: this.user_id,
         order_id: this.order_id,
         refund_type: this.refund_type,

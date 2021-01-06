@@ -112,11 +112,11 @@ export default {
     }
   },
   created: function () {
-    const form_0={
+    const form_0 = {
       user_id: this.user_id,
       order_id: this.order_id
     };
-    getOrderInfo_Review (form_0).then((response) => {
+    getOrderInfo_Review(form_0).then((response) => {
       this.commidity_name = response.data.commidity_name;
       this.commidity_type = response.data.commidity_type;
       this.price = response.data.price;
@@ -128,7 +128,7 @@ export default {
   },
   methods: {
     onpostOrderReview (e) {
-      const form_1={
+      const form_1 = {
         order_id: this.order_id,
         comment: this.comment,
         commidity_quality: this.commidity_quality,
