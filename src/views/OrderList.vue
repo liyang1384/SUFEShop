@@ -101,6 +101,9 @@
         <template #counterparty_name="{ record }">
           {{ record.counterparty_name }}
         </template>
+        <template #order_state="{ record }">
+          {{ map_order_state(record.order_state) }}
+        </template>
         <template #action="{ record }">
           <a v-if="record.order_state == 'paying'" style="margin-right: 8px"> 支付订单 </a>
           <a v-if="record.order_state == 'paid'" style="margin-right: 8px"> 确认收货 </a>
@@ -166,7 +169,7 @@ for (let i = 0; i < 100; i++) {
     amount: Math.floor(Math.random() * 1000),
     counterparty_name: 'Jack',
     order_time: '2020-10-1 20:00',
-    order_state: '待付款',
+    order_state: 'paying',
     commodity_type: '书籍'
   });
 }
@@ -231,6 +234,23 @@ export default {
         this.form.sort.mode = 'desc';
       }
       this.onSearch()
+    },
+    map_order_state (order_state) {
+      if (order_state === 'paying') {
+        return '待付款'
+      }
+      if (order_state === 'paid') {
+        return '已付款'
+      }
+      if (order_state === 'received') {
+        return '已收货'
+      }
+      if (order_state === 'refunded') {
+        return '已退款'
+      }
+      if (order_state === 'cancelled') {
+        return '已取消'
+      }
     }
   },
   computed: {}

@@ -39,3 +39,11 @@ export function Login (data) {
     data: data
   })
 }
+
+export function getUserList (params) {
+  return instance({
+    url: 'user/userlist/',
+    method: 'get',
+    params: params
+  })
+}
