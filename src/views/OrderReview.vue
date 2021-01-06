@@ -119,8 +119,8 @@ export default {
       this.payment_platform = response.data.payment_platform;
       this.seller = response.data.seller;
       this.commidity_picture = response.data.commidity_picture.url;
-      this.buyer = response.data.buyer;
-      this.order_type = response.data.order_type
+      // this.order_type = response.data.order_type;
+      this.buyer = response.data.buyer
     })
   },
   methods: {

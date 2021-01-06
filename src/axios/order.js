@@ -18,7 +18,7 @@ export function postOrderReview_Seller (data) {
 
 export function getOrderInfo_Review (params) {
   return instance({
-    url: 'order/boughtorderlist/',
+    url: 'order/orderdetail/',
     method: 'get',
     params: params
   })
