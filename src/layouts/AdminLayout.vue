@@ -65,7 +65,6 @@ export default {
   },
   computed: {
     breadcrumbItem: function () {
-      console.log(this.selectedKeys[0])
       return this.selectedKeys[0] === '1' ? '商品审核' : '用户管理';
     }
   }

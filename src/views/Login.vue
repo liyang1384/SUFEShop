@@ -4,7 +4,7 @@
     <a-form :model="form" :wrapper-col="{ span: 24 }">
       <a-form-item>
         <a-input
-          v-model:value="form.username"
+          v-model:value="form.user_name"
           :maxlength="300"
           allow-clear
           placeholder="用户名"
@@ -33,19 +33,32 @@
 </template>
 
 <script>
+import { Login } from '@/axios/user.js'
 export default {
   name: 'Login',
   data () {
     return {
       form: {
-        username: '',
+        user_name: '',
         password: ''
       }
     };
   },
   methods: {
     onLogin (e) {
-      console.log(this.form.username);
+      console.log(this.form)
+      Login(this.form)
+        .then((response) => {
+          const status_code = response.data.status
+          if (status_code === 200) {
+            // this.$router.push({ path: 'login' })
+            this.$message.info('登录成功')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('登录失败')
+        });
     }
   }
 };

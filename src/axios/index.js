@@ -4,7 +4,8 @@ import axios from 'axios'
 // import { getToken } from '@/utils/auth'
 
 const instance = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: 'http://localhost:8000/',
   timeout: 3000 // request timeout
 })
 /*

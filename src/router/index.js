@@ -139,6 +139,11 @@ const routes = [
         path: '',
         name: 'CommodityReview',
         component: () => import('@/views/CommodityReview')
+      },
+      {
+        path: '/usermanagement',
+        name: 'UserManagement',
+        component: () => import('@/views/UserManagement')
       }
     ]
   }
