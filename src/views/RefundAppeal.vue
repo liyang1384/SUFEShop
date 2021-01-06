@@ -6,8 +6,8 @@
     <img :src="Image" style="width: 120px; height: 100px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 300px;top: 60px;">
     <p>商品类别：<span v-html="class_of_commidity"></span></p>
-    <p>卖家名称：<span v-html="seller_of_commidity"></span></p>
-    <p>支付方式：<span v-html="pay_method"></span>
+    <p>卖家名称：<span v-html="seller"></span></p>
+    <p>支付方式：<span v-html="method_of_pay"></span>
     <img v-html="url_of_pay_method" style="width:30px;lenght:30px"/></p>
     </div>
     <div style="position: absolute;right: 700px;top: 60px;">
@@ -17,25 +17,25 @@
     </div>
     </a-card>
     <br/>
-    <a-radio-group v-model:value="refund_type" @change="onChange">
+    <a-radio-group v-model:value="type_of_refund" @change="onChange">
     <a-radio :style="radioStyle" :value= true>只退款</a-radio>
     <a-radio :style="radioStyle" :value= false>退货退款
     </a-radio>
     <p style="position: absolute;left: 200px;top: 270px;">退款类型:</p>
     <br/><br/>
-    <div style="width=300"><a-input  v-model:value="refund_amount" placeholder="退款金额：￥" /></div>
+    <div style="width=300"><a-input  v-model:value="amount_of_refund" placeholder="退款金额：￥" /></div>
     <p style="position: absolute;left: 200px;top: 320px;">退款金额:</p>
     <br/>
     <span v-if="!refund_type" >
     <p style="position: absolute;left: 200px;top: 370px;">货物状态:</p>
-    <a-radio-group name="radioGroup" v-model:value="goods_status">
+    <a-radio-group name="radioGroup" v-model:value="status_of_goods">
     <a-radio value="1">已收到</a-radio>
     <a-radio value="2">未收到</a-radio>
     </a-radio-group>
     </span>
     <span v-if="refund_type">
     <p style="position: absolute;left: 200px;top: 370px;">退货方式:</p>
-    <a-radio-group name="radioGroup" v-model:value="refund_way">
+    <a-radio-group name="radioGroup" v-model:value="way_of_refund">
     <a-radio value="1">上门退货</a-radio>
     <a-radio value="2">自行送回</a-radio>
     </a-radio-group>
@@ -45,7 +45,7 @@
     <a-card size="small" title="" style="width: 1200px">
     <div>
     <p>退款原因</p>
-    <a-textarea v-model:value="refund_reason" placeholder="退款原因" :rows="7" />
+    <a-textarea v-model:value="reason_of_refund" placeholder="退款原因" :rows="7" />
     </div>
     <br/><br/>
     <p>补充描述与凭证</p>
@@ -94,19 +94,19 @@ export default {
   },
   data () {
     return {
-      refund_type: '',
-      refund_amount: '',
-      good_status: '',
-      refund_way: '',
-      refund_reason: '',
+      status_of_order: '1',
+      type_of_refund: '',
+      amount_of_refund: '',
+      status_of_goods: '',
+      way_of_refund: '',
+      reason_of_refund: '',
       Image: require('../assets/image1.png'),
       class_of_commidity: '水果',
-      seller_of_commidity: 'sortedList',
-      pay_method: '支付宝',
+      seller: 'sortedList',
+      method_of_pay: '支付宝',
       name_of_commidity: '草莓',
       price_of_commidity: '50',
       real_price_of_commidity: '50',
-      url_of_pay_method: '../assets/alipayimg.png',
       previewVisible: false,
       previewImage: '',
       fileList: [

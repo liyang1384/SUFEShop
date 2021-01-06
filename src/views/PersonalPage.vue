@@ -4,16 +4,16 @@
     <a-card size="small" title="基本设置" style="width:900px; margin-left: 200" align="left">
     <template #extra><a href="#"></a></template>
     <br/><p><b>用户名</b></p>
-    <a-input v-model:value="value1" placeholder="用户名" />
+    <a-input v-model:value="name_of_user" placeholder="用户名" />
     <br/><br/><p><b>昵称</b></p>
-    <a-input v-model:value="value2" placeholder="昵称" />
+    <a-input v-model:value="nickname_of_user" placeholder="昵称" />
     <br/><br/><p><b>真实姓名</b></p>
-    <a-input v-model:value="value3" placeholder="真实姓名" />
+    <a-input v-model:value="real_name_of_user" placeholder="真实姓名" />
     <br/><br/><p><b>邮箱</b></p>
-    <a-input v-model:value="value4" placeholder="邮箱" />
+    <a-input v-model:value="email" placeholder="邮箱" />
     <br/><br/><p><b>手机号</b></p>
-    <a-input v-model:value="value5" placeholder="手机号" />
-    <br/><br/><br/><h4><b>信用分: 80</b></h4>
+    <a-input v-model:value="phone" placeholder="手机号" />
+    <br/><br/><br/><h4><b>信用分: <span v-html="credit"></span></b></h4>
     <br/>
     <p><a-button type="primary">确认修改</a-button></p>
     </a-card>
@@ -23,6 +23,25 @@
         <template #icon><UserOutlined /></template>
       </a-avatar>
       <a-button type="primary">更换头像</a-button>
+    <img :src="Image" v-if="show_portrait"  style="position: absolute;right: 0px;top: 0px;width: 120px; height: 100px;" align="left" />
+    <a-upload
+    v-model:fileList="fileList"
+    name="avatar"
+    list-type="picture-card"
+    class="avatar-uploader"
+    :show-upload-list="false"
+    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    :before-upload="beforeUpload"
+    @change="handleChange"
+  >
+    <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+    <div v-else>
+      <!-- todo -->
+      <loading-outlined v-if="loading" />
+      <plus-outlined v-else />
+      <div class="ant-upload-text">Upload</div>
+    </div>
+  </a-upload>
   </span>
 </div>
 <br/><br/><br/>
@@ -53,20 +72,80 @@
 </style>
 
 <script>
-
-import { UserOutlined } from '@ant-design/icons-vue'
+import { PlusOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons-vue';
+import { message } from 'ant-design-vue';
+function getBase64 (img, callback) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+}
 
 export default {
-  components: { UserOutlined },
+  components: {
+    LoadingOutlined,
+    PlusOutlined,
+    UserOutlined
+  },
+  methods: {
+    handleChange (info) {
+      if (info.file.status === 'uploading') {
+        this.loading = true;
+        return;
+      }
+      if (info.file.status === 'done') {
+        // Get this url from response in real world.
+        getBase64(info.file.originFileObj, imageUrl => {
+          this.imageUrl = imageUrl;
+          this.loading = false;
+        });
+      }
+      if (info.file.status === 'error') {
+        this.loading = false;
+      }
+    },
+    beforeUpload (file) {
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+      if (!isJpgOrPng) {
+        message.error('You can only upload JPG file!');
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+      }
+      return isJpgOrPng && isLt2M;
+    }
+  },
   data () {
     return {
-      value1: '',
-      value2: '',
-      value3: '',
-      value4: '',
-      value5: '',
-      value6: ''
+      fileList: [],
+      loading: false,
+      imageUrl: '',
+      Image: require('../assets/image1.png'),
+      show_portrait: true,
+      name_of_user: '',
+      nickname_of_user: '',
+      real_name_of_user: '',
+      email: '',
+      phone: '',
+      credit: '80',
+      portrait: ''
     }
   }
 }
 </script>
+
+<style>
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
+}
+
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+</style>

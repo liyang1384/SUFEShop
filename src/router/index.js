@@ -109,7 +109,7 @@ const routes = [
         component: MessageView
       },
       {
-        path: 'commoditypublish',
+        path: 'commoditypublish/:id',
         name: 'commoditypublish',
         component: CommodityPublish
       },

@@ -50,13 +50,13 @@
         <img :src="d.imageName[0]" style="width: 290px;height: 220px"/>
       </span>
       <a-card-meta :title="d.imageName[1]">
-        <template #description >
+        <template #description>
         <template v-for="tag in d.tags"
           :key="tag">
           【{{ tag.toUpperCase() }}】</template>
           <br />
           ￥{{d.price}}
-          <a>查看详情</a>
+          <a @click="handleChangePage(d.commodity_id)">查看详情</a>
         </template>
       </a-card-meta>
     </a-card-grid>
@@ -71,7 +71,7 @@
 
 const data = [
   {
-    key: '1',
+    commodity_id: '1',
     imageName: [require('@/assets/image1.png'), '马原教科书'],
     price: 32.75,
     state: '在售',
@@ -79,7 +79,7 @@ const data = [
     time: '2020-1-1'
   },
   {
-    key: '2',
+    commodity_id: '2',
     imageName: [require('@/assets/image2.png'), '潮牌跑步鞋'],
     price: 420.0,
     state: '在售',
@@ -88,7 +88,7 @@ const data = [
   },
   {
     imageName: [require('@/assets/image4.png'), '高端人才必备手机'],
-    key: '4',
+    commodity_id: '4',
     price: 7000,
     state: '在售',
     tags: ['手机'],
@@ -96,7 +96,7 @@ const data = [
   },
   {
     imageName: [require('@/assets/image5.png'), '潮流自行车'],
-    key: '5',
+    commodity_id: '5',
     price: 500,
     state: '在售',
     tags: ['自行车', '二手'],
@@ -104,7 +104,7 @@ const data = [
   },
   {
     imageName: [require('@/assets/image6.png'), '精神小伙同款上衣'],
-    key: '6',
+    commodity_id: '6',
     price: 20,
     state: '在售',
     tags: ['教材', '全新'],
@@ -112,7 +112,7 @@ const data = [
   },
   {
     imageName: [require('@/assets/image7.png'), '上财女生必备神仙水'],
-    key: '7',
+    commodity_id: '7',
     price: 24,
     state: '在售',
     tags: ['化妆品'],
@@ -137,7 +137,11 @@ export default {
     }
   },
   methods: {
-    onSearch (value) {}
+    onSearch (value) {},
+    handleChangePage (CommodityID) {
+      console.log(CommodityID)
+      this.$router.push(`/CommodityDetail/${CommodityID}`)
+    }
   },
   computed: {
     counterparty: function () {
