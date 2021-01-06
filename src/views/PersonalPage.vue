@@ -142,7 +142,7 @@ export default {
       imageUrl: '',
       Image: require('../assets/image1.png'),
       show_portrait: true,
-      user_id: ''
+      user_id: this.$store.user_id
     }
   },
   created: function () {
