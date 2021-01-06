@@ -154,7 +154,7 @@ export default {
         this.email = response.data.email;
         this.mobile = response.data.mobile;
         this.credit = response.data.credit;
-        this.avator = response.data.avatar
+        this.avator = response.data.avatar.url
       })
     console.log(this.user_name)
   }

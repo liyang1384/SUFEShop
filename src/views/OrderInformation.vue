@@ -4,7 +4,7 @@
     <img :src="commidity_picture" style="width: 240px; height: 180px;margin-right:0px" align="left" />
     <div style="position: absolute;right: 700px;top: 80px;">
     <p><b>商品名称：<span v-html="commidity_name"></span></b></p>
-    <p><b>商品类别：<span v-html="commidity_class"></span></b></p>
+    <p><b>商品类别：<span v-html="commidity_type"></span></b></p>
     <p><b>商品金额：<span v-html="price"></span></b></p>
     <p><b>实际付款：<span v-html="amount"></span></b></p>
     <p><b>卖家：<span v-html="seller"></span></b></p>
