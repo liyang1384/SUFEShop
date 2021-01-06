@@ -73,13 +73,13 @@ const columns = [
 const data = [
   {
     commodity_id: '1000324',
-    commodity_name: '高数教材配套教辅，九成新，没做过，可议价',
+    commodity_name: '教材配套教辅，九成新，没做过，可议价',
     price: 25,
     commodity_state: '在售',
     commodity_type: '教材',
     seller: 'BILL',
-    comments: '高数教材配套教辅，九成新，没做过，可议价.....',
-    commodity_picture: require('@/assets/testimg.png')
+    comments: '教材配套教辅，九成新，没做过，可议价.....??!!',
+    commodity_picture: require('@/assets/image1.png')
   },
   {
     commodity_id: '1000325',

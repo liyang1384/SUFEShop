@@ -71,14 +71,14 @@ export default {
   data () {
     return {
       CommodityID: '1000324',
-      images: require('@/assets/testimg.png'),
-      CommodityName: '九成新的高数教材配套教辅书，没有做过',
+      images: require('@/assets/image1.png'),
+      CommodityName: '九成新的教材配套教辅书，没有做过',
       SellerName: 'BILL',
       kind: '教材',
       PublishTime: '2020-11-25',
       state: '在售',
       Price: 25.05,
-      Description: '高数教材配套教辅，九成新，没做过，可议价.....',
+      Description: '教材配套教辅，九成新，没做过，可议价.....',
       OrderID: '10000421421'
     }
   },
