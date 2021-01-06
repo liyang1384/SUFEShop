@@ -15,8 +15,8 @@
     <b>第三方支付方式：<span v-html="payment_platform"></span></b>
     </div>
   <div style="position: absolute;left: 600px;top: 400px;">
-  <a-button type="primary" style="position: absolute;right: 230px;top: 20px;">评价订单</a-button>
-  <a-button type="primary" style="position: absolute;right:-20px;top: 20px;">申请退款</a-button>
+  <a-button type="primary" style="position: absolute;right: 230px;top: 20px;"><router-link to="/orderreview">评价订单</router-link></a-button>
+  <a-button type="primary" style="position: absolute;right:-20px;top: 20px;"><router-link to="/refundappeal">申请退款</router-link></a-button>
   </div>
   <div style="position: absolute;right: 400px;top: 80px;">
     <a-timeline pending="" :reverse="reverse">
