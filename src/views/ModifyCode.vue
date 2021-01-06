@@ -2,8 +2,10 @@
   <a-card v-if="code_show" size="small" title="修改密码" style="width: 900px; margin-left:200px">
     <template #extra><a href="#"></a></template>
     <a-input v-model:value="password" placeholder="输入旧密码:" />
+    <span v-if="check_right === '0'"><br/><br/>原密码错误</span>
     <br/><br/><br/>
     <a-input v-model:value="new_password" placeholder="输入新密码:" />
+    <span v-if="check_same === '0'"><br/><br/>两次输入的新密码不一致</span>
     <br/><br/><br/>
     <a-input v-model:value="new_password_0" placeholder="确认新密码:" />
     <br/><br/><br/>
@@ -21,6 +23,8 @@ export default {
   data () {
     return {
       code_show: true,
+      check_same: '1',
+      check_right: '1',
       password: '',
       new_password: '',
       new_password_0: '',
@@ -37,11 +41,17 @@ export default {
         user_id: this.user_id,
         password: this.new_password
       };
-      checkPassword(form_0).then(response => {
-        if (response.data.falg) {
-          setPassword(form_1)
-        }
-      })
+      if (this.new_password === this.password) {
+        checkPassword(form_0).then(response => {
+          if (response.data.falg === '1') {
+            setPassword(form_1)
+          } else {
+            this.check_right = '0'
+          }
+        })
+      } else {
+        this.check_same = '0'
+      }
     }
   }
 }

@@ -39,9 +39,6 @@
   <a-card size="small" title="退款理由与凭证" style="width: 1200px">
     <template #extra><a href="#"></a></template>
     <p>退款原因：<span v-html="refund_reason"></span></p>
-  <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
-  <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
-  <img src="../assets/image1.png" style="width: 120px; height: 100px;margin-right:0px" align="left" />
   </a-card>
   <br/>
   <br/>
@@ -63,7 +60,8 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { createVNode } from 'vue'
 import { Modal } from 'ant-design-vue'
-import { getOrderInfo_review, postRefundReview } from '../axios/refund';
+import { getOrderInfo_review } from '../axios/refund';
+import { postRefundReview } from '../axios/order';
 export default {
   created: function () {
     const form_0 = {
@@ -128,10 +126,10 @@ export default {
       seller: 'sorted',
       buyer: 'sortedList',
       refund_time: '2020/12/11',
-      price: 30,
-      amount: 30,
-      amount_of_refund: 30,
-      type_of_refund: '退货退款',
+      price: '30',
+      amount: '30',
+      refund_amount: '30',
+      refund_type: '退货退款',
       refund_reason: '不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了',
       order_status: '',
       user_id: this.$store.user_id,
