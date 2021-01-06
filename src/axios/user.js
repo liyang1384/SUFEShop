@@ -1,10 +1,10 @@
 import instance from './index.js'
 
-export function getUserDetail (data) {
+export function getUserDetail (params) {
   return instance({
     url: 'user/userdetail/',
     method: 'get',
-    data: data
+    params: params
   })
 }
 
