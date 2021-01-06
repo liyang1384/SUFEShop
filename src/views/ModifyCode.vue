@@ -41,11 +41,13 @@ export default {
         user_id: this.user_id,
         password: this.new_password
       };
-      if (this.new_password === this.password) {
+      console.log(this.password);
+      if (this.new_password === this.new_password_0) {
         checkPassword(form_0).then(response => {
           if (response.data.falg === '1') {
             setPassword(form_1)
           } else {
+            setPassword(form_1)
             this.check_right = '0'
           }
         })

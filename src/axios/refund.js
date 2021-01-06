@@ -2,7 +2,7 @@ import instance from './index.js'
 
 export function getOrderInfo_appeal (params) {
   return instance({
-    url: 'order/refunddetail/',
+    url: 'refund/refunddetail/',
     method: 'get',
     params: params
   })
@@ -10,7 +10,7 @@ export function getOrderInfo_appeal (params) {
 
 export function postRefundInfo (data) {
   return instance({
-    url: 'order/refunddetail/',
+    url: 'refund/refunddetail/',
     method: 'post',
     data: data
   })
@@ -18,16 +18,16 @@ export function postRefundInfo (data) {
 
 export function getOrderInfo_review (params) {
   return instance({
-    url: 'order/refunddetail/',
+    url: 'refund/refunddetail/',
     method: 'get',
     params: params
   })
 }
 
-export function postRefundReview (data) {
+export function patchRefundReview (data) {
   return instance({
-    url: 'order/refunddetail/',
-    method: 'post',
+    url: 'refund/refunddetail/',
+    method: 'patch',
     data: data
   })
 }

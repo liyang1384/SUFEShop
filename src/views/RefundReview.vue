@@ -60,7 +60,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { createVNode } from 'vue'
 import { Modal } from 'ant-design-vue'
 import { getOrderInfo_review } from '../axios/refund';
-import { postRefundReview } from '../axios/order';
+import { patchRefundReview } from '../axios/order';
 export default {
   created: function () {
     const form_0 = {
@@ -86,7 +86,7 @@ export default {
       const form_1 = {
         order_status: '已退款'
       };
-      postRefundReview(form_1)
+      patchRefundReview(form_1)
     },
     showConfirm_reject () {
       Modal.confirm({

@@ -2,7 +2,7 @@ import instance from './index.js'
 
 export function postOrderReview_Buyer (data) {
   return instance({
-    url: 'order/buyerreviewdetail',
+    url: 'order/sellerreviewdetail',
     method: 'post',
     data: data
   })
