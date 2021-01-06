@@ -16,17 +16,19 @@
     </div>
     </a-card>
     <br/>
+    <span style="position: absolute;left: 300px;top: 270px;">
     <a-radio-group v-model:value="refund_type" @change="onChange">
     <a-radio :style="radioStyle" :value= true>只退款</a-radio>
     <a-radio :style="radioStyle" :value= false>退货退款
     </a-radio>
+    </a-radio-group>
+    </span>
     <p style="position: absolute;left: 200px;top: 270px;">退款类型:</p>
     <br/><br/>
-    <div style="width=300"><a-input  v-model:value="refund_amount" placeholder="退款金额：￥" /></div>
+    <div style="position: absolute;left: 300px;top: 320px;"><a-input  v-model:value="refund_amount" placeholder="退款金额：￥" /></div>
     <p style="position: absolute;left: 200px;top: 320px;">退款金额:</p>
     <br/>
     <br/><br/>
-    </a-radio-group>
     <a-card size="small" title="" style="width: 1200px">
     <div>
     <p>退款原因</p>
