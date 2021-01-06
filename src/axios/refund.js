@@ -29,11 +29,6 @@ export function postRefundDetail_img(data) {
   return instance({
     url: '/refunddetail',
     method: 'post',
-<<<<<<< HEAD
-    responseType: 'stream',
-    data
-=======
     data: data
->>>>>>> d3cdf1b44bc4dece04adf1915a3971406e6a2148
   })
 }

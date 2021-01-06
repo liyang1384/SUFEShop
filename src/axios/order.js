@@ -1,5 +1,29 @@
 import instance from './index.js'
 
+export function postOrderReview (data) {
+  return instance({
+    url: 'order/boughtorderlist/',
+    method: 'post',
+    params: data
+  })
+}
+
+export function getOrderInfo_Review (params) {
+  return instance({
+    url: 'order/boughtorderlist/',
+    method: 'get',
+    params: params
+  })
+}
+
+export function getOrderInfo_Info (params) {
+  return instance({
+    url: 'order/boughtorderlist/',
+    method: 'get',
+    params: params
+  })
+}
+
 export function getBoughtOrderList (params) {
   return instance({
     url: 'order/boughtorderlist/',

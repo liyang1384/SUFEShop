@@ -92,8 +92,8 @@ export default {
       amount: '50',
       previewVisible: false,
       previewImage: '',
-      fileList: [
-      ]
+      user_id: this.$store.user_id,
+      order_id: this.$store.order_id
     }
   },
   methods: {
