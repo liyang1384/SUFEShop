@@ -1,9 +1,17 @@
 import instance from './index.js'
 
-export function postUserDetail (data) {
+export function getUserDetail (data) {
   return instance({
     url: 'user/userdetail/',
-    method: 'post',
+    method: 'get',
+    data: data
+  })
+}
+
+export function putUserDetail (data) {
+  return instance({
+    url: 'user/userdetail/',
+    method: 'put',
     data: data
   })
 }

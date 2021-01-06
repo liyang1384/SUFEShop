@@ -15,7 +15,7 @@
     <a-input v-model:value="mobile" placeholder="手机号" />
     <br/><br/><br/><h4><b>信用分: <span v-html="credit"></span></b></h4>
     <br/>
-    <p><a-button type="primary">确认修改</a-button></p>
+    <p><a-button v-on:click="putUserDetail" type="primary">确认修改</a-button></p>
     </a-card>
     </span>
     <span style="position: absolute;right: 100px;top: 140px;">
@@ -74,6 +74,8 @@
 <script>
 import { PlusOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { getUserDetail } from '../axios/user.js';
+import { putUserDetail } from '../axios/user.js';
 function getBase64 (img, callback) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
@@ -87,6 +89,18 @@ export default {
     UserOutlined
   },
   methods: {
+    update_user_info (e){
+      let form ={
+        user_id: this.user_id,
+        nick_name: this.nick_name,
+        user_name: this.user_name,
+        email: this.email,
+        mobile: this.mobile,
+        credit: this.credit,
+        avatar: this.avatar
+      };
+      putUserDetail(form)
+    },
     handleChange (info) {
       if (info.file.status === 'uploading') {
         this.loading = true;
@@ -117,19 +131,31 @@ export default {
   },
   data () {
     return {
-      fileList: [],
-      loading: false,
-      imageUrl: '',
-      Image: require('../assets/image1.png'),
-      show_portrait: true,
-      user_id: '',
       nick_name: '',
       user_name: '',
       email: '',
       mobile: '',
       credit: '80',
-      avator: ''
+      avatar: '',
+      fileList: [],
+      loading: false,
+      imageUrl: '',
+      Image: require('../assets/image1.png'),
+      show_portrait: true,
+      user_id: ''
     }
+  },
+  created: function(){
+    let form_1={user_id: this.user_id};
+    getUserDetail(form_1)
+    .then((response) => {
+      this.nick_name=response.data.nick_name;
+      this.user_name=response.data.user_name;
+      this.email=response.data.email;
+      this.mobile=response.data.mobile;
+      this.credit=response.data.credit;
+      this.avator=response.data.avatar  
+    })
   }
 }
 </script>
