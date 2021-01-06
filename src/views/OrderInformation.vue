@@ -17,7 +17,6 @@
   <div style="position: absolute;left: 600px;top: 400px;">
   <a-button type="primary" style="position: absolute;right: 230px;top: 20px;">评价订单</a-button>
   <a-button type="primary" style="position: absolute;right:-20px;top: 20px;">申请退款</a-button>
-  <a-button type="primary" style="position: absolute;left: 160px;top: 20px;">进入卖家店铺</a-button>
   </div>
   <div style="position: absolute;right: 400px;top: 80px;">
     <a-timeline pending="" :reverse="reverse">

@@ -46,7 +46,6 @@
     <template #extra><a href="#"></a></template>
     <a-button v-on="onPostRefundReview"  type="primary" style="margin-right:300px;" @click="showConfirm_admit" >同意</a-button>
     <a-button type="primary" style="margin-right:100px;" @click="showConfirm_reject">拒绝</a-button>
-    <a-button style="margin-left:200px;">取消</a-button>
   </a-card>
   </a-card>
   </div>
