@@ -31,16 +31,14 @@
 import { message } from 'ant-design-vue'
 const columns = [
   {
-    dataIndex: 'images',
-    key: 'images',
+    dataIndex: 'commodity_picture',
     title: '商品图片',
     slots: { customRender: 'images' },
     width: 120,
     align: 'center'
   },
   {
-    dataIndex: 'commodity',
-    key: 'commodity',
+    dataIndex: 'commodity_name',
     title: '商品名称',
     width: 350,
     align: 'center'
@@ -48,26 +46,22 @@ const columns = [
   {
     title: '价格',
     dataIndex: 'price',
-    key: 'price',
     width: 120,
     slots: { customRender: 'price' },
     align: 'center'
   },
   {
     title: '商品状态',
-    dataIndex: 'state',
-    key: 'state',
+    dataIndex: 'commodity_state',
     align: 'center'
   },
   {
     title: '商品类别',
-    key: 'tags',
-    dataIndex: 'tags',
+    dataIndex: 'commodity_type',
     align: 'center'
   },
   {
     title: '操作',
-    key: 'action',
     dataIndex: 'action',
     slots: { customRender: 'action' },
     align: 'center'
@@ -76,72 +70,14 @@ const columns = [
 
 const data = [
   {
-    CommodityID: '1000324',
-    commodity: '高数教材配套教辅，九成新，没做过，可议价',
+    commodity_id: '1000324',
+    commodity_name: '高数教材配套教辅，九成新，没做过，可议价',
     price: 25,
-    state: '在售',
-    tags: '教材',
+    commodity_state: '在售',
+    commodity_type: '教材',
     seller: 'BILL',
     comments: '高数教材配套教辅，九成新，没做过，可议价.....',
-    images: require('@/assets/testimg.png')
-  },
-  {
-    CommodityID: '1000325',
-    commodity: 'bbb',
-    price: 42.0,
-    state: '在售',
-    tags: '日用品',
-    seller: 'ANNA',
-    comments: '低价可刀！！！',
-    images: require('@/assets/testimg.png')
-  },
-  {
-    CommodityID: '1000326',
-    commodity: 'ccc',
-    price: 32.2,
-    state: '已售',
-    tags: '辅导教材',
-    seller: 'LNN',
-    comments: '....',
-    images: require('@/assets/testimg.png')
-  },
-  {
-    CommodityID: '1000327',
-    commodity: 'ddd',
-    price: 7,
-    state: '在售',
-    tags: '零食',
-    seller: 'YAS',
-    comments: '买多了',
-    images: require('@/assets/testimg.png')
-  },
-  {
-    CommodityID: '1000328',
-    commodity: 'eee',
-    price: 50,
-    state: '在售',
-    tags: '服饰',
-    seller: 'JACK',
-    images: require('@/assets/testimg.png')
-  },
-  {
-    CommodityID: '1000329',
-    commodity: 'asf',
-    price: 20,
-    state: '在售',
-    tags: '教材',
-    seller: 'BOB',
-    images: require('@/assets/testimg.png')
-  },
-  {
-    CommodityID: '1000330',
-    commodity: 'fkc',
-    price: 24,
-    state: '在售',
-    tags: '辅导教材',
-    seller: 'TIM',
-    comments: '......',
-    images: require('@/assets/testimg.png')
+    commodity_picture: require('@/assets/testimg.png')
   }
 ]
 export default {
