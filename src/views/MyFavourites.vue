@@ -10,7 +10,7 @@
     </template>
     <template #price="{ text }"> ￥{{ text }} </template>
     <template #action="{ record }">
-      <a @click="handleChangePage(record.CommodityID)">查看商品详情</a>
+      <a @click="handleChangePage(record.commodity_id)">查看商品详情</a>
       <a-divider type="vertical" />
       <a-button>联系卖家</a-button>
       <a-divider type="vertical" />
@@ -30,6 +30,7 @@
 <script>
 import { message } from 'ant-design-vue'
 // import { listFavourites } from '@/axios/favourites.js'
+import { deleteCommodityFromFavourites } from '@/axios/favourites.js'
 const columns = [
   {
     dataIndex: 'commodity_picture',
@@ -89,7 +90,7 @@ export default {
       data,
       columns,
       form: {
-        user_id: '',
+        user_id: this.$store.user_id,
         page: '1'
       }
     }
@@ -97,22 +98,29 @@ export default {
   created: function () {
     /*
     listFavourites(this.form).then(function (response) {
-      this.dataSource = response.data;
+      this.data = response.data;
     });
     */
   },
   methods: {
-    confirm (e) {
-      console.log(e)
-      message.success('删除成功')
+    confirm (index, e) {
+      deleteCommodityFromFavourites(this.form, this.data[index].commodity_id)
+        .then((response) => {
+          this.data.splice(index, 1)
+          message.success('删除成功')
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('失败')
+        });
     },
     cancel (e) {
       console.log(e)
       message.error('删除已取消')
     },
-    handleChangePage (CommodityID) {
-      console.log(CommodityID)
-      this.$router.push(`/CommodityDetail/${CommodityID}`)
+    handleChangePage (commodity_id) {
+      console.log(commodity_id)
+      this.$router.push(`/CommodityDetail/${commodity_id}`)
     }
   }
 }

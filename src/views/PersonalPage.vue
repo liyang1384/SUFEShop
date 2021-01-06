@@ -15,7 +15,7 @@
     <a-input v-model:value="mobile" placeholder="手机号" />
     <br/><br/><br/><h4><b>信用分: <span v-html="credit"></span></b></h4>
     <br/>
-    <p><a-button v-on:click="putUserDetail" type="primary">确认修改</a-button></p>
+    <p><a-button v-on:click="update_user_info" type="primary">确认修改</a-button></p>
     </a-card>
     </span>
     <span style="position: absolute;right: 100px;top: 140px;">
