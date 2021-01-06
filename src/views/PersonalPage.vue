@@ -142,7 +142,7 @@ export default {
       imageUrl: '',
       Image: require('../assets/image1.png'),
       show_portrait: true,
-      user_id: '111'
+      user_id: this.$store.user_id
     }
   },
   created: function () {
@@ -156,6 +156,7 @@ export default {
         this.credit = response.data.credit;
         this.avator = response.data.avatar
       })
+    console.log(this.user_name)
   }
 }
 </script>

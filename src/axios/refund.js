@@ -1,6 +1,6 @@
 import instance from './index.js'
 
-export function getRefundDetail_char(data) {
+export function getRefundDetail_char(params) {
   return instance({
     url: 'refund/refunddetail/',
     // 请求方法：get
