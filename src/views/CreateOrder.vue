@@ -1,15 +1,13 @@
 <template>
   <div id="createorder">
     <a-row>
-      <a-col :span="14" :offset="8">
+      <a-col :span="8" :offset="14">
         <p class="height-100">
         <a-steps :current="0">
           <a-step>
             <template #title> 确认订单 </template>
           </a-step>
           <a-step title="支付订单" />
-          <a-step title="确认收货" />
-          <a-step title="双方互评" />
         </a-steps>
         </p>
       </a-col>
