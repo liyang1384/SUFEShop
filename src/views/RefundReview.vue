@@ -88,7 +88,7 @@ export default {
   methods: {
     onPostRefundReview(e) {
       const form_1 = {
-        order_status: ''
+        order_status: '已退款'
       };
       postOrderReview(form_1)
     },
