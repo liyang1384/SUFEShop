@@ -39,11 +39,11 @@
     </a-card>
   <br/>
   <br/>
-    <a-button type="primary" @click="showModal">
+    <a-button type="primary" @click="showModal" v-on="onpostOrderReview_Seller">
       提交评价
     </a-button>
     <a-modal
-      v-if="order_type==0"
+      v-if="order_type=='1'"
       v-on="onpostOrderReview_Buyer"
       title="确认提交吗？"
       v-model:visible="visible"
@@ -53,7 +53,7 @@
       <p>{{ ModalText }}</p>
     </a-modal>
     <a-modal
-      v-if="order_type==1"
+      v-if="order_type=='0'"
       v-on="onpostOrderReview_Seller"
       title="确认提交？"
       v-model:visible="visible"
