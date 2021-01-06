@@ -1,9 +1,8 @@
 import instance from './index.js'
 
-export function getOrderList (params) {
+export function getBoughtOrderList (params) {
   return instance({
-    url: 'order/orderlist/',
-    // 请求方法：get
+    url: 'order/boughtorderlist/',
     method: 'get',
     params: params
   })

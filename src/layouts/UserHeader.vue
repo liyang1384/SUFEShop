@@ -23,14 +23,19 @@
       <a-menu-item>
         <a-avatar style="background-color: #001529">
           <template #icon>
-            <BellOutlined />
+            <router-link to="/messageview">
+              <BellOutlined />
+            </router-link>
           </template>
         </a-avatar>
       </a-menu-item>
       <a-menu-item>
         <a-avatar>
           <template #icon>
-            <UserOutlined />
+            <router-link to="/messageview">
+              <img v-if="$store.avatar" :src="$store.avatar.url" alt="avatar" />
+              {{ $store.user_name }}
+            </router-link>
           </template>
         </a-avatar>
       </a-menu-item>
@@ -40,7 +45,7 @@
 
 <script>
 // 导入需要使用的图标组件
-import { BellOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { BellOutlined } from '@ant-design/icons-vue'
 
 // 导出本模块供其他组件使用
 export default {
@@ -48,8 +53,7 @@ export default {
   name: 'UserHeader',
   // 注册导入的图标组件
   components: {
-    BellOutlined,
-    UserOutlined
+    BellOutlined
   },
   // 设置响应式数据
   data () {
@@ -75,12 +79,7 @@ export default {
       selectedKeys: ['首页']
     }
   },
-  methods: {},
-  computed: {
-    spaceSize: function () {
-      return document.body.scrollWidth * 0.23
-    }
-  }
+  methods: {}
 }
 </script>
 

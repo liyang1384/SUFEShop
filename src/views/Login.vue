@@ -49,10 +49,13 @@ export default {
       console.log(this.form)
       Login(this.form)
         .then((response) => {
-          const status_code = response.data.status
+          const status_code = response.status
           if (status_code === 200) {
-            // this.$router.push({ path: 'login' })
-            this.$message.info('登录成功')
+            this.$store.commit('login', response.data)
+            if (this.$store.user_id != null) {
+              this.$router.push({ path: '' })
+              this.$message.info('登录成功')
+            }
           }
         })
         .catch((error) => {

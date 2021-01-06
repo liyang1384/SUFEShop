@@ -11,7 +11,6 @@
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
                 <a-input
-                  placeholder="请输入"
                   v-model:value="form.commodity_name"
                 />
               </a-form-item>
@@ -50,7 +49,7 @@
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item
-                label="订单类型"
+                label="订单状态"
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
@@ -64,12 +63,11 @@
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item
-                label="审核员"
+                label="商品类别"
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
                 <a-input
-                  placeholder="请输入"
                   v-model:value="form.auditor_name"
                 />
               </a-form-item>
@@ -77,7 +75,7 @@
           </a-row>
         </div>
         <span style="float: right; margin-top: 3px">
-          <a-button type="primary">查询</a-button>
+          <a-button type="primary" @click="onSearch">查询</a-button>
           <a-button style="margin-left: 8px">重置</a-button>
           <a @click="toggleAdvanced" style="margin-left: 8px">
             {{ advanced ? "收起" : "展开" }}
@@ -91,8 +89,7 @@
       <a-table
         :columns="columns"
         :dataSource="dataSource"
-        @change="ontableChange"
-        :rowSelection="rowSelection"
+        @change="onSearch"
       >
         <template #order="{ record }">
           {{ record.commodity_name }}
@@ -105,8 +102,9 @@
         </template>
         <template #action="{ record }">
           <a v-if="record.order_state == '待付款'" style="margin-right: 8px"> 支付订单 </a>
-          <a v-if="record.order_state == '已付款'" style="margin-right: 8px"> 支付订单 </a>
-          <a v-if="record.order_state == ''" style="margin-right: 8px"> 支付订单 </a>
+          <a v-if="record.order_state == '已付款'" style="margin-right: 8px"> 确认收货 </a>
+          <a v-if="record.order_state == '已收货'" style="margin-right: 8px"> 退款 </a>
+          <a v-if="record.order_state == '已收货'" style="margin-right: 8px"> 评价 </a>
         </template>
       </a-table>
     </div>
@@ -115,6 +113,7 @@
 
 <script>
 import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
+import { getOrderList } from '@/axios/order.js'
 const columns = [
   {
     title: '订单',
@@ -122,7 +121,7 @@ const columns = [
     slots: { customRender: 'order' }
   },
   {
-    title: '金额（￥）',
+    title: '金额（元）',
     dataIndex: 'amount',
     align: 'center'
   },
@@ -176,6 +175,9 @@ export default {
     DownOutlined,
     UpOutlined
   },
+  created: function () {
+    this.onSearch()
+  },
   data () {
     return {
       advanced: true,
@@ -183,17 +185,28 @@ export default {
       dataSource: dataSource,
       selectedRowKeys: [],
       form: {
+        user_id: this.$store.user_id,
         order_type: 'buy',
         order_state: 'all',
-        searchText: '',
-        dateRange: [],
-        minAmount: undefined,
-        maxAmount: undefined
+        commodity_name: '',
+        min_amount: '',
+        max_amount: ''
       }
     };
   },
   methods: {
-    onSearch (value) {},
+    onSearch (e) {
+      getOrderList(this.form)
+        .then((response) => {
+          const status_code = response.status
+          if (status_code === 200) {
+            this.dataSource = response.data
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     toggleAdvanced () {
       this.advanced = !this.advanced;
     },

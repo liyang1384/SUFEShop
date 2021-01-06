@@ -77,7 +77,7 @@
           </a-row>
         </div>
         <span style="float: right; margin-top: 3px">
-          <a-button type="primary">查询</a-button>
+          <a-button type="primary" @click="onSearch">查询</a-button>
           <a-button style="margin-left: 8px">重置</a-button>
           <a @click="toggleAdvanced" style="margin-left: 8px">
             {{ advanced ? "收起" : "展开" }}
@@ -115,7 +115,7 @@ import {
   CheckOutlined,
   CloseOutlined
 } from '@ant-design/icons-vue';
-// import { getAuditCommodityList } from '@/axios/commodity.js';
+import { getCommodityList } from '@/axios/commodity.js';
 const columns = [
   {
     title: '商品编号',
@@ -189,7 +189,7 @@ export default {
   },
   created: function () {
     /*
-    getAuditCommodityList(this.form).then(function (response) {
+    getCommodityList(this.form).then((response) => {
       this.dataSource = response.data;
     });
     */
@@ -210,6 +210,23 @@ export default {
     toggleAdvanced () {
       this.advanced = !this.advanced;
     },
+    onSearch (e) {
+      getCommodityList(this.form)
+        .then((response) => {
+          const status_code = response.status
+          if (status_code === 200) {
+            this.dataSource = response.data;
+            if (this.$store.user_id != null) {
+              this.$router.push({ path: '' })
+              this.$message.info('成功')
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('失败')
+        });
+    },
     ontableChange (pagination, filters, sorter) {
       console.log(pagination)
       if (Object.prototype.hasOwnProperty.call(sorter, 'order')) {
@@ -219,6 +236,7 @@ export default {
         this.form.sort.name = 'apply_time';
         this.form.sort.mode = 'ascend';
       }
+      this.onSearch()
     }
   }
 };
