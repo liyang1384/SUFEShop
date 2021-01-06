@@ -16,4 +16,4 @@ export function getCommodity (params) {
     params: params
   })
 }
-//获取指定商品信息明细
+// 获取指定商品信息明细

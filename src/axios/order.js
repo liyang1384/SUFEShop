@@ -16,7 +16,7 @@ export function createOrder (data) {
     data: data
   })
 }
-//生成订单
+// 生成订单
 
 export function payOrder (data) {
   return instance({
@@ -26,5 +26,5 @@ export function payOrder (data) {
     data: data
   })
 }
-//支付订单
+// 支付订单
 
