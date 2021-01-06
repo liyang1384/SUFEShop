@@ -37,7 +37,7 @@
       <a-row>
         <a-divider />
         <a-col :span="4" :offset="20">
-          <a-button value="large" type="primary" @click="handleChangePage(proDetail.commodity_id)">立即购买</a-button>
+          <a-button value="large" type="primary" @click="handleChangePage">立即购买</a-button>
         </a-col>
       </a-row>
     </div>
@@ -58,7 +58,7 @@ export default {
   data () {
     return {
       form: {
-        commodity_id: '10000239'
+        commodity_id: '1000324'
       },
       proDetail: {
         commodity_picture: require('@/assets/image1.png'),
@@ -85,9 +85,9 @@ export default {
           console.log(error);
         });
     },
-    handleChangePage (commodity_id) {
-      console.log(commodity_id)
-      this.$router.push(`/CreateOrder/${commodity_id}`)
+    handleChangePage () {
+      console.log(this.form.commodity_id)
+      this.$router.push(`/CreateOrder/${this.form.commodity_id}`)
     }
   }
 }

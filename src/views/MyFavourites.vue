@@ -83,13 +83,13 @@ const data = [
   },
   {
     commodity_id: '1000325',
-    commodity_name: 'bbbbbbbbbbbbbbbbbbbb',
-    price: 25,
+    commodity_name: '高等数学同济版一套',
+    price: 30,
     commodity_state: '在售',
     commodity_type: '教材',
     seller: 'BILL',
-    comments: '高数教材配套教辅，九成新，没做过，可议价.....',
-    commodity_picture: require('@/assets/testimg.png')
+    comments: '同济版的同济版的',
+    commodity_picture: require('@/assets/image8.png')
   }
 ]
 export default {
