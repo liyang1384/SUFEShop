@@ -29,6 +29,7 @@
 
 <script>
 import { message } from 'ant-design-vue'
+// import { listFavourites } from '@/axios/favourites.js'
 const columns = [
   {
     dataIndex: 'commodity_picture',
@@ -86,8 +87,19 @@ export default {
   data () {
     return {
       data,
-      columns
+      columns,
+      form: {
+        user_id: '',
+        page: '1'
+      }
     }
+  },
+  created: function () {
+    /*
+    listFavourites(this.form).then(function (response) {
+      this.dataSource = response.data;
+    });
+    */
   },
   methods: {
     confirm (e) {
