@@ -1,34 +1,34 @@
 import instance from './index.js'
 
-export function getRefundDetail_char(params) {
+export function getOrderInfo_appeal (params) {
   return instance({
-    url: 'refund/refunddetail/',
-    // 请求方法：get
-    method: 'get'
-  })
-}
-
-export function postRefundDetail_char(data) {
-  return instance({
-    url: '/refunddetail',
-    // 请求方法：get
-    method: 'post',
-    data
-  })
-}
-
-export function getRefundDetail_img(data) {
-  return instance({
-    url: '/refunddetail',
+    url: 'order/boughtorderlist/',
     method: 'get',
-    responseType: 'stream'
+    params: params
   })
 }
 
-export function postRefundDetail_img(data) {
+export function postRefundInfo (data) {
   return instance({
-    url: '/refunddetail',
+    url: 'order/boughtorderlist/',
     method: 'post',
     data: data
   })
 }
+
+export function getOrderInfo_review (params) {
+  return instance({
+    url: 'order/boughtorderlist/',
+    method: 'get',
+    params: params
+  })
+}
+
+export function postRefundReview (data) {
+  return instance({
+    url: 'order/boughtorderlist/',
+    method: 'post',
+    data: data
+  })
+}
+

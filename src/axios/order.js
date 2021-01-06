@@ -4,7 +4,7 @@ export function postOrderReview (data) {
   return instance({
     url: 'order/boughtorderlist/',
     method: 'post',
-    params: data
+    data: data
   })
 }
 

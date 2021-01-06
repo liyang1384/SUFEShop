@@ -47,7 +47,7 @@
   <br/>
   <a-card size="small" title="操作项" style="width: 1200px">
     <template #extra><a href="#"></a></template>
-    <a-button type="primary" style="margin-right:300px;" @click="showConfirm_admit" >同意</a-button>
+    <a-button v-on="onPostRefundReview"  type="primary" style="margin-right:300px;" @click="showConfirm_admit" >同意</a-button>
     <a-button type="primary" style="margin-right:100px;" @click="showConfirm_reject">拒绝</a-button>
     <a-button style="margin-left:200px;">取消</a-button>
   </a-card>
@@ -63,8 +63,35 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { createVNode } from 'vue'
 import { Modal } from 'ant-design-vue'
+import { getOrderInfo_review, postRefundReview } from '../axios/refund';
+import { postOrderReview } from '../axios/order';
 export default {
+  created: function() {
+    const form_0 = {
+      refund_id: this.refund_id
+    };
+    getOrderInfo_review(form_0).then((response) => {
+      this.commidity_picture = response.data.commidity_picture.url;
+      this.commidity_name = response.data.commidity_name;
+      this.price = response.data.price;
+      this.amount = response.data.amount;
+      this.seller = response.data.seller;
+      this.buyer = response.data.buyer;
+      this.order_id = response.data.order_id;
+      this.payment_platform = response.data.payment_platform;
+      this.refund_type = response.data.refund_type;
+      this.refund_time = response.data.refund_time;
+      this.refund_reason = response.data.refund_reason;
+      this.order_status = response.data.order_status
+    })
+  },
   methods: {
+    onPostRefundReview(e) {
+      const form_1 = {
+        order_status: ''
+      };
+      postOrderReview(form_1)
+    },
     showConfirm_reject () {
       Modal.confirm({
         title: '确认拒绝？',
@@ -109,7 +136,8 @@ export default {
       refund_reason: '不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了不想买了',
       order_status: '',
       user_id: this.$store.user_id,
-      order_id: this.$store.order_id
+      order_id: this.$store.order_id,
+      refund_id: this.$store.refund_id
     }
   }
 }
