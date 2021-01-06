@@ -1,15 +1,13 @@
 <template>
   <div id="payorder">
     <a-row>
-      <a-col :span="14" :offset="8">
+      <a-col :span="8" :offset="14">
         <p class="height-100">
         <a-steps :current="1">
           <a-step>
             <template #title> 确认订单 </template>
           </a-step>
           <a-step title="支付订单" />
-          <a-step title="确认收货" />
-          <a-step title="双方互评" />
         </a-steps>
         </p>
       </a-col>
@@ -57,8 +55,19 @@
       </div>
       <a-divider />
       <p style="position:absolute; right: 200px;bottom: 190px; color:red; font-size:20px">实付款：￥25.05</p>
-      <a-button size="large" style="position:absolute; right: 200px;bottom: 160px">确认支付</a-button>
+      <a-button type="primary" size="large"  @click="showDrawer" style="position:absolute; right: 200px;bottom: 160px">确认支付</a-button>
     </div>
+    <a-drawer
+    title="跳转至支付界面..."
+    placement="bottom"
+    :closable="false"
+    v-model:visible="visible"
+    :after-visible-change="afterVisibleChange"
+  >
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+  </a-drawer>
 </template>
 
 <script>
@@ -67,6 +76,7 @@ export default {
   components: {},
   data () {
     return {
+      visible: false,
       value: 1,
       radioStyle: {
         display: 'block',
@@ -86,6 +96,12 @@ export default {
   methods: {
     onChange (e) {
       console.log('radio checked', e.target.value)
+    },
+    showDrawer () {
+      this.visible = true;
+    },
+    onClose () {
+      this.visible = false;
     }
   }
 }
