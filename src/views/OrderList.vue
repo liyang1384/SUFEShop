@@ -1,99 +1,151 @@
 <template>
-  <a-table
-    id="OrderList"
-    :columns="orderListColumns"
-    :data-source="OrderListdata"
-  >
-    <template #title>
-      <a-form layout="inline" :model="form">
-        <a-form-item>
-          <a-radio-group v-model:value="form.orderState">
-            <a-radio-button value="1"> 买入订单 </a-radio-button>
-            <a-radio-button value="2"> 卖出订单 </a-radio-button>
-          </a-radio-group>
-        </a-form-item>
-        <a-form-item>
-          <a-input-search
-            v-model:value="form.searchText"
-            placeholder="输入商品名称或订单号进行搜索"
-            style="width: 400px"
-            @search="onSearch"
-          />
-        </a-form-item>
-        <br />
-        <a-form-item label="选择时间">
-          <a-range-picker v-model:value="form.dateRange" @change="onChange" />
-        </a-form-item>
-        <a-form-item label="选择金额">
-          <a-input-group compact>
-            <a-input
-              v-model:value="form.minAmount"
-              style="width: 100px; text-align: center"
-              placeholder="最小金额"
-            />
-            <a-input
-              style="
-                width: 30px;
-                border-left: 0;
-                pointer-events: none;
-                backgroundcolor: #fff;
-              "
-              placeholder="~"
-              disabled
-            />
-            <a-input
-              v-model:value="form.maxAmount"
-              style="width: 100px; text-align: center; border-left: 0"
-              placeholder="最大金额"
-            />
-          </a-input-group>
-        </a-form-item>
+  <a-card id="OrderList">
+    <div :class="advanced ? 'search' : null">
+      <a-form layout="horizontal">
+        <div :class="advanced ? null : 'fold'">
+          <a-row>
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="商品名称"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-input
+                  placeholder="请输入"
+                  v-model:value="form.commodity_name"
+                />
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="最低价格"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-input v-model:value="form.min_price" />
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="最高价格"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-input v-model:value="form.max_price" />
+              </a-form-item>
+            </a-col>
+          </a-row>
+          <a-row v-if="advanced">
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="订单类型"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-select v-model:value="form.order_type">
+                  <a-select-option value="buy"> 买进订单 </a-select-option>
+                  <a-select-option value="sell"> 卖出订单 </a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="订单类型"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-select v-model:value="form.order_state">
+                  <a-select-option value="all"> 全部 </a-select-option>
+                  <a-select-option value="paying"> 待付款 </a-select-option>
+                  <a-select-option value="paid"> 已付款 </a-select-option>
+                  <a-select-option value="refunded"> 已退款 </a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="审核员"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-input
+                  placeholder="请输入"
+                  v-model:value="form.auditor_name"
+                />
+              </a-form-item>
+            </a-col>
+          </a-row>
+        </div>
+        <span style="float: right; margin-top: 3px">
+          <a-button type="primary">查询</a-button>
+          <a-button style="margin-left: 8px">重置</a-button>
+          <a @click="toggleAdvanced" style="margin-left: 8px">
+            {{ advanced ? "收起" : "展开" }}
+            <UpOutlined v-if="advanced" />
+            <DownOutlined v-else />
+          </a>
+        </span>
       </a-form>
-    </template>
-    <template #order="{ record }">
-      <div>订单号：{{ record.orderID }}</div>
-      <div>{{ record.commodityName }}</div>
-    </template>
-    <template #counterpartyTitle>
-      <div>{{ counterparty }}</div>
-    </template>
-    <template #action></template>
-  </a-table>
+    </div>
+    <div>
+      <a-table
+        :columns="columns"
+        :dataSource="dataSource"
+        @change="ontableChange"
+        :rowSelection="rowSelection"
+      >
+        <template #order="{ record }">
+          {{ record.commodity_name }}
+        </template>
+        <template #counterparty_title>
+          {{ form.order_type == "buy" ? "卖家" : "买家" }}
+        </template>
+        <template #counterparty_name="{ record }">
+          {{ record.counterparty_name }}
+        </template>
+        <template #action="{ record }">
+          <a v-if="record.order_state == '待付款'" style="margin-right: 8px"> 支付订单 </a>
+          <a v-if="record.order_state == '已付款'" style="margin-right: 8px"> 支付订单 </a>
+          <a v-if="record.order_state == ''" style="margin-right: 8px"> 支付订单 </a>
+        </template>
+      </a-table>
+    </div>
+  </a-card>
 </template>
 
 <script>
-const orderListColumns = [
+import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
+const columns = [
   {
     title: '订单',
     dataIndex: 'order',
     slots: { customRender: 'order' }
   },
   {
-    title: '金额',
+    title: '金额（￥）',
     dataIndex: 'amount',
-    slots: { customRender: 'amount' },
     align: 'center'
   },
   {
-    dataIndex: 'counterpartyName',
-    slots: { title: 'counterpartyTitle', customRender: 'counterpartyName' },
+    dataIndex: 'counterparty_name',
+    slots: { title: 'counterparty_title', customRender: 'counterparty_name' },
     align: 'center'
   },
   {
     title: '下单时间',
-    dataIndex: 'orderTime',
+    dataIndex: 'order_time',
     align: 'center'
   },
   {
     title: '订单状态',
-    dataIndex: 'orderState',
-    slots: { customRender: 'orderState' },
+    dataIndex: 'order_state',
+    slots: { customRender: 'order_state' },
     align: 'center'
   },
   {
     title: '商品类别',
-    dataIndex: 'commodityType',
-    slots: { customRender: 'commodityType' },
+    dataIndex: 'commodity_type',
+    slots: { customRender: 'commodity_type' },
     align: 'center'
   },
   {
@@ -101,79 +153,84 @@ const orderListColumns = [
     dataIndex: 'action',
     slots: { customRender: 'action' }
   }
-]
+];
 
+const dataSource = []
+for (let i = 0; i < 100; i++) {
+  dataSource.push({
+    key: i,
+    order_ID: '10000000000' + i,
+    commodity_name: '商品名称',
+    amount: Math.floor(Math.random() * 1000),
+    counterparty_name: 'Jack',
+    order_time: '2020-10-1 20:00',
+    order_state: '待付款',
+    commodity_type: '书籍'
+  });
+}
 // 此处数据为虚拟数据，后端完成接口时应删除
-const OrderListdata = [
-  {
-    key: 1,
-    orderID: '100000000001',
-    commodityName: '商品名称占位符商品名称占位符',
-    amount: 32,
-    counterpartyName: 'Jack',
-    orderTime: '2020-10-1 20:00',
-    orderState: '待完成',
-    commodityType: '书籍'
-  },
-  {
-    key: 2,
-    orderID: '100000000002',
-    commodityName: '商品名称占位符商品名称占位符',
-    amount: 32,
-    counterpartyName: 'Jack',
-    orderTime: '2020-10-1 20:00',
-    orderState: '待完成',
-    commodityType: '书籍'
-  },
-  {
-    key: 3,
-    orderID: '100000000003',
-    commodityName: '商品名称占位符商品名称占位符',
-    amount: 32,
-    counterpartyName: 'Jack',
-    orderTime: '2020-10-1 20:00',
-    orderState: '待完成',
-    commodityType: '书籍'
-  }
-]
 
 export default {
   name: 'OrderList',
-  components: {},
+  components: {
+    DownOutlined,
+    UpOutlined
+  },
   data () {
     return {
-      orderListColumns,
-      OrderListdata,
+      advanced: true,
+      columns: columns,
+      dataSource: dataSource,
+      selectedRowKeys: [],
       form: {
-        orderState: '1',
+        order_type: 'buy',
+        order_state: 'all',
         searchText: '',
         dateRange: [],
         minAmount: undefined,
         maxAmount: undefined
       }
-    }
+    };
   },
   methods: {
-    onSearch (value) {}
-  },
-  computed: {
+    onSearch (value) {},
+    toggleAdvanced () {
+      this.advanced = !this.advanced;
+    },
     counterparty: function () {
-      return this.orderState === '1' ? '卖家' : '买家'
+      return this.orderState === '1' ? '卖家' : '买家';
     }
-  }
-}
+  },
+  computed: {}
+};
 </script>
 
 <style scope lang="scss">
 #OrderList {
-  .ant-radio-button-wrapper {
-    margin: 0 20px;
+  .search {
+    margin-bottom: 54px;
   }
-  .ant-table-title{
-    padding-top: 0;
+  .fold {
+    width: calc(100% - 216px);
+    display: inline-block;
   }
-  .ant-form {
-    text-align: left;
+  .operator {
+    margin-bottom: 18px;
+  }
+  .alert {
+    margin-bottom: 16px;
+    a {
+      font-weight: 600;
+    }
+    .clear {
+      float: right;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .fold {
+      width: 100%;
+    }
   }
 }
 </style>

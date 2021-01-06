@@ -4,7 +4,7 @@
     <a-form :model="form" :wrapper-col="{ span: 24 }">
       <a-form-item>
         <a-input
-          v-model:value="form.username"
+          v-model:value="form.user_name"
           :maxlength="300"
           allow-clear
           placeholder="用户名"
@@ -28,7 +28,7 @@
       </a-form-item>
       <a-form-item>
         <a-input
-          v-model:value="form.realname"
+          v-model:value="form.real_name"
           :maxlength="300"
           allow-clear
           placeholder="姓名"
@@ -41,12 +41,6 @@
           allow-clear
           placeholder="手机号"
         />
-      </a-form-item>
-      <a-form-item label="性别" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
-        <a-radio-group v-model:value="form.sex">
-          <a-radio value="MALE"> 男 </a-radio>
-          <a-radio value="FEMALE"> 女 </a-radio>
-        </a-radio-group>
       </a-form-item>
       <a-form-item style="margin-bottom: 12px">
         <a-button type="primary" @click="onRegister" style="width: 100%">
@@ -63,24 +57,35 @@
 </template>
 
 <script>
+import { postUserDetail } from '@/axios/user.js'
 export default {
   name: 'Register',
   data () {
     return {
       wrapperCol: { span: 24 },
       form: {
-        username: '',
+        user_name: '',
         password: '',
         email: '',
-        realname: '',
-        mobile: '',
-        sex: undefined
+        real_name: '',
+        mobile: ''
       }
     };
   },
   methods: {
-    onLogin (e) {
-      console.log(this.form.username);
+    onRegister (e) {
+      postUserDetail(this.form)
+        .then((response) => {
+          const status_code = response.data.status_code
+          if (status_code === 200) {
+            // this.$router.push({ path: 'login' })
+            this.$message.info('注册成功')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.info('注册失败')
+        });
     }
   }
 };

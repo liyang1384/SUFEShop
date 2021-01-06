@@ -6,11 +6,14 @@
           <a-row>
             <a-col :md="8" :sm="24">
               <a-form-item
-                label="商品编号"
+                label="商品名称"
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
-                <a-input placeholder="请输入" />
+                <a-input
+                  placeholder="请输入"
+                  v-model:value="form.commodity_name"
+                />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
@@ -19,7 +22,7 @@
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
-                <a-input placeholder="请输入" />
+                <a-input v-model:value="form.min_price" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
@@ -28,50 +31,47 @@
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
-                <a-input-number
-                  v-model:value="form.max_price"
-                  :formatter="
-                    (value) =>
-                      `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                  "
-                  :parser="(value) => value.replace(/\￥\s?|(,*)/g, '')"
-                  @change="onChange"
-                />
+                <a-input v-model:value="form.max_price" />
               </a-form-item>
             </a-col>
           </a-row>
           <a-row v-if="advanced">
             <a-col :md="8" :sm="24">
               <a-form-item
-                label="更新日期"
+                label="审核状态"
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
-                <a-date-picker
-                  style="width: 100%"
-                  placeholder="请输入更新日期"
-                />
-              </a-form-item>
-            </a-col>
-            <a-col :md="8" :sm="24">
-              <a-form-item
-                label="使用状态"
-                :labelCol="{ span: 5 }"
-                :wrapperCol="{ span: 18, offset: 1 }"
-              >
-                <a-select placeholder="请选择">
-                  <a-select-option value="1">关闭</a-select-option>
-                  <a-select-option value="2">运行中</a-select-option>
+                <a-select v-model:value="form.application_state">
+                  <a-select-option value="TO_BE_REVIEWED">
+                    待审核
+                  </a-select-option>
+                  <a-select-option value="APPROVED"> 审核通过 </a-select-option>
+                  <a-select-option value="REJECTED">
+                    审核未通过
+                  </a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item
-                label="描述"
+                label="申请人"
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
-                <a-input placeholder="请输入" />
+                <a-input placeholder="请输入" v-model:value="form.username" />
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item
+                label="审核员"
+                :labelCol="{ span: 5 }"
+                :wrapperCol="{ span: 18, offset: 1 }"
+              >
+                <a-input
+                  placeholder="请输入"
+                  v-model:value="form.auditor_name"
+                />
               </a-form-item>
             </a-col>
           </a-row>
@@ -81,54 +81,49 @@
           <a-button style="margin-left: 8px">重置</a-button>
           <a @click="toggleAdvanced" style="margin-left: 8px">
             {{ advanced ? "收起" : "展开" }}
-            <a-icon :type="advanced ? 'up' : 'down'" />
+            <UpOutlined v-if="advanced" />
+            <DownOutlined v-else />
           </a>
         </span>
       </a-form>
     </div>
     <div>
-      <div class="operator">
-        <a-button>批量操作</a-button>
-      </div>
       <div class="alert">
         <a-alert type="info" :show-icon="true">
-          <template #message>
-            已选择 {{ selectedRows.length }} 项
-            <a class="clear" @click="onClear">清空</a>
-          </template>
+          <template #message> 已选择 {{ selectedRowKeys.length }} 项 </template>
         </a-alert>
       </div>
       <a-table
-        :bordered="bordered"
-        :loading="loading"
         :columns="columns"
         :dataSource="dataSource"
-        :rowKey="rowKey"
-        :pagination="pagination"
-        :expandedRowKeys="expandedRowKeys"
-        :expandedRowRender="expandedRowRender"
-        @change="onChange"
-        :rowSelection="
-          selectedRows
-            ? { selectedRowKeys: selectedRowKeys, onChange: updateSelect }
-            : undefined
-        "
+        @change="ontableChange"
+        :rowSelection="rowSelection"
       >
+        <template #action>
+          <a style="margin-right: 8px"> <CheckOutlined />通过 </a>
+          <a style="margin-right: 8px"> <CloseOutlined />不通过 </a>
+        </template>
       </a-table>
     </div>
   </a-card>
 </template>
 
 <script>
-// import StandardTable from '@/components/StandardTable';
+import {
+  DownOutlined,
+  UpOutlined,
+  CheckOutlined,
+  CloseOutlined
+} from '@ant-design/icons-vue';
+// import { getAuditCommodityList } from '@/axios/commodity.js';
 const columns = [
   {
     title: '商品编号',
-    dataIndex: 'commodityID'
+    dataIndex: 'commodity_ID'
   },
   {
     title: '商品名称',
-    dataIndex: 'commodityName'
+    dataIndex: 'commodity_name'
   },
   {
     title: '价格',
@@ -137,11 +132,11 @@ const columns = [
   },
   {
     title: '申请人',
-    dataIndex: 'userName'
+    dataIndex: 'username'
   },
   {
     title: '申请时间',
-    dataIndex: 'applyTime',
+    dataIndex: 'apply_time',
     sorter: true
   },
   {
@@ -155,22 +150,28 @@ const dataSource = [];
 for (let i = 0; i < 100; i++) {
   dataSource.push({
     key: i,
-    commodityID: i,
-    commodityName: '商品名称',
+    commodity_ID: i,
+    commodity_name: '商品名称',
     price: Math.floor(Math.random() * 1000),
-    userName: '申请人姓名',
-    applyTime: '2018-07-26 12:00:00'
+    username: '申请人姓名',
+    apply_time: '2018-07-26 12:00:00'
   });
 }
 
 export default {
   name: 'CommodityReview',
+  components: {
+    DownOutlined,
+    UpOutlined,
+    CheckOutlined,
+    CloseOutlined
+  },
   data () {
     return {
       advanced: true,
       columns: columns,
       dataSource: dataSource,
-      selectedRows: [],
+      selectedRowKeys: [],
       form: {
         application_state: 'TO_BE_REVIEWED',
         commodity_name: '',
@@ -178,43 +179,45 @@ export default {
         max_price: '',
         sort: {
           name: 'apply_time',
-          mode: 'asc'
+          mode: 'ascend'
         },
         username: '',
         auditor_name: '',
         page: '1'
       }
+    };
+  },
+  created: function () {
+    /*
+    getAuditCommodityList(this.form).then(function (response) {
+      this.dataSource = response.data;
+    });
+    */
+  },
+  computed: {
+    rowSelection () {
+      return {
+        onSelectChange: (selectedRowKeys, selectedRows) => {
+          this.selectedRowKeys = selectedRowKeys;
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+          console.log(selected, selectedRows, changeRows);
+        }
+      };
     }
   },
   methods: {
-    deleteRecord (key) {
-      this.dataSource = this.dataSource.filter(item => item.key !== key);
-      this.selectedRows = this.selectedRows.filter(item => item.key !== key);
-    },
     toggleAdvanced () {
       this.advanced = !this.advanced;
     },
-    remove () {
-      this.dataSource = this.dataSource.filter(
-        item => this.selectedRows.findIndex(row => row.key === item.key) === -1
-      );
-      this.selectedRows = [];
-    },
-    onClear () {
-      this.$message.info('您清空了勾选的所有行');
-    },
-    onStatusTitleClick () {
-      this.$message.info('你点击了状态栏表头');
-    },
-    onChange () {
-      this.$message.info('表格状态改变了');
-    },
-    onSelectChange () {
-      this.$message.info('选中行改变了');
-    },
-    handleMenuClick (e) {
-      if (e.key === 'delete') {
-        this.remove();
+    ontableChange (pagination, filters, sorter) {
+      console.log(pagination)
+      if (Object.prototype.hasOwnProperty.call(sorter, 'order')) {
+        this.form.sort.name = sorter.columnKey;
+        this.form.sort.mode = sorter.order;
+      } else {
+        this.form.sort.name = 'apply_time';
+        this.form.sort.mode = 'ascend';
       }
     }
   }

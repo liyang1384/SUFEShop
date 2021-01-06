@@ -2,7 +2,7 @@ import instance from './index.js'
 
 export function getRefundDetail_char(data) {
   return instance({
-    url: '/refunddetail',
+    url: 'refund/refunddetail/',
     // 请求方法：get
     method: 'get'
   })
@@ -29,7 +29,11 @@ export function postRefundDetail_img(data) {
   return instance({
     url: '/refunddetail',
     method: 'post',
+<<<<<<< HEAD
     responseType: 'stream',
     data
+=======
+    data: data
+>>>>>>> d3cdf1b44bc4dece04adf1915a3971406e6a2148
   })
 }
