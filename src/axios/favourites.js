@@ -2,7 +2,7 @@ import instance from './index.js'
 
 export function listFavourites (params) {
   return instance({
-    url: 'favourites/FavouritesDetail/',
+    url: 'favourites/favouritesdetail/',
     // 请求方法：get
     method: 'get',
     params: params
@@ -12,19 +12,19 @@ export function listFavourites (params) {
 
 export function insertFavourites (data) {
   return instance({
-    url: 'favourites/FavouritesDetail/',
+    url: 'favourites/favouritesdetail/',
     method: 'post',
     data: data
   })
 }
 // 将指定商品加入收藏夹
 
-export function deleteCommodityFromFavourites (params) {
+export function deleteCommodityFromFavourites (data) {
   return instance({
-    url: 'favourites/FavouritesDetail/',
+    url: 'favourites/favouritesdetail/',
     method: 'delete',
-    params: params
+    data: data
   })
 }
-// 将指定商品加入收藏夹
+// 将指定商品删除
 

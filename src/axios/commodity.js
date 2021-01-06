@@ -10,7 +10,7 @@ export function getCommodityList (params) {
 
 export function getCommodity (params) {
   return instance({
-    url: 'commodity/CommodityDetail/',
+    url: 'commodity/commoditydetail/',
     // 请求方法：get
     method: 'get',
     params: params

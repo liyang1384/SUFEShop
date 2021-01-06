@@ -18,9 +18,9 @@
         <a-col :span="14" height=600>
           <div class="height-1000" align="left">
             <p>
-            <a style="color:#BEBEBE" ><HeartTwoTone twoToneColor="likecolor" />&nbsp;&nbsp;加入收藏夹</a></p><!--#eb2f96-->
+            <a style="color:#BEBEBE" ><HeartTwoTone likeColor="grey" />&nbsp;&nbsp;加入收藏夹</a></p><!--#eb2f96-->
             <p>
-              卖家:&nbsp;&nbsp;{{ proDetail.user_name }}
+              卖家:&nbsp;&nbsp;{{ proDetail.seller }}
               <a-divider type="vertical" />
               <a>联系卖家</a>
             </p>
@@ -29,7 +29,7 @@
             <p>商品状态:&nbsp;&nbsp;<a-badge status="processing" />{{ proDetail.commodity_state }}</p>
             <br/>
             <p>商品描述</p>
-            <p>{{ proDetail }}</p>
+            <p>{{ proDetail.detail }}</p>
             <br/>
           </div>
         </a-col>
@@ -37,7 +37,7 @@
       <a-row>
         <a-divider />
         <a-col :span="4" :offset="20">
-          <a-button value="large" type="primary" @click="handleChangePage(commodity_id)">立即购买</a-button>
+          <a-button value="large" type="primary" @click="handleChangePage(proDetail.commodity_id)">立即购买</a-button>
         </a-col>
       </a-row>
     </div>
@@ -57,27 +57,27 @@ export default {
   },
   data () {
     return {
-      likecolor: 'grey',
-      commodity_id: '',
-      proDetail: {}
-      /* commodity_id: '10000239',
-      images: require('@/assets/testimg.png'),
-      CommodityName: '高数教材配套教辅，九成新，没做过，可议价',
-      SellerName: 'BILL',
-      PublishTime: '2020-11-25',
-      Kind: '教材',
-      state: '在售',
-      Price: 25,
-      Description: '高数教材配套教辅，九成新，没做过，可议价.....'*/
+      form: {
+        commodity_id: '10000239'
+      },
+      proDetail: {
+        commodity_picture: require('@/assets/testimg.png'),
+        commodity_name: '高数教材配套教辅，九成新，没做过，可议价',
+        seller: 'BILL',
+        commodity_type: '教材',
+        commodity_state: '在售',
+        price: 25,
+        detail: '高数教材配套教辅，九成新，没做过，可议价.....'
+      }
     }
   },
   created () {
-    this.commodity_id = this.$route.params.commodity_id;
+    /* this.commodity_id = this.$route.params.commodity_id;*/
     this.getDetails();
   },
   methods: {
     getDetails () { //  请求商品详情
-      getCommodity(this.commodity_id)
+      getCommodity(this.form)
         .then((response) => {
           console.log(response.data);
           this.proDetail = response.data;

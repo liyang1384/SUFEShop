@@ -18,7 +18,7 @@
         title="确认从收藏夹中删除商品吗?"
         ok-text="是"
         cancel-text="否"
-        @confirm="confirm"
+        @confirm="confirm(record.commodity_id)"
         @cancel="cancel"
       >
         <a-button href="#" type="primary">删除商品</a-button>
@@ -80,6 +80,16 @@ const data = [
     seller: 'BILL',
     comments: '高数教材配套教辅，九成新，没做过，可议价.....',
     commodity_picture: require('@/assets/testimg.png')
+  },
+  {
+    commodity_id: '1000325',
+    commodity_name: 'bbbbbbbbbbbbbbbbbbbb',
+    price: 25,
+    commodity_state: '在售',
+    commodity_type: '教材',
+    seller: 'BILL',
+    comments: '高数教材配套教辅，九成新，没做过，可议价.....',
+    commodity_picture: require('@/assets/testimg.png')
   }
 ]
 export default {
@@ -90,7 +100,7 @@ export default {
       data,
       columns,
       form: {
-        user_id: this.$store.user_id,
+        user_id: 123,
         page: '1'
       }
     }
@@ -103,10 +113,13 @@ export default {
     */
   },
   methods: {
-    confirm (index, e) {
-      deleteCommodityFromFavourites(this.form, this.data[index].commodity_id)
+    confirm (commodity_id) {
+      const form_0 = {
+        user_id: this.form.user_id,
+        commodity_id: commodity_id
+      };
+      deleteCommodityFromFavourites(form_0)
         .then((response) => {
-          this.data.splice(index, 1)
           message.success('删除成功')
         })
         .catch((error) => {
