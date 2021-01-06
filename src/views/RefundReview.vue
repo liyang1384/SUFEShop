@@ -60,7 +60,8 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { createVNode } from 'vue'
 import { Modal } from 'ant-design-vue'
-import { getOrderInfo_review, postRefundReview } from '../axios/refund';
+import { getOrderInfo_review } from '../axios/refund';
+import { postRefundReview } from '../axios/order';
 export default {
   created: function () {
     const form_0 = {
