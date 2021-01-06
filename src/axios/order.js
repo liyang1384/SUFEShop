@@ -1,8 +1,8 @@
 import instance from './index.js'
 
-export function getBoughtOrderList (params) {
+export function getOrderList (params) {
   return instance({
-    url: 'order/boughtorderlist/',
+    url: 'order/orderlist/',
     method: 'get',
     params: params
   })

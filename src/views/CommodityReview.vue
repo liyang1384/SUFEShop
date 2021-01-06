@@ -59,7 +59,7 @@
                 :labelCol="{ span: 5 }"
                 :wrapperCol="{ span: 18, offset: 1 }"
               >
-                <a-input placeholder="请输入" v-model:value="form.username" />
+                <a-input placeholder="请输入" v-model:value="form.user_name" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
@@ -78,7 +78,7 @@
         </div>
         <span style="float: right; margin-top: 3px">
           <a-button type="primary" @click="onSearch">查询</a-button>
-          <a-button style="margin-left: 8px">重置</a-button>
+          <a-button style="margin-left: 8px" @click="reset">重置</a-button>
           <a @click="toggleAdvanced" style="margin-left: 8px">
             {{ advanced ? "收起" : "展开" }}
             <UpOutlined v-if="advanced" />
@@ -132,7 +132,7 @@ const columns = [
   },
   {
     title: '申请人',
-    dataIndex: 'username'
+    dataIndex: 'user_name'
   },
   {
     title: '申请时间',
@@ -153,7 +153,7 @@ for (let i = 0; i < 100; i++) {
     commodity_ID: i,
     commodity_name: '商品名称',
     price: Math.floor(Math.random() * 1000),
-    username: '申请人姓名',
+    user_name: '申请人姓名',
     apply_time: '2018-07-26 12:00:00'
   });
 }
@@ -179,9 +179,9 @@ export default {
         max_price: '',
         sort: {
           name: 'apply_time',
-          mode: 'ascend'
+          mode: 'asc'
         },
-        username: '',
+        user_name: '',
         auditor_name: '',
         page: '1'
       }
@@ -227,14 +227,22 @@ export default {
           this.$message.info('失败')
         });
     },
+    reset () {
+      this.form.application_state = 'TO_BE_REVIEWED';
+      this.form.min_price = '0';
+      this.form.commodity_name = '';
+      this.form.max_price = '';
+      this.form.user_name = '';
+      this.form.auditor_name = '';
+    },
     ontableChange (pagination, filters, sorter) {
       console.log(pagination)
       if (Object.prototype.hasOwnProperty.call(sorter, 'order')) {
         this.form.sort.name = sorter.columnKey;
-        this.form.sort.mode = sorter.order;
+        this.form.sort.mode = (sorter.orde === 'ascend' ? 'asc' : 'desc');
       } else {
         this.form.sort.name = 'apply_time';
-        this.form.sort.mode = 'ascend';
+        this.form.sort.mode = 'asc';
       }
       this.onSearch()
     }
