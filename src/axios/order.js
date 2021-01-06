@@ -18,7 +18,7 @@ export function getOrderInfo_Review (params) {
 
 export function getOrderInfo_Info (params) {
   return instance({
-    url: 'order/boughtorderlist/',
+    url: 'order/orderdetail/',
     method: 'get',
     params: params
   })
