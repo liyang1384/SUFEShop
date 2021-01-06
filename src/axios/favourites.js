@@ -8,6 +8,7 @@ export function listFavourites (params) {
       params: params
     })
   }
+//获取个人收藏夹信息
 
 export function insertFavourites (data) {
   return instance({
@@ -16,3 +17,5 @@ export function insertFavourites (data) {
     data: data
   })
 }
+//将指定商品加入收藏夹
+
