@@ -39,8 +39,8 @@ import { BrowseHistoryList } from '@/axios/commodity.js';
 const columns = [
   {
     title: '浏览时间',
-    key: 'browse_time',
-    dataIndex: 'browse_time',
+    key: 'time',
+    dataIndex: 'time',
     width: 120
   },
   {
@@ -58,15 +58,15 @@ const columns = [
   },
   {
     title: '商品状态',
-    dataIndex: 'application_state',
-    key: 'application_state',
+    dataIndex: 'state',
+    key: 'state',
     width: 200
   },
   {
     title: '商品类别',
-    key: 'commodity_type',
-    dataIndex: 'commodity_type',
-    slots: { customRender: 'commodity_type' },
+    key: 'tags',
+    dataIndex: 'tags',
+    slots: { customRender: 'tags' },
     width: 200
   },
   {
@@ -79,12 +79,52 @@ const columns = [
 
 const data = [
   {
-    commodity_id: '1',
+    key: '1',
     imageName: [require('@/assets/image1.png'), '马原教科书'],
     price: 32.75,
-    application_state: '在售',
-    commodity_type: ['教科书'],
-    browse_time: '2020-1-1'
+    state: '在售',
+    tags: ['教科书'],
+    time: '2020-1-1'
+  },
+  {
+    key: '2',
+    imageName: [require('@/assets/image2.png'), '潮牌跑步鞋'],
+    price: 420.0,
+    state: '在售',
+    tags: ['服装'],
+    time: '2019-1-1'
+  },
+  {
+    imageName: [require('@/assets/image4.png'), '高端人才必备手机'],
+    key: '4',
+    price: 7000,
+    state: '在售',
+    tags: ['手机'],
+    time: '2017-5-1'
+  },
+  {
+    imageName: [require('@/assets/image5.png'), '潮流自行车'],
+    key: '5',
+    price: 500,
+    state: '在售',
+    tags: ['自行车', '二手'],
+    time: '2017-4-1'
+  },
+  {
+    imageName: [require('@/assets/image6.png'), '精神小伙同款上衣'],
+    key: '6',
+    price: 20,
+    state: '在售',
+    tags: ['教材', '全新'],
+    time: '2017-3-1'
+  },
+  {
+    imageName: [require('@/assets/image7.png'), '上财女生必备神仙水'],
+    key: '7',
+    price: 24,
+    state: '在售',
+    tags: ['化妆品'],
+    time: '2017-1-1'
   }
 ]
 
@@ -105,13 +145,7 @@ export default {
         .then((response) => {
           const status_code = response.status
           if (status_code === 200) {
-            this.data.commodity_id = response.data.commodity_id;
-            this.data.price = response.data.price;
-            this.data.commodity_type = response.data.commodity_type;
-            this.data.imageName[0] = response.data.commodity_picture;
-            this.data.imageName[1] = response.data.commodity_name;
-            this.data.application_state = response.data.application_state;
-            this.data.browse_time = response.data.browse_time;
+            this.data = response.data;
             if (this.$store.user_id != null) {
               this.$router.push({ path: '' })
               this.$message.info('成功')

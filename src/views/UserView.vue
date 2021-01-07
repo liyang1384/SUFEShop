@@ -72,6 +72,46 @@ const data = [
     application_state: '在售',
     commodity_type: ['教科书'],
     on_shelf_time: '2020-1-1'
+  },
+  {
+    key: '2',
+    imageName: [require('@/assets/image2.png'), '潮牌跑步鞋'],
+    price: 420.0,
+    application_state: '在售',
+    commodity_type: ['服装'],
+    on_shelf_time: '2019-1-1'
+  },
+  {
+    imageName: [require('@/assets/image4.png'), '高端人才必备手机'],
+    key: '4',
+    price: 7000,
+    application_state: '在售',
+    commodity_type: ['手机'],
+    on_shelf_time: '2017-5-1'
+  },
+  {
+    imageName: [require('@/assets/image5.png'), '潮流自行车'],
+    key: '5',
+    price: 500,
+    application_state: '在售',
+    commodity_type: ['自行车', '二手'],
+    on_shelf_time: '2017-4-1'
+  },
+  {
+    imageName: [require('@/assets/image6.png'), '精神小伙同款上衣'],
+    key: '6',
+    price: 20,
+    application_state: '在售',
+    commodity_type: ['教材', '全新'],
+    on_shelf_time: '2017-3-1'
+  },
+  {
+    imageName: [require('@/assets/image7.png'), '上财女生必备神仙水'],
+    key: '7',
+    price: 24,
+    application_state: '在售',
+    commodity_type: ['化妆品'],
+    on_shelf_time: '2017-1-1'
   }
 ]
 
